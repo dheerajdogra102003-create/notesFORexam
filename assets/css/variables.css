@@ -1,0 +1,176 @@
+/**
+ * Design Tokens & Custom Properties
+ * Modern Twilight Dark Palette with rich vibrant accents & tight, purposeful spacing
+ */
+
+:root {
+  /* Color Palette - Vibrant Twilight Dark Theme */
+  --bg-base: #0b0f19;
+  --bg-surface-1: #111827;
+  --bg-surface-2: #162033;
+  --bg-surface-3: #1f2d47;
+  --bg-surface-hover: #263859;
+  --bg-card: rgba(17, 24, 39, 0.75);
+  --bg-card-hover: rgba(22, 32, 51, 0.9);
+  --bg-glass: rgba(11, 15, 25, 0.82);
+  --bg-overlay: rgba(5, 8, 15, 0.85);
+  --bg-input: #131d2e;
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(255, 255, 255, 0.09);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --border-strong: rgba(255, 255, 255, 0.28);
+  --border-focus: #6366f1;
+  --border-accent: rgba(99, 102, 241, 0.45);
+
+  /* Typography Colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0b0f19;
+  --text-accent: #818cf8;
+
+  /* Vibrant Accents */
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-glow: rgba(99, 102, 241, 0.35);
+
+  --secondary: #06b6d4;
+  --secondary-glow: rgba(6, 182, 212, 0.3);
+
+  --accent-purple: #a855f7;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --accent-cyan: #06b6d4;
+
+  /* Status Colors */
+  --status-success: #10b981;
+  --status-warning: #f59e0b;
+  --status-danger: #f43f5e;
+  --status-info: #38bdf8;
+  --status-success-bg: rgba(16, 185, 129, 0.14);
+  --status-warning-bg: rgba(245, 158, 11, 0.14);
+  --status-danger-bg: rgba(244, 63, 94, 0.14);
+  --status-info-bg: rgba(56, 189, 248, 0.14);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  --gradient-card: linear-gradient(145deg, rgba(22, 32, 51, 0.8) 0%, rgba(17, 24, 39, 0.9) 100%);
+  --gradient-surface: linear-gradient(180deg, rgba(22, 32, 51, 0.4) 0%, rgba(11, 15, 25, 0.7) 100%);
+
+  /* Code Syntax Palette */
+  --code-bg: #0d1424;
+  --code-border: rgba(255, 255, 255, 0.1);
+  --code-inline-bg: rgba(99, 102, 241, 0.15);
+  --code-inline-text: #a5b4fc;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, Monaco, monospace;
+
+  /* Font Scales */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 0.95rem;   /* ~15px */
+  --text-lg: 1.1rem;      /* ~17.6px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.85rem;    /* ~30px */
+  --text-4xl: 2.25rem;    /* 36px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.35;
+  --line-height-normal: 1.55;
+  --line-height-relaxed: 1.7;
+
+  /* Compact Spacing Scale (Reduced empty voids) */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+
+  /* Border Radii */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Elevation Shadows & Glows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 18px 35px -8px rgba(0, 0, 0, 0.65);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout Constants */
+  --header-height: 4rem;
+  --sidebar-width: 300px;
+  --toc-width: 250px;
+  --container-max-width: 1360px;
+  --reading-max-width: 860px;
+  --blur-glass: blur(16px);
+}
+
+/* Light Theme Variables (High-Contrast, Distinct Surfaces & Crisp Hierarchy) */
+[data-theme="light"] {
+  --bg-base: #f1f5f9;                 /* Rich slate-100 canvas (creates immediate pop for pure white cards) */
+  --bg-surface-1: #ffffff;            /* Pure white primary surface */
+  --bg-surface-2: #e2e8f0;            /* Distinct slate-200 secondary surface */
+  --bg-surface-3: #cbd5e1;            /* Slate-300 tertiary surface */
+  --bg-surface-hover: #e2e8f0;
+  --bg-card: #ffffff;                 /* Solid crisp white cards */
+  --bg-card-hover: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.95);
+  --bg-overlay: rgba(15, 23, 42, 0.55);
+  --bg-input: #ffffff;
+
+  /* Crisp, Well-Defined Borders (No more invisible washed-out lines) */
+  --border-subtle: #e2e8f0;           /* Clean slate-200 border */
+  --border-medium: #cbd5e1;           /* Crisp slate-300 card border */
+  --border-strong: #94a3b8;           /* High-contrast slate-400 border */
+  --border-focus: #4f46e5;
+  --border-accent: rgba(79, 70, 229, 0.5);
+
+  /* High-Contrast Accessible Typography (WCAG AAA) */
+  --text-primary: #0f172a;            /* Deep slate-900 for razor-sharp legibility */
+  --text-secondary: #334155;          /* Slate-700 body text */
+  --text-muted: #64748b;              /* Slate-500 metadata text */
+  --text-inverse: #ffffff;
+  --text-accent: #4338ca;             /* Deep indigo-700 */
+
+  --primary: #4f46e5;                 /* Indigo-600 */
+  --primary-hover: #4338ca;
+  --primary-glow: rgba(79, 70, 229, 0.25);
+
+  /* Professional Dark-Code Block in Light Mode (Industry standard like Stripe/Vercel) */
+  --code-bg: #0f172a;
+  --code-border: #334155;
+  --code-inline-bg: #e0e7ff;
+  --code-inline-text: #3730a3;
+
+  --gradient-card: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  --gradient-surface: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+
+  /* Rich Layered Elevation Shadows */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 8px -2px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 12px 20px -4px rgba(15, 23, 42, 0.1), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
+  --shadow-xl: 0 20px 30px -6px rgba(15, 23, 42, 0.12), 0 8px 12px -4px rgba(15, 23, 42, 0.06);
+}

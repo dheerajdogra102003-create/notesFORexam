@@ -1,0 +1,61 @@
+# EXAM NOTES PORTAL — ARCHITECTURAL RULES & SPECIFICATIONS
+
+## 1. Core Architectural Principle: Content Separation
+- The application engine (UI, HTML, CSS, JavaScript) must be completely decoupled from educational content.
+- Never hard-code subjects, chapters, questions, units, or educational notes into the application code (`index.html`, `notes.html`, `main.js`, `viewer.js`, CSS files).
+- The portal is **content-driven, not structure-driven**. It must never assume a rigid hierarchy (e.g. `Subject -> Chapter -> Unit -> Topic`).
+- Different subjects may define completely different structures (e.g. direct topic lists, unit-based, question banks, cheat sheets, or standalone documentation). The engine must dynamically adapt to whatever structure is supplied in `data/subjects.json` and `data/content/`.
+
+## 2. Directory Layout & Boundaries
+```text
+exam-notes-portal/
+├── antigravity.rules                  # Architectural guidelines & integration rules
+├── index.html                         # Dynamic subject portal & dashboard shell
+├── notes.html                         # Reusable content viewer & revision workspace
+├── assets/
+│   ├── css/
+│   │   ├── variables.css              # Design tokens (dark-first, light mode, typography, colors)
+│   │   ├── base.css                   # Global reset, typography, layout fundamentals
+│   │   ├── components.css             # Reusable UI components (cards, search, badges, modals, empty states)
+│   │   └── notes-view.css             # Viewer layout, sidebar, reading pane, code blocks, tables, print
+│   ├── js/
+│   │   ├── main.js                    # Index page controller (subject loader, search, empty state)
+│   │   ├── viewer.js                  # Viewer controller (content router, parser trigger, state sync)
+│   │   └── modules/
+│   │       ├── storage.js             # LocalStorage manager (theme, bookmarks, recents)
+│   │       ├── search.js              # Client-side search engine & indexing
+│   │       ├── parser.js              # Generic content parser (Markdown, HTML, code, special chars)
+│   │       └── navigation.js          # Dynamic navigation, sidebar tree, TOC, breadcrumbs, scroll spy
+│   └── images/
+│       ├── favicon.ico                # Site icon
+│       └── diagrams/                  # User-provided diagrams, flowcharts & schematics
+└── data/
+    ├── subjects.json                  # Dynamic master registry of subjects
+    └── content/                       # Content repository (subject-specific content added here)
+```
+
+## 3. Technology Stack Rules
+1. Pure Vanilla Web Standards: Semantic HTML5, CSS3 Custom Properties, ES6+ Modules (`import`/`export`).
+2. No heavy JavaScript frameworks (No React, Vue, Angular, Svelte).
+3. No build tools or compilers required (Zero build step, 100% GitHub Pages compatible).
+4. Client-side storage via `localStorage` (Theme preferences, bookmarks, recently viewed items). No backend or database required.
+5. Markdown parsing via Marked.js CDN and syntax highlighting via Prism.js CDN on the viewer page.
+
+## 4. Styling & Visual Design Standards
+1. **Dark-Mode First**: Students frequently study late at night. Primary dark theme uses layered dark slate/obsidian tones (`#090d16`, `#0f172a`, `#1e293b`), NEVER pure `#000000`.
+2. **Accessible Contrast**: All text must meet WCAG AA/AAA contrast ratios against surfaces.
+3. **No Inline Styles**: All styling must live within the CSS files using CSS custom properties defined in `variables.css`.
+4. **Stable Shell Layout**: Desktop viewer maintains a fixed header and sticky/scrollable sidebar while the reading pane scrolls independently. No whole-page layout jumping.
+5. **Mobile Responsiveness**: Clean drawer navigation, touch targets >= 44px, fluid typography (`clamp()`), and responsive horizontal scrolling wrappers for tables and code blocks.
+
+## 5. Technical Symbols & Syntax Preservation
+1. Preserve special mathematical, logical, and algorithmic characters:
+   `$`, `%`, `&`, `#`, `+`, `-`, `−`, `×`, `÷`, `=`, `≠`, `≤`, `≥`, `→`, `←`, `↑`, `↓`, `∞`, `π`, `λ`, `α`, `β`, `γ`.
+2. Preserve programming operators and syntax without HTML entity corruption:
+   `<>`, `{}`, `[]`, `()`, `&&`, `||`, `==`, `===`, `!=`, `=>`.
+3. Preformatted code blocks must maintain exact indentation, whitespace, and monospace rendering with copy-to-clipboard functionality.
+
+## 6. How Future Content is Integrated
+- When a new subject is added, register an entry in `data/subjects.json`.
+- Place the content files (Markdown, JSON, or HTML) inside `data/content/<subject-id>/`.
+- The engine will automatically detect and render the navigation, search index, table of contents, and content cards without any modifications to HTML or JavaScript.

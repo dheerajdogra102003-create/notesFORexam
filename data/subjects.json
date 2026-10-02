@@ -1,0 +1,44 @@
+{
+  "subjects": [
+    {
+      "id": "daa",
+      "code": "CS-201",
+      "title": "Design and Analysis of Algorithms",
+      "semester": "Semester 2",
+      "icon": "⚡",
+      "color": "#6366f1",
+      "description": "Algorithm design paradigms, asymptotic analysis, divide-and-conquer, greedy techniques, dynamic programming, and graph algorithms.",
+      "navigation": []
+    },
+    {
+      "id": "web-technologies",
+      "code": "CS-202",
+      "title": "Web Technologies",
+      "semester": "Semester 2",
+      "icon": "🌐",
+      "color": "#06b6d4",
+      "description": "HTML5, CSS3, DOM manipulation, ES6+ JavaScript, asynchronous workflows, HTTP protocols, and client-server architecture.",
+      "navigation": []
+    },
+    {
+      "id": "linux-administration",
+      "code": "CS-203",
+      "title": "Linux Administration",
+      "semester": "Semester 2",
+      "icon": "🐧",
+      "color": "#f59e0b",
+      "description": "Linux filesystem hierarchy, bash shell scripting, user permissions, process control, systemd daemon management, and network configuration.",
+      "navigation": []
+    },
+    {
+      "id": "java",
+      "code": "CS-204",
+      "title": "Java Programming",
+      "semester": "Semester 2",
+      "icon": "☕",
+      "color": "#ef4444",
+      "description": "OOP principles, inheritance, interfaces, exception handling, multithreading, synchronization, Java Collections Framework, and JVM architecture.",
+      "navigation": []
+    }
+  ]
+}

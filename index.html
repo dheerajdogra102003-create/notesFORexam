@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Exam Notes & Important Questions Portal. Dynamic, content-driven revision platform.">
+  <title>Exam Notes & Important Questions Portal</title>
+
+  <!-- Modular CSS Architecture -->
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/effects.css">
+
+  <link rel="icon" href="assets/images/favicon.ico">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <div class="brand-wrapper">
+        <a href="index.html" class="brand-link" id="brand-link">
+          <div class="brand-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </div>
+          <span class="brand-title">ExamVault</span>
+        </a>
+      </div>
+
+      <!-- Quick Search UI -->
+      <div class="search-wrapper" style="max-width: 320px;">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="portal-search-input" class="search-input" placeholder="Search topics, questions, or subjects..." autocomplete="off">
+          <span class="search-shortcut">/</span>
+        </div>
+        <div class="search-dropdown" id="portal-search-dropdown"></div>
+      </div>
+
+      <!-- Actions -->
+      <div class="header-actions">
+        <nav class="nav-links">
+          <a href="index.html" class="nav-link active">Directory</a>
+          <a href="notes.html" class="nav-link">Viewer</a>
+        </nav>
+        <button class="btn-icon" data-action="toggle-theme" title="Toggle Theme" aria-label="Toggle dark/light mode">
+          <!-- Populated by JS -->
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="site-main">
+    <div class="container" style="padding-block: var(--space-6) var(--space-10);">
+
+      <!-- Compact Hero Header -->
+      <section class="hero-enter-animate" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); margin-bottom: var(--space-6); padding-bottom: var(--space-5); border-bottom: 1px solid var(--border-subtle);">
+        <div style="max-width: 680px;">
+          <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2);">
+            <span class="badge badge-accent">
+              <span class="beacon-dot"></span>
+              <span>Revision Engine</span>
+            </span>
+            <span class="badge badge-subtle" id="hero-subjects-badge">Multi-Semester</span>
+          </div>
+          <h1 style="font-size: clamp(1.6rem, 2.5vw, 2.1rem); font-weight: var(--font-weight-extrabold); letter-spacing: -0.02em; margin-bottom: var(--space-1); line-height: var(--line-height-tight);">
+            Exam Notes & Important Questions
+          </h1>
+          <p style="font-size: var(--text-xs); color: var(--text-secondary); line-height: var(--line-height-normal);">
+            High-yield semester revision portal. Select any subject below to explore structured notes, definitions, formulas, and important questions.
+          </p>
+        </div>
+
+        <!-- Quick Info Chips Strip -->
+        <div class="stats-enter-animate" style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          <div class="stat-card" style="padding: 0.5rem 0.85rem;">
+            <div class="stat-icon" style="width: 1.8rem; height: 1.8rem; font-size: 0.85rem;">📚</div>
+            <div>
+              <div class="stat-value" id="stat-subjects-val">4</div>
+              <div class="stat-label">Subjects</div>
+            </div>
+          </div>
+          <div class="stat-card" style="padding: 0.5rem 0.85rem;">
+            <div class="stat-icon" style="width: 1.8rem; height: 1.8rem; font-size: 0.85rem; color: var(--accent-emerald); background: rgba(16, 185, 129, 0.12);">🎯</div>
+            <div>
+              <div class="stat-value">Ready</div>
+              <div class="stat-label">Data Engine</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Subjects Section with Integrated Resume/Viewer Action -->
+      <section class="subjects-enter-animate">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-4);">
+          <div style="display: flex; align-items: center; gap: var(--space-2);">
+            <h2 style="font-size: var(--text-base); font-weight: var(--font-weight-bold); letter-spacing: -0.01em;">
+              Course Subjects
+            </h2>
+            <span class="badge badge-subtle">All Semesters</span>
+          </div>
+          <div id="viewer-action-wrapper">
+            <a href="notes.html" class="btn btn-secondary btn-sm" id="section-viewer-link">
+              <span>Open Viewer →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Dynamic 4-Column Subjects Grid -->
+        <div id="subjects-container">
+          <!-- Populated dynamically by main.js -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div>
+        <strong>Exam Notes Portal</strong> &copy; 2026. Clean, decoupled architecture.
+      </div>
+      <div style="font-size: 0.72rem; color: var(--text-muted);">
+        Vanilla HTML5 • CSS Custom Properties • ES6 Modules
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main Controller -->
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

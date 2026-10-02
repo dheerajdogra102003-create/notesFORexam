@@ -1,0 +1,753 @@
+/**
+ * High-Tier Visual Effects & Cinematic Animation Engine (effects.css)
+ * Features:
+ * - Next-Gen Spotlight Border Lighting & Conic Laser Beam Cards
+ * - Full 3D Parallax Tilt with Preserved Z-Depth Layers
+ * - Dynamic Fluid Aurora Waves & Interactive Particle Canvas with Energy Packets
+ * - Cyber Scanline & Ambient Floating Technical Hologram Glyphs
+ * - Liquid Iridescent Hero Headline Text Gradient
+ * - Live Pulsing Radar Beacon Badge
+ * - Seamless Page View Transitions & Staggered Content Cascade
+ * - Sliding Active Sidebar Pill & Circular Progress Back-to-Top Button
+ * - Tactile Magnetic Buttons & Specular Light Sweep
+ */
+
+/* ==========================================================================
+   Background Ambient Engine Root
+   ========================================================================== */
+.bg-ambient-system {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  contain: strict;
+}
+
+/* ==========================================================================
+   Atmospheric Aurora Mesh (Living Color Fields)
+   ========================================================================== */
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(85px);
+  opacity: 0.35;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Top-Left: Electric Violet / Indigo */
+.aurora-orb-1 {
+  top: -12%;
+  left: -8%;
+  width: 750px;
+  height: 750px;
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.8) 0%, rgba(99, 102, 241, 0.5) 45%, transparent 70%);
+  animation: floatOrbViolet 18s ease-in-out infinite alternate;
+}
+
+/* Top-Right: Neon Cyan / Sky Blue */
+.aurora-orb-2 {
+  top: -8%;
+  right: -6%;
+  width: 680px;
+  height: 680px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.75) 0%, rgba(6, 182, 212, 0.45) 40%, transparent 70%);
+  animation: floatOrbCyan 20s ease-in-out infinite alternate;
+}
+
+/* Bottom-Right: Radiant Purple & Magenta */
+.aurora-orb-3 {
+  bottom: -15%;
+  right: -5%;
+  width: 780px;
+  height: 780px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.7) 0%, rgba(236, 72, 153, 0.45) 45%, transparent 75%);
+  animation: floatOrbIndigo 21s ease-in-out infinite alternate;
+}
+
+/* Bottom-Left: Deep Oceanic Indigo */
+.aurora-orb-4 {
+  bottom: -12%;
+  left: 5%;
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.65) 0%, rgba(67, 56, 202, 0.45) 45%, transparent 70%);
+  animation: floatOrbPurple 17s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrbViolet {
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate3d(90px, 100px, 0) scale(1.2) rotate(40deg); }
+  100% { transform: translate3d(-60px, 70px, 0) scale(0.9) rotate(-25deg); }
+}
+
+@keyframes floatOrbCyan {
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate3d(-100px, 85px, 0) scale(1.22) rotate(-40deg); }
+  100% { transform: translate3d(60px, -70px, 0) scale(0.9) rotate(30deg); }
+}
+
+@keyframes floatOrbIndigo {
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate3d(-90px, -75px, 0) scale(1.18) rotate(45deg); }
+  100% { transform: translate3d(70px, 85px, 0) scale(0.92) rotate(-30deg); }
+}
+
+@keyframes floatOrbPurple {
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate3d(80px, -90px, 0) scale(1.2) rotate(-35deg); }
+  100% { transform: translate3d(-70px, 60px, 0) scale(0.88) rotate(25deg); }
+}
+
+/* ==========================================================================
+   Technical Engineering Matrix Grid & Vignette
+   ========================================================================== */
+.technical-grid-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 95% 80% at 50% 35%, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.3) 70%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 80% at 50% 35%, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.3) 70%, transparent 95%);
+}
+
+/* Cyber Scanning Radar Light Beam */
+.cyber-scan-beam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(99, 102, 241, 0.3) 20%, 
+    rgba(6, 182, 212, 0.7) 50%, 
+    rgba(168, 85, 247, 0.3) 80%, 
+    transparent 100%
+  );
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
+  opacity: 0.6;
+  pointer-events: none;
+  animation: cyberScanMove 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes cyberScanMove {
+  0% {
+    top: -5%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.65;
+  }
+  85% {
+    opacity: 0.65;
+  }
+  100% {
+    top: 105%;
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Ambient Floating Academic & Technical Hologram Glyphs
+   ========================================================================== */
+.floating-glyphs-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.floating-glyph {
+  position: absolute;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  color: rgba(148, 163, 184, 0.16);
+  user-select: none;
+  filter: blur(0.5px);
+  will-change: transform;
+  animation: glyphDrift 24s ease-in-out infinite alternate;
+}
+
+.floating-glyph:nth-child(1) { top: 18%; left: 8%; font-size: 1.8rem; animation-duration: 22s; color: rgba(129, 140, 248, 0.18); }
+.floating-glyph:nth-child(2) { top: 35%; right: 12%; font-size: 1.5rem; animation-duration: 26s; color: rgba(6, 182, 212, 0.18); }
+.floating-glyph:nth-child(3) { top: 62%; left: 14%; font-size: 2rem; animation-duration: 20s; color: rgba(168, 85, 247, 0.18); }
+.floating-glyph:nth-child(4) { top: 75%; right: 8%; font-size: 1.6rem; animation-duration: 28s; color: rgba(244, 63, 94, 0.16); }
+.floating-glyph:nth-child(5) { top: 12%; right: 28%; font-size: 1.4rem; animation-duration: 24s; color: rgba(16, 185, 129, 0.18); }
+.floating-glyph:nth-child(6) { top: 82%; left: 32%; font-size: 1.5rem; animation-duration: 21s; color: rgba(129, 140, 248, 0.18); }
+
+@keyframes glyphDrift {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(25px, -35px, 0) rotate(12deg); }
+  100% { transform: translate3d(-20px, 25px, 0) rotate(-10deg); }
+}
+
+/* ==========================================================================
+   Interactive Constellation & Energy Canvas
+   ========================================================================== */
+.ambient-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   Liquid Cursor Spotlight Layer
+   ========================================================================== */
+.cursor-ambient-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background: radial-gradient(
+    700px circle at var(--mouse-screen-x, 50%) var(--mouse-screen-y, 35%),
+    rgba(99, 102, 241, 0.15) 0%,
+    rgba(6, 182, 212, 0.08) 35%,
+    transparent 70%
+  );
+  will-change: background;
+  transition: opacity 0.3s ease;
+}
+
+/* ==========================================================================
+   Next-Gen Card Interactive Engine (Linear / Aceternity Style)
+   ========================================================================== */
+.subject-grid {
+  perspective: 1400px;
+}
+
+.subject-card {
+  position: relative;
+  transform: perspective(1200px) rotateX(calc(var(--tilt-y, 0) * -8deg)) rotateY(calc(var(--tilt-x, 0) * 8deg)) translateY(0);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  isolation: isolate;
+  cursor: pointer;
+}
+
+/* Card 3D Depth on Tilt for Internal Elements */
+.subject-card .card-header {
+  transform: translateZ(24px);
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.subject-card .card-icon-bubble {
+  transform: translateZ(36px);
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+}
+
+.subject-card:hover .card-icon-bubble {
+  transform: translateZ(48px) scale(1.18) rotate(8deg);
+  box-shadow: 0 0 24px var(--card-accent, var(--primary-glow));
+}
+
+.subject-card .card-title {
+  transform: translateZ(20px);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.subject-card .card-description {
+  transform: translateZ(14px);
+}
+
+.subject-card .card-footer {
+  transform: translateZ(22px);
+  transform-style: preserve-3d;
+}
+
+.subject-card .card-footer .btn {
+  transform: translateZ(30px);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.subject-card:hover .card-footer .btn {
+  transform: translateZ(38px) translateX(4px);
+  box-shadow: 0 0 18px var(--card-accent, var(--primary));
+}
+
+/* Dynamic Cursor-Tracked Radial Border Glow (Aceternity Spotlight) */
+.subject-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  padding: 1px;
+  background: radial-gradient(
+    320px circle at var(--card-local-x, -200px) var(--card-local-y, -200px),
+    var(--card-accent, var(--primary)) 0%,
+    rgba(255, 255, 255, 0.2) 40%,
+    transparent 80%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 3;
+}
+
+.subject-card:hover::before {
+  opacity: 1;
+}
+
+/* Dynamic Glass Glare Specular Sheen following cursor */
+.subject-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    360px circle at var(--card-local-x, -200px) var(--card-local-y, -200px),
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.04) 45%,
+    transparent 75%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 2;
+}
+
+.subject-card:hover::after {
+  opacity: 1;
+}
+
+.subject-card:hover {
+  transform: perspective(1200px) rotateX(calc(var(--tilt-y, 0) * -8deg)) rotateY(calc(var(--tilt-x, 0) * 8deg)) translateY(-8px);
+  border-color: var(--card-accent, var(--border-accent));
+  box-shadow: 0 24px 44px -12px rgba(0, 0, 0, 0.75),
+              0 0 35px -2px var(--card-accent, var(--primary-glow));
+}
+
+/* Tactile Click Compression */
+.subject-card:active {
+  transform: perspective(1200px) scale(0.97) translateY(-3px) !important;
+  transition: transform 0.08s ease-out !important;
+}
+
+/* ==========================================================================
+   Hero Section High-Impact Polish
+   ========================================================================== */
+/* Live Pulsing Radar Beacon Badge */
+.badge-accent {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(99, 102, 241, 0.16);
+  border: 1px solid rgba(99, 102, 241, 0.45);
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.35);
+  overflow: visible;
+}
+
+.beacon-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #22d3ee;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #22d3ee;
+}
+
+.beacon-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid #22d3ee;
+  animation: radarPing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes radarPing {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+/* Hero Headline Liquid Iridescent Text Gradient */
+.hero-enter-animate h1 {
+  background: linear-gradient(110deg, #ffffff 10%, #c7d2fe 30%, #818cf8 48%, #38bdf8 62%, #e879f9 78%, #ffffff 92%);
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: liquidTextShine 6.5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 2px 18px rgba(99, 102, 241, 0.3));
+}
+
+@keyframes liquidTextShine {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ==========================================================================
+   Tactile Magnetic Buttons & Specular Sweeps
+   ========================================================================== */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.2s ease,
+              border-color 0.2s ease;
+  will-change: transform;
+}
+
+.btn:active {
+  transform: scale(0.96) !important;
+}
+
+/* High-Speed Light Reflection Streak */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.24) 50%, 
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  transition: none;
+}
+
+.btn:hover::after {
+  left: 200%;
+  transition: left 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px var(--primary-glow), 0 0 20px rgba(99, 102, 241, 0.5);
+}
+
+.btn-icon:hover {
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 0 16px var(--primary-glow);
+}
+
+.btn-icon:active {
+  transform: scale(0.92) !important;
+}
+
+/* ==========================================================================
+   Header & Micro-Interactions
+   ========================================================================== */
+.site-header {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.site-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(99, 102, 241, 0.5) 25%, 
+    rgba(6, 182, 212, 0.65) 50%, 
+    rgba(168, 85, 247, 0.5) 75%, 
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: headerGlowShift 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes headerGlowShift {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.brand-link:hover .brand-icon {
+  box-shadow: 0 0 24px var(--primary-glow), 0 0 40px rgba(129, 140, 248, 0.6);
+  transform: scale(1.12) rotate(-4deg);
+}
+
+.brand-link:hover .brand-title {
+  filter: drop-shadow(0 0 12px rgba(129, 140, 248, 0.55));
+}
+
+/* ==========================================================================
+   Seamless Page View Transitions
+   ========================================================================== */
+@keyframes pageEntranceFade {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-enter-animate {
+  animation: pageEntranceFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: 0.08s;
+}
+
+.stats-enter-animate {
+  animation: pageEntranceFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: 0.16s;
+}
+
+.subjects-enter-animate {
+  animation: pageEntranceFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: 0.24s;
+}
+
+/* Smooth Page Transition Curtain Overlay (for non-supporting or custom routing) */
+.page-transition-curtain {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-base);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-transition-curtain.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Modern View Transitions API pseudo-elements */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Notes Viewer (notes.html) High-Level Transitions
+   ========================================================================== */
+/* Staggered Content Reveal on Topic Change */
+@keyframes contentCascade {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-body.animating > * {
+  animation: contentCascade 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.content-body.animating > *:nth-child(1) { animation-delay: 0.02s; }
+.content-body.animating > *:nth-child(2) { animation-delay: 0.06s; }
+.content-body.animating > *:nth-child(3) { animation-delay: 0.10s; }
+.content-body.animating > *:nth-child(4) { animation-delay: 0.14s; }
+.content-body.animating > *:nth-child(5) { animation-delay: 0.18s; }
+.content-body.animating > *:nth-child(n+6) { animation-delay: 0.22s; }
+
+/* Interactive Code Block with Holographic Beam */
+.code-wrapper {
+  position: relative;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.code-wrapper:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.8), 0 0 20px -4px rgba(99, 102, 241, 0.3);
+}
+
+.code-copy-button {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.code-copy-button.copied {
+  background: rgba(16, 185, 129, 0.25) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+  transform: scale(1.05);
+}
+
+/* Floating Circular Progress Back-to-Top Button */
+.back-to-top-widget {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-medium);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 90;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6), 0 0 20px rgba(99, 102, 241, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.9);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.back-to-top-widget.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top-widget:hover {
+  transform: translateY(-4px) scale(1.1);
+  border-color: var(--primary);
+  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.7), 0 0 25px var(--primary-glow);
+}
+
+.back-to-top-widget:active {
+  transform: scale(0.94);
+}
+
+.back-to-top-widget svg.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.back-to-top-widget circle.progress-ring-circle {
+  stroke: var(--primary);
+  stroke-width: 2.5;
+  stroke-dasharray: 145;
+  stroke-dashoffset: 145;
+  transition: stroke-dashoffset 0.15s ease-out;
+  fill: none;
+}
+
+.back-to-top-arrow {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.back-to-top-widget:hover .back-to-top-arrow {
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Light Mode Theme Overrides
+   ========================================================================== */
+[data-theme="light"] .aurora-orb {
+  opacity: 0.08;
+  filter: blur(120px);
+}
+
+[data-theme="light"] .aurora-orb-1 { background: radial-gradient(circle, #818cf8 0%, #c7d2fe 50%, transparent 70%); }
+[data-theme="light"] .aurora-orb-2 { background: radial-gradient(circle, #38bdf8 0%, #bae6fd 50%, transparent 70%); }
+[data-theme="light"] .aurora-orb-3 { background: radial-gradient(circle, #f472b6 0%, #fbcfe8 50%, transparent 70%); }
+[data-theme="light"] .aurora-orb-4 { background: radial-gradient(circle, #a78bfa 0%, #ddd6fe 50%, transparent 70%); }
+
+[data-theme="light"] .technical-grid-layer {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+[data-theme="light"] .hero-enter-animate h1 {
+  background: linear-gradient(110deg, #0f172a 20%, #4338ca 45%, #0284c7 70%, #0f172a 90%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: liquidTextShine 6.5s ease-in-out infinite alternate;
+}
+
+[data-theme="light"] .cursor-ambient-spotlight {
+  background: radial-gradient(
+    600px circle at var(--mouse-screen-x, 50%) var(--mouse-screen-y, 35%),
+    rgba(99, 102, 241, 0.07) 0%,
+    transparent 65%
+  );
+}
+
+[data-theme="light"] .floating-glyph {
+  color: rgba(71, 85, 105, 0.12);
+}
+
+[data-theme="light"] .subject-card::before {
+  background: radial-gradient(
+    320px circle at var(--card-local-x, -200px) var(--card-local-y, -200px),
+    var(--card-accent, var(--primary)) 0%,
+    rgba(15, 23, 42, 0.12) 45%,
+    transparent 80%
+  );
+}
+
+/* ==========================================================================
+   Accessibility & Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-orb,
+  .site-header::after,
+  .hero-enter-animate h1,
+  .badge-accent,
+  .cyber-scan-beam,
+  .floating-glyph,
+  .beacon-dot::after {
+    animation: none !important;
+  }
+
+  .ambient-canvas,
+  .cursor-ambient-spotlight,
+  .cyber-scan-beam,
+  .floating-glyphs-layer {
+    display: none !important;
+  }
+
+  .subject-card {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .subject-card .card-header,
+  .subject-card .card-icon-bubble,
+  .subject-card .card-title,
+  .subject-card .card-footer,
+  .subject-card .card-footer .btn {
+    transform: none !important;
+  }
+}
