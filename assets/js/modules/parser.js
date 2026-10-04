@@ -91,8 +91,11 @@ function enhanceCodePreviewGrid(html) {
     if (codeBlock.length > 2500) {
       return match;
     }
+    const isCompact = /<p>\s*<a[\s\S]*?<\/a>\s*<\/p>/i.test(outputBlock) || outputBlock.length < 150;
+    const gridClass = isCompact ? 'code-preview-grid is-compact' : 'code-preview-grid';
+
     return `
-      <div class="code-preview-grid">
+      <div class="${gridClass}">
         <div class="code-pane">${codeBlock}</div>
         <div class="preview-pane">
           <div class="preview-header">

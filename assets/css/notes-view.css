@@ -551,16 +551,44 @@
    ========================================================================== */
 .code-preview-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
   gap: var(--space-4);
   align-items: stretch;
-  margin-block: var(--space-4) var(--space-6);
+  margin-block: var(--space-3) var(--space-5);
+  max-width: 900px;
 }
 
 @media (max-width: 820px) {
   .code-preview-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Compact layout for short snippets (e.g. hyperlinks, single-line tags) */
+.code-preview-grid.is-compact {
+  grid-template-columns: minmax(0, 1fr) auto;
+  max-width: 700px;
+}
+
+.code-preview-grid.is-compact .preview-pane {
+  min-width: 160px;
+  max-width: 220px;
+}
+
+.code-preview-grid.is-compact .preview-header {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.68rem;
+}
+
+.code-preview-grid.is-compact .preview-body {
+  padding: 0.5rem 0.85rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.code-preview-grid.is-compact .preview-body p {
+  margin: 0;
 }
 
 .code-preview-grid .code-pane,
