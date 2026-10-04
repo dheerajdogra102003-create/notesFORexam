@@ -79,6 +79,25 @@
     </div>
   </header>
 
+  <!-- Local Server Warning Banner (only appears if opened directly via file://) -->
+  <div id="file-protocol-alert" style="display: none; background: #fffbeb; border-bottom: 2px solid #f59e0b; padding: 14px 20px; color: #92400e; font-size: 13.5px; line-height: 1.5;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <span style="font-size: 20px;">⚠️</span>
+      <div style="flex: 1; min-width: 260px;">
+        <strong>Local Server Required (file:/// detected):</strong> Modern browsers block loading Markdown notes directly from disk.
+        Since Live Server is running, open via:
+        <a href="http://127.0.0.1:5500/notes.html?subject=web-technologies" style="color: #2563eb; font-weight: bold; text-decoration: underline; margin-left: 6px;">http://127.0.0.1:5500/notes.html?subject=web-technologies</a>
+        or
+        <a href="http://127.0.0.1:5500/index.html" style="color: #2563eb; font-weight: bold; text-decoration: underline; margin-left: 6px;">http://127.0.0.1:5500/index.html</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    if (window.location.protocol === 'file:') {
+      document.getElementById('file-protocol-alert').style.display = 'block';
+    }
+  </script>
+
   <!-- Viewer 3-Column Shell -->
   <div class="viewer-layout">
 

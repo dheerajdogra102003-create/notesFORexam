@@ -2,8 +2,8 @@
 
 [![Architecture](https://img.shields.io/badge/Architecture-Decoupled%20%26%20Data--Driven-6366f1?style=for-the-badge)](antigravity.rules)
 [![Stack](https://img.shields.io/badge/Stack-HTML5%20•%20CSS3%20•%20ES6+-06b6d4?style=for-the-badge)](assets/)
-[![Build](https://img.shields.io/badge/Build-Zero%20Dependencies%20•%20Static-10b981?style=for-the-badge)](#quickstart)
-[![Theme](https://img.shields.io/badge/Theme-Dark--First%20Twilight%20•%20Light%20Mode-a855f7?style=for-the-badge)](#visual-system--animations)
+[![Responsive](https://img.shields.io/badge/Responsive-Mobile%20•%20Tablet%20•%20Desktop-10b981?style=for-the-badge)](#-browser-compatibility--accessibility)
+[![Theme](https://img.shields.io/badge/Theme-Warm%20Cream%20•%20Twilight%20Dark-d97706?style=for-the-badge)](#visual-system--animations)
 
 **ExamVault** is a high-performance, responsive, and completely content-decoupled web portal designed for semester exam preparation, technical documentation, quick revision, and important question banks. 
 
@@ -14,14 +14,14 @@ Built with pure web standards (Vanilla HTML5, CSS Custom Properties, and ES6+ Mo
 ## 📑 Table of Contents
 
 - [Key Highlights](#-key-highlights)
-- [Visual System & Animations](#-visual-system--animations)
+- [Visual System & Themes](#-visual-system--themes)
 - [Architecture & Design Principles](#-architecture--design-principles)
 - [Repository Structure](#-repository-structure)
 - [Quickstart & Running Locally](#-quickstart--running-locally)
 - [Content Authoring & Subject Registration](#-content-authoring--subject-registration)
   - [1. Registering a Subject](#1-registering-a-subject-datasubjectsjson)
   - [2. Structuring Content Files](#2-structuring-content-files)
-  - [3. Code Blocks, Math & Technical Symbols](#3-code-blocks-math--technical-symbols)
+  - [3. Code Blocks, Math & Side-by-Side Outputs](#3-code-blocks-math--side-by-side-outputs)
 - [Key Features](#-key-features)
 - [Browser Compatibility & Accessibility](#-browser-compatibility--accessibility)
 - [License](#-license)
@@ -32,9 +32,11 @@ Built with pure web standards (Vanilla HTML5, CSS Custom Properties, and ES6+ Mo
 
 - **100% Content-Decoupled**: Application code contains zero hard-coded chapters or syllabi. Everything renders dynamically from [`data/subjects.json`](data/subjects.json) and [`data/content/`](data/content/).
 - **Zero Build Step**: No webpack, Vite, Babel, Node runtime, or compilers required. Deployable instantly to GitHub Pages, Netlify, Vercel, or any standard HTTP web server.
-- **AAA-Grade Visual Experience**: Powered by an interactive visual system inspired by modern technical platforms (Linear, Aceternity UI, Stripe, and Apple) with 3D tilt spotlight cards, particle physics, and smooth view transitions.
+- **Enclosed Exam Question Cards**: Every question and its complete solution (points, explanations, code blocks) is encased inside an individual high-contrast card with header ribbons and monospace pill badges (`[Q 1]`, `[Q 27]`).
+- **Side-by-Side Live Code & Output**: Program scripts and their interactive browser outputs render adjoining horizontally in a split grid on desktop/tablets and stack seamlessly on mobile.
+- **Dual Reading Themes**: Featuring a soothing **Warm Cream Paper Theme** (`#f6f1e8`) for zero eye strain during prolonged reading, plus a high-contrast **Twilight Dark Mode**.
+- **100% Fully Responsive**: Fluid typography and adaptive layouts tested across mobile phones (360px–480px), tablets (768px–1024px), laptops, and wide monitors.
 - **Client-Side Data Engine**: Real-time client-side search indexing, local bookmarking, reading position recovery, and theme persistence using browser `localStorage`.
-- **Exam & Revision Friendly**: Includes dynamic table-of-contents scroll spy, breadcrumb navigation, interactive code blocks with one-click clipboard copying, font zoom controls (A- / A+), and an optimized `@media print` stylesheet for clean PDF export.
 
 ---
 
@@ -239,25 +241,30 @@ Big-O provides an **asymptotic upper bound** on function growth.
 
 ---
 
-### 3. Code Blocks, Math & Technical Symbols
+### 3. Code Blocks, Math & Side-by-Side Outputs
 
-ExamVault automatically parses code blocks with language headers and provides an animated one-click Copy button:
+ExamVault automatically parses code blocks with language headers, syntax highlighting, and an animated one-click Copy button. 
+
+To display live, interactive HTML previews right beside your code, simply append an `**Output:**` section:
 
 ````markdown
-```cpp
-// Binary Search Implementation: O(log n)
-int binarySearch(const vector<int>& arr, int target) {
-    int left = 0, right = arr.size() - 1;
-    while (left <= right) {
-        int mid = left + (right - left) / 2;
-        if (arr[mid] == target) return mid;
-        if (arr[mid] < target) left = mid + 1;
-        else right = mid - 1;
-    }
-    return -1;
-}
+```html
+<form>
+    Name: <input type="text">
+    <input type="submit" value="Submit">
+</form>
 ```
+
+**Output:**
+<div class="rendered-form-container">
+    <form onsubmit="event.preventDefault();">
+        Name: <input type="text">
+        <input type="submit" value="Submit">
+    </form>
+</div>
 ````
+
+ExamVault's DOM parser will automatically combine them into a **side-by-side split grid** (`.code-preview-grid`) on desktop and an elegant stacked layout on mobile!
 
 Special technical symbols are preserved without entity corruption:
 - **Mathematical**: `$`, `%`, `&`, `≠`, `≤`, `≥`, `→`, `←`, `∞`, `π`, `λ`, `α`, `β`, `γ`
@@ -269,12 +276,13 @@ Special technical symbols are preserved without entity corruption:
 
 | Component | Functionality |
 | :--- | :--- |
-| **Unified Search** | Press `/` from anywhere on the directory to search across all registered subjects, topics, and item codes. |
-| **Continue Action** | Dynamically updates the "Viewer" button on the directory to **"🕒 Continue: [Last Subject]"**, resuming exactly where you left off. |
-| **Dynamic Table of Contents** | Automatically extracts all `<h2>` and `<h3>` headings from the rendered document, creating an active scroll-spy TOC in the right sidebar. |
-| **Bookmark System** | One-click bookmarking saves frequently reviewed notes to `localStorage`. Access bookmarks from the dedicated tab in the left sidebar. |
+| **Question Exam Cards** | Automatically encapsulates each question, pill badge (`[Q 1]`), answer, and code snippets into an elevated study card. |
+| **Side-by-Side Split Grids** | Pairs code snippets with live, interactive browser previews horizontally on desktop and stacked on mobile. |
+| **Warm Cream & Dark Themes** | Instant toggle between an eye-friendly **Warm Cream** paper theme (`#f6f1e8`) and **Twilight Dark** mode. |
+| **Unified Search** | Press `/` from anywhere on the directory or viewer to search across all registered subjects, topics, and item codes. |
+| **Universal Responsiveness** | Fully fluid experience tested on Mobile Phones (360px–480px), Tablets (768px–1024px), Laptops, and Desktops. |
 | **Reading Controls** | Instant font scaling (`A-` / `A+`) and a dedicated **Print** action that strips all sidebars and headers for pristine, ink-friendly PDF generation. |
-| **State Persistence** | Remembers theme preference (Dark/Light), active reading scroll position, recent subjects, and bookmarks across browser sessions. |
+| **State Persistence** | Remembers theme preference (Cream/Dark), active reading scroll position, recent subjects, and bookmarks across browser sessions. |
 
 ---
 

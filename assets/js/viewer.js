@@ -11,6 +11,7 @@ import {
   isBookmarked,
   toggleBookmark,
   addRecentSubject,
+  getRecentSubjects,
   addRecentContent,
   saveReadingPosition,
   getReadingPosition
@@ -103,8 +104,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (lastOpenedSubject) {
         await loadSubject(lastOpenedSubject.id, null);
       } else if (cachedSubjects.length > 0) {
-        // Fallback to first available subject
-        await loadSubject(cachedSubjects[0].id, null);
+        // Fallback to Web Technologies (primary exam course) or first available
+        const defaultSub = cachedSubjects.find(s => s.id === 'web-technologies') || cachedSubjects[0];
+        await loadSubject(defaultSub.id, null);
       } else {
         renderNoContentState(contentEl, sidebarNavContainer, tocContainer);
       }
@@ -127,7 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div class="empty-state">
           <div class="empty-state-icon">⚠️</div>
           <h2 class="empty-state-title">Viewer Offline</h2>
-          <p class="empty-state-desc">Could not load subjects catalog. Make sure the portal is hosted on a local web server.</p>
+          <p class="empty-state-desc">Could not load subjects catalog. Make sure the portal is hosted on a local web server (e.g. Live Server on http://127.0.0.1:5500).</p>
         </div>
       `;
     }
@@ -325,19 +327,37 @@ function renderSubjectOverview(subject, contentEl, tocContainer) {
  */
 function renderNoContentState(contentEl, sidebarContainer, tocContainer) {
   if (contentEl) {
-    contentEl.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-state-icon">📑</div>
-        <h2 class="empty-state-title">No Subject Selected</h2>
-        <p class="empty-state-desc">Add your subjects to <code>data/subjects.json</code> to view notes and questions here.</p>
-        <a href="index.html" class="btn btn-secondary">← Back to Portal Home</a>
-      </div>
-    `;
+    if (cachedSubjects && cachedSubjects.length > 0) {
+      contentEl.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-icon">📚</div>
+          <h2 class="empty-state-title">Select a Subject to View Notes</h2>
+          <p class="empty-state-desc">Choose one of the course subjects below to view all units, questions, and solutions:</p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+            ${cachedSubjects.map(s => `
+              <a href="notes.html?subject=${encodeURIComponent(s.id)}" class="btn btn-secondary" style="border-left: 3px solid ${s.color || 'var(--primary)'}; text-align: left; padding: 10px 16px;">
+                <span style="font-size: 1.2rem; margin-right: 6px;">${s.icon || '📖'}</span>
+                <span><strong>${escapeHtml(s.title || s.id)}</strong></span>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    } else {
+      contentEl.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-icon">📑</div>
+          <h2 class="empty-state-title">No Subject Selected</h2>
+          <p class="empty-state-desc">Add your subjects to <code>data/subjects.json</code> to view notes and questions here.</p>
+          <a href="index.html" class="btn btn-secondary">← Back to Portal Home</a>
+        </div>
+      `;
+    }
   }
   if (sidebarContainer) {
     sidebarContainer.innerHTML = `
       <div class="empty-state" style="padding: var(--space-8) var(--space-4);">
-        <p style="font-size: var(--text-xs); color: var(--text-muted);">No navigation data available.</p>
+        <p style="font-size: var(--text-xs); color: var(--text-muted);">Select a subject to explore units and notes.</p>
       </div>
     `;
   }

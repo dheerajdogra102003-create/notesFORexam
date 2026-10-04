@@ -48,7 +48,7 @@
       <div class="header-actions">
         <nav class="nav-links">
           <a href="index.html" class="nav-link active">Directory</a>
-          <a href="notes.html" class="nav-link">Viewer</a>
+          <a href="notes.html?subject=web-technologies" class="nav-link">Viewer</a>
         </nav>
         <button class="btn-icon" data-action="toggle-theme" title="Toggle Theme" aria-label="Toggle dark/light mode">
           <!-- Populated by JS -->
@@ -56,6 +56,23 @@
       </div>
     </div>
   </header>
+
+  <!-- Local Server Warning Banner (only appears if opened directly via file://) -->
+  <div id="file-protocol-alert" style="display: none; background: #fffbeb; border-bottom: 2px solid #f59e0b; padding: 14px 20px; color: #92400e; font-size: 13.5px; line-height: 1.5;">
+    <div class="container" style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <span style="font-size: 20px;">⚠️</span>
+      <div style="flex: 1; min-width: 260px;">
+        <strong>Local Server Required (file:/// detected):</strong> Modern browsers block loading course data directly from disk.
+        Since Live Server is running, open via:
+        <a href="http://127.0.0.1:5500/index.html" style="color: #2563eb; font-weight: bold; text-decoration: underline; margin-left: 6px;">http://127.0.0.1:5500/index.html</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    if (window.location.protocol === 'file:') {
+      document.getElementById('file-protocol-alert').style.display = 'block';
+    }
+  </script>
 
   <!-- Main Content -->
   <main class="site-main">
@@ -108,7 +125,7 @@
             <span class="badge badge-subtle">All Semesters</span>
           </div>
           <div id="viewer-action-wrapper">
-            <a href="notes.html" class="btn btn-secondary btn-sm" id="section-viewer-link">
+            <a href="notes.html?subject=web-technologies" class="btn btn-secondary btn-sm" id="section-viewer-link">
               <span>Open Viewer →</span>
             </a>
           </div>
