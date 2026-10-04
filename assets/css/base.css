@@ -207,20 +207,24 @@ ul, ol {
   background: rgba(255, 255, 255, 0.05);
 }
 
-[data-theme="light"] .site-header {
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 1.5px solid #cbd5e1;
-  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
+[data-theme="light"] .site-header,
+[data-theme="cream"] .site-header {
+  background: rgba(246, 241, 232, 0.95);
+  border-bottom: 1.5px solid #dcd4c7;
+  box-shadow: 0 1px 4px rgba(60, 45, 30, 0.05);
 }
 
-[data-theme="light"] .nav-link {
-  color: #475569;
+[data-theme="light"] .nav-link,
+[data-theme="cream"] .nav-link {
+  color: #44403c;
 }
 
 [data-theme="light"] .nav-link:hover,
-[data-theme="light"] .nav-link.active {
+[data-theme="cream"] .nav-link:hover,
+[data-theme="light"] .nav-link.active,
+[data-theme="cream"] .nav-link.active {
   color: #4338ca;
-  background: #e2e8f0;
+  background: #ede4d6;
   font-weight: 600;
 }
 

@@ -16,7 +16,7 @@ import {
   getReadingPosition
 } from './modules/storage.js';
 
-import { parseAndRender } from './modules/parser.js';
+import { parseAndRender } from './modules/parser.js?v=1.2';
 import {
   renderSidebar,
   buildTableOfContents,
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 2. Fetch Master Registry
   try {
-    const response = await fetch('data/subjects.json');
+    const response = await fetch(`data/subjects.json?_t=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) {
       throw new Error(`Failed to load subjects catalog: ${response.status}`);
     }
@@ -204,12 +204,13 @@ async function loadContent(item, updateHistory = true) {
     </div>
   `;
 
-  // Update browser URL
+  // Update browser URL (clean without sticky question hash)
   if (updateHistory) {
     const url = new URL(window.location.href);
     if (currentSubject) url.searchParams.set('subject', currentSubject.id);
-    url.searchParams.set('content', item.id || item.file || '');
-    window.history.pushState({}, '', url.toString());
+    url.searchParams.delete('content');
+    url.searchParams.delete('file');
+    window.history.replaceState({}, '', url.toString());
   }
 
   // Update recent content in storage
@@ -228,7 +229,8 @@ async function loadContent(item, updateHistory = true) {
 
     if (cleanFilePath) {
       try {
-        const response = await fetch(cleanFilePath);
+        const cacheBustUrl = `${cleanFilePath}${cleanFilePath.includes('?') ? '&' : '?'}_t=${Date.now()}`;
+        const response = await fetch(cacheBustUrl, { cache: 'no-store' });
         if (!response.ok) {
           throw new Error(`HTTP ${response.status} (${response.statusText || 'Not Found'})`);
         }
@@ -289,27 +291,8 @@ async function loadContent(item, updateHistory = true) {
       console.warn('UI Chrome update warning:', uiErr);
     }
 
-    // Restore saved scroll position or jump to target question hash
-    if (targetHash) {
-      setTimeout(() => {
-        const targetEl = document.getElementById(targetHash);
-        if (targetEl) {
-          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 150);
-    } else {
-      const savedPos = getReadingPosition(item.id || item.file);
-      if (savedPos !== null && savedPos > 50) {
-        window.scrollTo({ top: savedPos, behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
-
-    // Save scroll position on leave/scroll
-    window.addEventListener('scroll', () => {
-      saveReadingPosition(item.id || item.file, window.scrollY);
-    }, { passive: true });
+    // Always start at the very top (Question 1) on load
+    window.scrollTo({ top: 0, behavior: 'instant' });
 
     // Update Document Title
     document.title = `${item.title || 'Notes'} | ${currentSubject ? currentSubject.title : 'Exam Portal'}`;
@@ -369,9 +352,7 @@ function updateBreadcrumbs(container, subject, item) {
   container.innerHTML = `
     <a href="index.html">Portal</a>
     <span class="breadcrumb-separator">/</span>
-    ${subject ? `<a href="notes.html?subject=${encodeURIComponent(subject.id)}">${escapeHtml(subject.title || subject.id)}</a>` : ''}
-    <span class="breadcrumb-separator">/</span>
-    <span class="breadcrumb-current">${escapeHtml(item.title || 'Content')}</span>
+    ${subject ? `<span class="breadcrumb-current">${escapeHtml(subject.title || subject.id)}</span>` : '<span class="breadcrumb-current">Notes</span>'}
   `;
 }
 
@@ -420,22 +401,9 @@ function updateMetaHeader(container, subject, item) {
  * Updates previous / next pagination footer
  */
 function updatePagination(container) {
-  if (!container || !currentSubject) return;
-  const navData = currentSubject.navigation || currentSubject.content || [];
-  const flatItems = flattenNavItems(navData);
-
-  const currentIndex = flatItems.findIndex(i => (i.id || i.file) === (currentContentItem.id || currentContentItem.file));
-  if (currentIndex === -1) {
+  if (container) {
     container.style.display = 'none';
-    return;
   }
-
-  const prevItem = currentIndex > 0 ? flatItems[currentIndex - 1] : null;
-  const nextItem = currentIndex < flatItems.length - 1 ? flatItems[currentIndex + 1] : null;
-
-  renderPagination(container, prevItem, nextItem, (targetItem) => {
-    loadContent(targetItem);
-  });
 }
 
 /**
@@ -533,8 +501,8 @@ function initTheme() {
 
   document.querySelectorAll('[data-action="toggle-theme"]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const active = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-      const nextTheme = active === 'light' ? 'dark' : 'light';
+      const active = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'cream';
+      const nextTheme = active === 'dark' ? 'cream' : 'dark';
       applyTheme(nextTheme);
       saveTheme(nextTheme);
     });
@@ -542,25 +510,17 @@ function initTheme() {
 }
 
 function applyTheme(theme) {
-  if (theme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
+  if (theme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
   } else {
-    document.documentElement.removeAttribute('data-theme');
+    document.documentElement.setAttribute('data-theme', 'cream');
   }
   updateThemeIcons(theme);
 }
 
 function updateThemeIcons(theme) {
   document.querySelectorAll('[data-action="toggle-theme"]').forEach(btn => {
-    if (theme === 'light') {
-      btn.innerHTML = `
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      `;
-      btn.setAttribute('title', 'Switch to Dark Mode');
-      btn.setAttribute('aria-label', 'Switch to Dark Mode');
-    } else {
+    if (theme === 'dark') {
       btn.innerHTML = `
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"></circle>
@@ -574,8 +534,16 @@ function updateThemeIcons(theme) {
           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
         </svg>
       `;
-      btn.setAttribute('title', 'Switch to Light Mode');
-      btn.setAttribute('aria-label', 'Switch to Light Mode');
+      btn.setAttribute('title', 'Switch to Cream Mode');
+      btn.setAttribute('aria-label', 'Switch to Cream Mode');
+    } else {
+      btn.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      `;
+      btn.setAttribute('title', 'Switch to Dark Mode');
+      btn.setAttribute('aria-label', 'Switch to Dark Mode');
     }
   });
 }

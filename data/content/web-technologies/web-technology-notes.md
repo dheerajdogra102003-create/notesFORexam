@@ -217,33 +217,6 @@ Therefore:
 
 ---
 
-### 📝 Exam-Ready Answer
-> The **Internet** is a worldwide network of interconnected computer networks that allows users to exchange information and services.
->
-> #### Structure of the Internet
-> The main components of the Internet are:
-> 1. **Client**: A device that requests information or services, such as a computer or mobile phone.
-> 2. **Server**: A computer that stores and provides information or services to clients.
-> 3. **ISP**: An Internet Service Provider provides Internet connectivity to users.
-> 4. **Routers**: Routers forward data between different networks and help it reach the destination.
-> 5. **Communication Links**: Fiber-optic cables, wireless networks and mobile networks connect different devices and networks.
->
-> #### Internet Communication
-> Internet communication generally follows the client-server model. When a user requests a webpage, the browser sends a request through the ISP and routers to the web server. The server processes the request and sends the required data back to the client.
->
-> The TCP/IP protocol suite is used for communication:
-> - **IP (Internet Protocol)**: Provides addressing and routing of data between source and destination.
-> - **TCP (Transmission Control Protocol)**: Provides reliable delivery by checking data transmission and ensuring that data is received correctly and in the proper order.
->
-> Data is divided into smaller packets for transmission and these packets are reassembled at the destination.
->
-> #### Diagram
-> ![Internet Communication Flow (Client / Browser → ISP → Routers → Internet → Web Server → Response)](assets/images/diagrams/step3_client_server_flow.jpg)
->
-> **Example:** When a student opens an online examination website, the browser sends a request to the website's server. The request travels through the ISP and Internet routers. The server processes it and sends the webpage back to the student's browser.
-
----
-
 ## Question 5: Interpret the practical use of HTML lists, images, and tables in website development.
 
 ### 1. Introduction
@@ -352,10 +325,7 @@ The `<img>` tag is used to display an image.
 
 #### Example
 ```html
-<img src="college.jpg"
-     alt="College Building"
-     width="300"
-     height="200">
+<img src="college.jpg" alt="College Building" width="300" height="200">
 ```
 *The browser displays the specified image on the webpage.*
 
@@ -385,12 +355,10 @@ Important table tags include:
         <th>Name</th>
         <th>Marks</th>
     </tr>
-
     <tr>
         <td>Rahul</td>
         <td>85</td>
     </tr>
-
     <tr>
         <td>Aman</td>
         <td>90</td>
@@ -766,335 +734,249 @@ Cascading Style Sheets (CSS) is used to style and format HTML elements. Embedded
 
 ## Question 13: Which type of Cascading Style Sheet is used within a web page?
 
-### Simple Explanation
-There are three ways to apply CSS:
-1. Directly on an HTML element (Inline CSS)
-2. In a separate external `.css` file (External CSS)
-3. Written inside the `<head>` section of that specific page to style that single document (Embedded / Internal CSS)
+### Answer: Internal CSS (Embedded CSS)
 
-The type of style sheet used specifically **within a web page** is the **Embedded (or Internal) Style Sheet**.
+Internal CSS is a type of Cascading Style Sheet that is written within the HTML web page itself. It is placed inside the `<style>` tag, usually within the `<head>` section of the HTML document.
 
-### Answer
-The type of Cascading Style Sheet used directly within an individual webpage is the **Embedded Style Sheet** (also called **Internal Style Sheet**).
-
-It is written inside the **`<style>`** tag placed within the **`<head>`** section of that specific HTML document.
-
-#### Comparison of the 3 CSS Types:
-- **Inline CSS**: Placed directly inside a tag: `<p style="color: red;">` (affects only that single element).
-- **Embedded / Internal CSS**: Placed inside `<style type="text/css">` in `<head>` (affects that entire single webpage).
-- **External CSS**: Placed in an external file (e.g., `styles.css`) and linked via `<link rel="stylesheet" href="styles.css">` (affects multiple pages across a whole website).
-
-### Example
-```html
-<head>
-  <!-- Embedded Style Sheet used within this webpage -->
-  <style type="text/css">
-    body { background-color: #f8fafc; }
-    h1 { color: #4338ca; }
-  </style>
-</head>
-```
-
-### Exam-Ready Answer
-> The **Embedded Style Sheet** (also termed **Internal Style Sheet**) is the type of CSS used within a webpage.
->
-> - **Location**: Placed inside the `<head>` section wrapped within `<style type="text/css">...</style>` tags.
-> - **Scope**: Its style rules apply to all matching HTML elements throughout that specific single web document without affecting external pages.
-
-### Quick Revision
-> **REMEMBER:**
-> • Embedded (Internal) Style Sheet is the CSS used within a webpage.
-> • It is placed in `<head>` inside `<style type="text/css">`.
-> • It styles all matching elements on that specific page.
-
----
-
-## Question 14: Make use of embedded style sheet with appropriate description, syntax and program in HTML.
-
-### Simple Explanation
-An embedded style sheet is like setting up styling rules for one specific room in a house. You put a rules sign at the door (`<head>`) that says: *"All text in this room must be Arial, all headings must be blue, and all paragraphs must have 10px spacing."*
-
-### Answer & Syntax
-
-#### Description:
-An **Embedded Style Sheet** embeds CSS rules directly into the HTML document's header. It eliminates the need to create separate external `.css` files while still keeping HTML content separate from styling rules.
-
-#### Syntax:
-```html
-<head>
-  <style type="text/css">
-    selector {
-      property: value;
-    }
-  </style>
-</head>
-```
-- **Selector**: The element to style (e.g., `h1`, `p`, `.box`).
-- **Property**: The visual characteristic to change (e.g., `color`, `font-size`).
-- **Value**: The setting to apply (e.g., `blue`, `18px`).
-
-### Complete Working Program
+### Example:
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Embedded Style Sheet Demonstration</title>
+    <style>
+        h1 {
+            color: blue;
+            text-align: center;
+        }
 
-  <!-- Embedded Style Sheet in <head> -->
-  <style type="text/css">
-    body {
-      background-color: #f8fafc;
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-
-    h1 {
-      color: #312e81;
-      text-align: center;
-      border-bottom: 2px solid #6366f1;
-      padding-bottom: 8px;
-    }
-
-    p {
-      color: #334155;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .callout {
-      background-color: #e0e7ff;
-      border-left: 4px solid #4f46e5;
-      padding: 10px 15px;
-      font-weight: bold;
-      color: #1e1b4b;
-    }
-  </style>
-
+        p {
+            color: green;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-
-  <h1>Embedded Style Sheet Demo</h1>
-
-  <p>
-    This page uses an embedded style sheet declared inside the head section.
-    All paragraphs and headings follow the centralized rules defined above.
-  </p>
-
-  <div class="callout">
-    Notice: Embedded style sheets control the styling of this entire page!
-  </div>
-
+    <h1>My Web Page</h1>
+    <p>This is an example of Internal CSS.</p>
 </body>
 </html>
 ```
 
-### Line-by-Line Explanation
-1. `<style type="text/css">`: Opens the embedded style sheet block inside `<head>`.
-2. `body { background-color: #f8fafc; ... }`: Sets page background and font.
-3. `h1 { color: #312e81; border-bottom: 2px solid #6366f1; }`: Centers the title and applies an indigo underline.
-4. `.callout { ... }`: A class selector styling a highlighted notice block.
+**Output:**
 
-### Exam-Ready Answer
-> An **Embedded Style Sheet** defines CSS styling rules within an HTML document using the `<style>` element placed in the `<head>` section.
->
-> - **Syntax**:
->   ```css
->   selector {
->     property: value;
->   }
->   ```
-> - **Program Structure**:
->   Declared in `<head>` via `<style type="text/css">`, targeting elements like `body`, `h1`, `p`, or custom classes like `.callout`.
-> - **Advantage**: Allows customized styling for a single document without requiring external file linking.
+<div class="rendered-page-preview" style="padding: 1.25rem; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+  <h1 style="color: blue; text-align: center; margin: 0 0 0.75rem 0; font-size: 1.35rem; font-family: sans-serif;">My Web Page</h1>
+  <p style="color: green; font-size: 18px; margin: 0; font-family: sans-serif; text-align: center;">This is an example of Internal CSS.</p>
+</div>
 
-### Quick Revision
-> **REMEMBER:**
-> • Embedded CSS is declared in `<head>` using `<style type="text/css">`.
-> • Format is `selector { property: value; }`.
-> • It applies to the entire document in which it is written.
+---
+
+## Question 14: Make use of Embedded Style Sheet with appropriate description, syntax and program in HTML.
+
+### Answer
+
+### 1. Syntax
+
+```html
+<head>
+    <style>
+        selector {
+            property: value;
+        }
+    </style>
+</head>
+```
+
+For example:
+
+```css
+h1 {
+    color: blue;
+}
+```
+
+Here:
+
+- `h1` → Selector
+- `color` → Property
+- `blue` → Value
+
+---
+
+### 2. Simple HTML Program
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Embedded CSS</title>
+
+    <style>
+        h1 {
+            color: blue;
+            text-align: center;
+        }
+
+        p {
+            color: green;
+            font-size: 18px;
+        }
+
+        body {
+            background-color: lightgray;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>My Web Page</h1>
+
+    <p>This is an example of Embedded CSS.</p>
+
+</body>
+
+</html>
+```
+
+**Output:**
+<div class="rendered-page-preview" style="background-color: lightgray; padding: 24px 20px; border-radius: 8px; border: 1px solid #cbd5e1; box-shadow: 0 2px 6px rgba(0,0,0,0.08); text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <h1 style="color: blue; text-align: center; margin: 0 0 12px 0; font-family: sans-serif; font-size: 26px;">My Web Page</h1>
+  <p style="color: green; font-size: 18px; margin: 0; font-family: sans-serif; text-align: center;">This is an example of Embedded CSS.</p>
+</div>
+
+---
+
+### 3. Explanation
+
+1. `<style>` is used to write CSS inside the HTML page.
+2. `h1` changes the **colour and alignment** of the heading.
+3. `p` changes the **colour and size** of the paragraph.
+4. `body` changes the **background colour** of the page.
+5. All CSS rules are written inside the `<head>` section.
+
+---
+
+### 4. Advantages
+
+- Easy to use for a **single web page**.
+- No separate CSS file is required.
+- Multiple HTML elements can be styled at once.
+- Makes the webpage more attractive and readable.
 
 ---
 
 ## Question 15: How does JavaScript support event-driven programming?
 
-### Simple Explanation
-Think of an electric doorbell:
-The doorbell doesn't make noise all day long. It waits quietly. When a visitor presses the button (the **User Action**), an electrical signal is sent (the **Event**), and the chime rings inside the house (the **Event Handler**).
+### Answer:
 
-In JavaScript, **Event-Driven Programming** means the code doesn't just run once and quit. It sits inside the browser waiting for the user to do something — like click a button, type on the keyboard, or move the mouse. The moment that action happens, JavaScript runs a specific function to handle it!
+#### 1. Definition
+Event-driven programming is a programming approach where the program responds to events performed by the user or the browser.  
+JavaScript supports event-driven programming by using **events** and **event handlers**.
 
-### Answer
-In **Event-Driven Programming**, the flow of execution is determined by external events such as user actions, browser sensors, or incoming network messages.
+Examples of events are:
+- Mouse click
+- Keyboard press
+- Mouse movement
+- Form submission
+- Page loading
 
-JavaScript supports event-driven programming through three components:
-1. **Event**: A signal emitted by the browser indicating that an interaction occurred (e.g., `click`, `mouseover`, `keydown`, `submit`, `load`).
-2. **Event Target**: The HTML DOM element on which the interaction took place (e.g., a button or input field).
-3. **Event Handler / Listener**: The JavaScript function registered to run whenever the event fires.
+#### 2. Syntax
+```javascript
+element.addEventListener("event", function() {
+    // code to execute
+});
+```
 
-### Diagram
+#### 3. Simple Program
+```html
+<!DOCTYPE html>
+<html>
 
+<body>
+
+    <button id="btn">Click Me</button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function() {
+            alert("Button Clicked!");
+        });
+    </script>
+
+</body>
+
+</html>
+```
+
+#### 4. Explanation
+- `click` is an event.
+- `addEventListener()` waits for the event.
+- When the user clicks the button, the function is executed.
+- An alert message is displayed.
+
+#### 5. Real-Life Example
+In an online shopping website, when a user clicks the "Add to Cart" button, JavaScript detects the click event and adds the product to the shopping cart.
+
+---
+
+## Question 17: Explain the role of the Math Object in JavaScript with any one method example.
+
+### Answer:
+
+### 1. Definition
+
+The **Math Object** in JavaScript is a built-in object used to perform **mathematical calculations**. It provides different properties and methods for performing calculations easily.
+
+### 2. Syntax
+
+```javascript
+Math.method(value);
+```
+
+For example:
+
+```javascript
+Math.sqrt(25);
+```
+
+### 3. One Method Example – `Math.sqrt()`
+
+The **`Math.sqrt()`** method is used to find the **square root** of a number.
+
+### 4. Simple Program
+
+```javascript
+let num = 25;
+
+let result = Math.sqrt(num);
+
+console.log(result);
+```
+
+**Output:**
 ```text
-User Action (User clicks a button)
-     ↓
-   Event (Browser dispatches 'click' event)
-     ↓
-Event Handler (JavaScript function triggered)
-     ↓
-JavaScript (Executes business logic or calculation)
-     ↓
-Result (Screen updates with new content)
+5
 ```
 
-### Complete Example Program
+### 5. Explanation
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Event-Driven Programming Demo</title>
-</head>
-<body>
+- `num` stores the value `25`.
+- `Math.sqrt()` calculates its square root.
+- `result` stores the answer.
+- The output is `5`.
 
-  <h2>JavaScript Event Demonstration</h2>
+### 6. Real-Life Example
 
-  <!-- Event Target with inline event handler -->
-  <button id="calcBtn" onclick="showScore()">Click to Check Result</button>
+The Math Object can be used in **banking, shopping, games, engineering and educational applications** for mathematical calculations.
 
-  <p id="outputArea" style="font-size: 18px; margin-top: 15px;"></p>
+For example, a game can use mathematical calculations to calculate the distance between two objects.
 
-  <script>
-    // Event Handler Function
-    function showScore() {
-      // Modifies the DOM dynamically upon click
-      document.getElementById('outputArea').innerHTML = 
-        "<strong>Event Handled:</strong> Your marks have been calculated successfully! (Grade: A+)";
-      document.getElementById('outputArea').style.color = "green";
-    }
-  </script>
+### Conclusion
 
-</body>
-</html>
-```
-
-### Line-by-Line Explanation
-1. `<button ... onclick="showScore()">`: Binds the `click` event of the button to the `showScore()` function.
-2. `function showScore() { ... }`: The event handler function. It stays idle in memory until the button is clicked.
-3. `document.getElementById('outputArea').innerHTML = ...`: When clicked, it updates the webpage immediately.
-
-### Exam-Ready Answer
-> JavaScript supports **Event-Driven Programming** by monitoring user and browser interactions and executing designated callback functions in response:
->
-> 1. **Events**: Notifications emitted by the browser when specific actions occur (e.g., `onclick`, `onmouseover`, `onsubmit`, `onload`).
-> 2. **Event Handlers**: Functions written by the developer and bound to DOM elements via HTML attributes (e.g., `onclick="handler()"`) or DOM listeners (`addEventListener`).
-> 3. **Execution Model**: The script registers handlers and enters an idle state. When a user interacts with an element, the browser pushes the event to the event queue and invokes the associated handler function to update the user interface dynamically.
-
-### Quick Revision
-> **REMEMBER:**
-> • Event-driven programming responds to user actions.
-> • Flow: User Action ➔ Event ➔ Event Handler ➔ JavaScript ➔ Result.
-> • Common events: `onclick`, `onmouseover`, `onsubmit`, `onload`.
-
----
-
-## Question 16: Give any four advantages of JavaScript.
-
-### Simple Explanation
-Why is JavaScript the most popular programming language on the web?
-1. It runs right inside your browser (saves server bandwidth).
-2. It gives you instant feedback (like showing red text if you type an invalid email).
-3. It works on every computer and smartphone without installing anything.
-4. It is easy to learn and can be used for both front-end web pages and back-end servers.
-
-### Answer: Four Key Advantages
-
-#### 1. Client-Side Execution (Reduces Server Load)
-JavaScript runs directly inside the user's web browser, not on the remote server.
-- *Benefit*: Form validations (like checking if an input is empty) happen instantly on the user's laptop without sending unnecessary requests across the Internet to the server.
-
-#### 2. Immediate Feedback & Rich Interactivity
-Because code executes locally in the browser, users get instantaneous responses without waiting for full page reloads.
-- *Benefit*: Modal popups, image sliders, live search dropdowns, and form validation error alerts update in real-time.
-
-#### 3. Platform Independence (Cross-Browser Compatibility)
-JavaScript is natively supported by every modern web browser (Google Chrome, Firefox, Safari, Edge) across Windows, Mac, Linux, Android, and iOS.
-- *Benefit*: Developers write the code once, and it runs everywhere without requiring users to install third-party plugins.
-
-#### 4. Easy to Learn & Highly Versatile
-JavaScript syntax is clean and similar to C/Java. 
-- *Benefit*: Through platforms like Node.js, developers can use JavaScript for full-stack development (both client-side UI and server-side databases).
-
-### Exam-Ready Answer
-> Four key advantages of JavaScript are:
-> 1. **Client-Side Processing**: Executes within the client browser, significantly reducing network latency and saving server CPU resources.
-> 2. **Rich User Interactivity**: Enables dynamic DOM updates, real-time input validation, and interactive UI components without requiring full page reloads.
-> 3. **Platform Independence**: Supported natively by all standard web browsers across all desktop and mobile operating systems with zero plugin requirements.
-> 4. **Versatility & Full-Stack Capabilities**: Easy syntax that supports both client-side browser scripting and server-side backend development (via Node.js).
-
-### Quick Revision
-> **REMEMBER:**
-> • Client-side execution (reduces server burden).
-> • Immediate user feedback and interactivity.
-> • Platform independent (runs in all browsers).
-> • Versatile (used for both front-end and back-end).
-
----
-
-## Question 17: Explain the role of the Math object in JavaScript with any one method example.
-
-### Simple Explanation
-Imagine you are building a banking or exam portal website. You need to calculate compound interest, round student marks to whole numbers, or find square roots.
-
-Writing complex mathematical algorithms from scratch would take hours. Fortunately, JavaScript comes with a built-in scientific calculator called the **`Math` Object**. It has pre-built formulas and functions ready for you to use.
-
-### Answer
-The **`Math` Object** is a built-in, static object in JavaScript that provides mathematical constants and functions for numerical operations.
-
-Because it is a static object, you **never create an instance** using the `new` keyword (there is no `new Math()`). You access its methods directly using `Math.methodName()`.
-
-### Method Example: `Math.round()`
-The `Math.round(x)` method rounds a floating-point decimal number to the nearest whole integer.
-- If the decimal portion is `.5` or higher, it rounds up.
-- If the decimal portion is less than `.5`, it rounds down.
-
-#### Program:
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Math.round Demo</title>
-</head>
-<body>
-  <h2>Student Marks Rounding</h2>
-  <button onclick="calculateGrade()">Round Marks</button>
-  <p id="output"></p>
-
-  <script>
-    function calculateGrade() {
-      let rawScore = 84.7;
-      let finalScore = Math.round(rawScore); // Yields 85
-      document.getElementById('output').innerHTML = 
-        "Raw Score: " + rawScore + " ➔ Rounded Exam Score: " + finalScore;
-    }
-  </script>
-</body>
-</html>
-```
-
-### Exam-Ready Answer
-> The **`Math` Object** in JavaScript is a built-in static object providing mathematical properties (constants like `Math.PI`) and methods for numerical computation without requiring instantiation via `new Math()`.
->
-> - **Method Example (`Math.round`)**:
->   `Math.round(x)` returns the value of a number rounded to the nearest integer.
->   - `Math.round(84.7)` returns `85`.
->   - `Math.round(84.2)` returns `84`.
-> - **Syntax**: `let rounded = Math.round(number);`
-
-### Quick Revision
-> **REMEMBER:**
-> • The `Math` object is static (never write `new Math()`).
-> • Provides built-in mathematical constants and functions.
-> • `Math.round(x)` rounds to the nearest whole integer.
+The **Math Object** makes mathematical calculations easier in JavaScript. Methods such as `sqrt()`, `round()`, `ceil()`, `floor()` and `random()` are commonly used in web applications.
 
 ---
 
@@ -1178,239 +1060,210 @@ The `Math` object has two types of tools:
 
 ## Question 19: Describe Core Language objects with example.
 
-### Simple Explanation
-When you buy a new smartphone, it comes with built-in tools like a **Calculator**, **Clock**, and **Notes app**. You don't have to download them.
-
-Similarly, JavaScript comes with standard built-in tools called **Core Language Objects**. They are pre-installed in the language so you can work with numbers, text, dates, and lists without installing external libraries.
-
 ### Answer
-**Core Language Objects** (also known as Built-in Standard Objects) are native objects provided by the ECMAScript standard that are permanently available in the JavaScript runtime environment.
 
-#### Major Core Language Objects:
-1. **`Math`**: Handles mathematical calculations and constants (`Math.sqrt(16)`).
-2. **`String`**: Handles text manipulation, searching, and formatting (`str.toUpperCase()`).
-3. **`Date`**: Handles calendar dates, timestamps, and clock calculations (`new Date()`).
-4. **`Array`**: Handles ordered collections of multiple data elements (`[1, 2, 3]`).
-5. **`Number`**: Handles numerical parsing and validation (`Number.parseInt("42")`).
+Core Language Objects in JavaScript are built-in objects that provide useful properties and methods for performing common tasks.
 
-### Examples in Code
+Some important core objects are:
+
+#### 1. String Object
+Used to work with text.
+
 ```javascript
-// 1. String Object Example
-let course = "mca web technology";
-console.log(course.toUpperCase()); // "MCA WEB TECHNOLOGY"
-console.log(course.length);        // 18
-
-// 2. Date Object Example
-let today = new Date();
-console.log(today.getFullYear());  // Current year (e.g., 2026)
-
-// 3. Math Object Example
-let root = Math.sqrt(81);          // 9
-
-// 4. Array Object Example
-let subjects = ["Algorithms", "Web Tech"];
-subjects.push("Linux");            // Adds element to end
+let name = "IRONMAN";
+console.log(name.length);
 ```
 
-### Exam-Ready Answer
-> **Core Language Objects** are standard built-in objects provided natively by the JavaScript engine for common programming tasks:
-> - **`Math`**: Static object for numerical operations (`Math.PI`, `Math.round()`).
-> - **`String`**: Object for text processing (`str.toUpperCase()`, `str.charAt()`).
-> - **`Date`**: Object for reading and manipulating calendar dates and times (`new Date()`).
-> - **`Array`**: Object for storing ordered, zero-indexed collections of elements (`arr.push()`).
-> - **`Number`**: Object wrapper for numeric values and conversion (`Number.parseInt()`).
+**Output:**
+```
+7
+```
 
-### Quick Revision
-> **REMEMBER:**
-> • Core language objects are built natively into JavaScript.
-> • Standard objects include `Math`, `String`, `Date`, `Array`, and `Number`.
-> • They provide essential data structures and utility functions.
+#### 2. Number Object
+Used to work with numbers.
+
+```javascript
+let num = 25;
+console.log(num);
+```
+
+**Output:**
+```
+25
+```
+
+#### 3. Array Object
+Used to store multiple values in a single variable.
+
+```javascript
+let fruits = ["Apple", "Mango", "Banana"];
+console.log(fruits[0]);
+```
+
+**Output:**
+```
+Apple
+```
+
+#### 4. Date Object
+Used to work with date and time.
+
+```javascript
+let today = new Date();
+console.log(today);
+```
+
+**Output:**
+```
+Displays current date and time
+```
+
+#### 5. Math Object
+Used for mathematical calculations.
+
+```javascript
+let x = Math.sqrt(25);
+console.log(x);
+```
+
+**Output:**
+```
+5
+```
 
 ---
 
 ## Question 20: Explain the role of Arrays in JavaScript and justify their importance in handling multiple data elements efficiently in web applications.
 
-### Simple Explanation
-Imagine a teacher managing 50 students in a class. 
-If there was no attendance register, the teacher would have to create 50 separate variables:
-`student1 = "Rahul";`
-`student2 = "Priya";`
-... all the way to `student50 = "Neha";`.
-If you had 1,000 students, your code would be unmanageable!
+### Answer:
 
-Instead, you use a single **attendance register** with 50 numbered rows. That single register is an **Array**. An array lets you store dozens or thousands of items under **one single variable name**, accessing each item by its position number (index).
+#### 1. Definition
+An **Array** in JavaScript is a collection used to store multiple values in a single variable. The values can be of the same or different data types.  
+For example, instead of creating separate variables for three fruits, we can store them in one array.
 
-### Answer
-An **Array** in JavaScript is an ordered collection of values stored under a single variable name.
-
-#### Key Characteristics:
-- **Zero-Indexed**: The first element is at index `0`, the second at index `1`, and the last is at `length - 1`.
-- **Dynamic Size**: Unlike arrays in C or Java which have fixed sizes, JavaScript arrays can expand and shrink dynamically at runtime.
-- **Heterogeneous**: Can store mixed data types (numbers, strings, booleans, objects).
-
-### Syntax & Array Methods
+#### 2. Syntax
 ```javascript
-// Declaration
-let marks = [85, 92, 78, 90];
-
-// Accessing elements
-console.log(marks[0]); // 85
-console.log(marks.length); // 4
-
-// Methods:
-marks.push(95);        // Adds 95 to the end
-let last = marks.pop();// Removes the last element
+let arrayName = [value1, value2, value3];
 ```
 
-### Complete Program: Calculating Class Average
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Array Demo</title>
-</head>
-<body>
-  <h2>Student Marks Processor</h2>
-  <button onclick="calculateAverage()">Calculate Average</button>
-  <p id="result"></p>
-
-  <script>
-    function calculateAverage() {
-      let scores = [88, 76, 92, 85, 90];
-      let sum = 0;
-
-      // Loop through array elements efficiently
-      for (let i = 0; i < scores.length; i++) {
-        sum += scores[i];
-      }
-
-      let avg = sum / scores.length;
-      document.getElementById('result').innerHTML = 
-        "Total Subjects: " + scores.length + " | Average Score: " + avg + "%";
-    }
-  </script>
-</body>
-</html>
+**Example:**
+```javascript
+let fruits = ["Apple", "Mango", "Banana"];
 ```
 
-### Justification: Why Arrays Are Important in Web Applications
-1. **Dynamic Collections**: In e-commerce shopping carts or exam result lists, you never know beforehand how many items a user will select. Arrays resize dynamically.
-2. **Eliminates Repetitive Code**: Rather than creating 100 individual variables, an array stores everything in one place, processed using a 3-line loop.
-3. **Database & API Integration**: When a server returns data (like search results or user lists), it sends it as an array of items, making it easy to render dynamically into HTML tables or lists.
+#### 3. Simple Program
+```javascript
+let marks = [80, 75, 90, 85];
 
-### Exam-Ready Answer
-> An **Array** in JavaScript is an ordered, zero-indexed collection of values stored under a single variable identifier.
->
-> 1. **Role & Syntax**: Declared using square brackets (`let scores = [80, 90, 85];`). Individual items are accessed using index notation (`scores[0]`).
-> 2. **Importance in Web Applications**:
->    - **Memory and Variable Efficiency**: Replaces hundreds of standalone variables with a single iterable structure.
->    - **Dynamic Sizing**: Automatically expands or contracts as users add or remove items (e.g., shopping cart products).
->    - **Seamless Data Iteration**: Integrates with loops (`for`, `forEach`) to render dynamic tables, lists, and search results received from web servers.
+console.log(marks[0]);
 
-### Quick Revision
-> **REMEMBER:**
-> • Arrays store multiple values under a single variable name.
-> • They are zero-indexed (`arr[0]` is the first item).
-> • Essential in web applications for handling dynamic lists like shopping carts and search results.
+for (let i = 0; i < marks.length; i++) {
+    console.log(marks[i]);
+}
+```
+
+**Output:**
+```text
+80
+80
+75
+90
+85
+```
+
+#### 4. Explanation
+- `marks` is an array containing multiple values.
+- `marks[0]` accesses the first element.
+- Array index starts from `0`.
+- `length` gives the total number of elements.
+- A loop can be used to process all elements.
+
+#### 5. Importance of Arrays
+Arrays are important in web applications because they help to:
+- Store multiple data elements in one variable.
+- Organize related information.
+- Access data easily using indexes.
+- Process many values using loops.
+- Add and remove data easily using methods like `push()` and `pop()`.
+
+#### 6. Real-Life Example
+In an online shopping website, products added to a shopping cart can be stored in an array:
+```javascript
+let cart = ["Shirt", "Shoes", "Watch"];
+```
 
 ---
 
 ## Question 21: Write the HTML syntax used to create a Submit button in a form.
 
-### Simple Explanation
-After filling in your name, roll number, and password on a registration form, you need a button that says *"Send my information to the server!"* In HTML, that button is called a **Submit Button**.
+### Answer:
+The **Submit button** in HTML is used to send the form data to the server address specified in the form's `action` attribute.
 
-### Answer & Syntax
-In HTML, a Submit button is created using the `<input>` tag with `type="submit"`.
+It is created using the `<input>` tag with `type="submit"`.
 
-#### Syntax:
+### Syntax:
 ```html
-<input type="submit" value="Submit Form">
+<input type="submit" value="Submit">
 ```
-*(Alternatively using the button tag: `<button type="submit">Submit Form</button>`)*
 
 ### Attributes:
-- `type="submit"`: Informs the browser that clicking this button initiates form submission.
-- `value="Submit Form"`: The label text displayed on the face of the button.
+- **`type="submit"`**: Specifies that the button submits the form data to the server.
+- **`value="Submit"`**: Defines the text displayed on the button surface.
 
-### Complete Minimal Form Example
+### Example:
 ```html
 <form action="process.php" method="POST">
-  <label for="username">Student Name:</label>
-  <input type="text" id="username" name="studentName" required>
-
-  <!-- The Submit Button -->
-  <input type="submit" value="Submit Application">
+    Name: <input type="text" name="studentName">
+    <input type="submit" value="Submit">
 </form>
 ```
 
-### What Happens When Clicked:
-The browser collects all data entered in the form, encodes them into `key=value` pairs (e.g., `studentName=Rahul`), and sends an HTTP POST request to `process.php`.
-
-### Exam-Ready Answer
-> The HTML syntax used to create a Submit button in a form is:
-> ```html
-> <input type="submit" value="Submit">
-> ```
-> - **`type="submit"`**: Specifies that the button submits form data to the server address defined in the `<form action="...">` attribute.
-> - **`value`**: Defines the visible text label displayed on the button surface.
-
-### Quick Revision
-> **REMEMBER:**
-> • Syntax: `<input type="submit" value="Submit">`.
-> • Triggers the form's `action` URL and sends input data to the server.
 
 ---
 
 ## Question 22: What are radio buttons in HTML forms?
 
-### Simple Explanation
-Think of an old car radio with mechanical push-buttons for tuning stations. When you press the button for Station 1, the button for Station 2 automatically pops out. You can only listen to **one station at a time**.
+### Answer:
 
-In HTML forms, a **Radio Button** is a small round circle used when a user must choose **exactly one option from a group of choices** (such as Gender: Male or Female; or Payment: Cash or Card).
+**Radio buttons** are HTML form elements used when the user has to **select only one option** from a group of options.
 
-### Answer
-A **Radio Button** is an HTML form input element that allows a user to select **only one option from a predefined set of mutually exclusive choices**.
+They are created using:
 
-#### How Grouping Works (Crucial Exam Concept):
-To group radio buttons together so that selecting one automatically deselects the others, **all radio buttons in that group MUST share the exact same `name` attribute**.
-
-### Syntax & Example
 ```html
-<form>
-  <p>Select Your Examination City:</p>
-
-  <!-- All radio buttons in this group share name="examCity" -->
-  <input type="radio" id="delhi" name="examCity" value="Delhi" checked>
-  <label for="delhi">Delhi</label><br>
-
-  <input type="radio" id="mumbai" name="examCity" value="Mumbai">
-  <label for="mumbai">Mumbai</label><br>
-
-  <input type="radio" id="bangalore" name="examCity" value="Bangalore">
-  <label for="bangalore">Bangalore</label>
-</form>
+<input type="radio">
 ```
 
-### Key Attributes:
-- `type="radio"`: Specifies a radio button input control.
-- `name="examCity"`: Groups the buttons together.
-- `value="Delhi"`: The actual data sent to the server if selected.
-- `checked`: Pre-selects a default option when the page loads.
+### Example:
 
-### Exam-Ready Answer
-> **Radio Buttons** in HTML forms (`<input type="radio">`) are input controls designed for mutually exclusive selection, allowing a user to pick only one option from a group.
->
-> - **Syntax**: `<input type="radio" name="groupName" value="val"> Label`
-> - **Grouping Mechanism**: The browser enforces single selection by linking buttons that share the **identical `name` attribute**. Selecting any button in the group automatically deselects all others.
-> - **Example**: Choosing gender, payment method, or exam center city.
+```html
+Gender:
 
-### Quick Revision
-> **REMEMBER:**
-> • Radio buttons allow selecting only ONE option from a group.
-> • Grouping requires sharing the exact same `name` attribute.
-> • Use `checked` to set a default selection.
+<input type="radio" name="gender"> Male
+<input type="radio" name="gender"> Female
+```
+
+Here, the user can select **only one** option.
+
+### Uses:
+
+- Selecting gender
+- Selecting payment method
+- Selecting Yes/No
+- Selecting one answer in a question
+
+### Real-Life Example:
+
+In a form:
+
+**Choose your payment method:**
+
+○ UPI  
+○ Cash  
+○ Credit Card
+
+The user can select **only one** payment method.
+
+👉 **Remember:** Radio Button = **Only ONE choice** ✅
 
 ---
 
@@ -1443,27 +1296,11 @@ To group radio buttons together so that selecting one automatically deselects th
 </form>
 ```
 
-### Exam-Ready Answer
-> | Comparison Feature | Text Field (`type="text"`) | Password Field (`type="password"`) |
-> | :--- | :--- | :--- |
-> | **Syntax** | `<input type="text">` | `<input type="password">` |
-> | **Character Masking** | Characters are displayed in plain readable text. | Characters are masked using dots or asterisks (`••••`). |
-> | **Purpose** | Entering public or non-sensitive data (e.g., student name, roll number). | Entering confidential credentials (e.g., passwords, PIN codes). |
-> | **Security Role** | Provides no visual privacy. | Prevents visual shoulder surfing from nearby observers. |
-
-### Quick Revision
-> **REMEMBER:**
-> • Text field (`type="text"`) shows visible characters.
-> • Password field (`type="password"`) masks input with dots for screen privacy.
-> • Neither field encrypts data over the network by itself (HTTPS is required).
 
 ---
 
 ## Question 24: Distinguish between single select and multi-choice select list elements and also create a program to demonstrate both and analyze the output.
 
-### Simple Explanation
-- **Single Select List**: A compact dropdown box where you pick **one single choice** (like picking your Birth Month or Country).
-- **Multi-Choice Select List**: An open box where you can hold down the `Ctrl` key and select **multiple choices at once** (like picking your favorite programming languages).
 
 ### Answer: Comparison
 
@@ -1480,43 +1317,60 @@ To group radio buttons together so that selecting one automatically deselects th
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Select Lists Demonstration</title>
+    <title>Select List</title>
 </head>
 <body>
+    <h2>Student Course Enrollment</h2>
 
-  <h2>Student Course Enrollment</h2>
+    <form>
+        Semester:
+        <select>
+            <option>Semester 1</option>
+            <option>Semester 2</option>
+            <option>Semester 3</option>
+            <option>Semester 4</option>
+        </select>
+        <br><br>
 
-  <form action="submit.html" method="GET">
+        Choose Subjects:
+        <select multiple>
+            <option>Web Technology</option>
+            <option>Artificial Intelligence</option>
+            <option>Cloud Computing</option>
+            <option>Cyber Security</option>
+        </select>
+        <br><br>
 
-    <!-- 1. SINGLE-SELECT LIST -->
-    <p>
-      <label for="semSelect"><strong>Choose Semester (Single Choice):</strong></label><br>
-      <select id="semSelect" name="semester">
-        <option value="sem1">Semester 1</option>
-        <option value="sem2" selected>Semester 2</option>
-        <option value="sem3">Semester 3</option>
-        <option value="sem4">Semester 4</option>
-      </select>
-    </p>
-
-    <!-- 2. MULTI-CHOICE SELECT LIST -->
-    <p>
-      <label for="skillsSelect"><strong>Choose Electives (Hold Ctrl to select multiple):</strong></label><br>
-      <select id="skillsSelect" name="electives" multiple size="4">
-        <option value="web">Web Technology</option>
-        <option value="ai">Artificial Intelligence</option>
-        <option value="cloud">Cloud Computing</option>
-        <option value="cyber">Cyber Security</option>
-      </select>
-    </p>
-
-    <input type="submit" value="Confirm Selection">
-
-  </form>
-
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
 ```
+
+**Output:**
+
+<div class="rendered-form-container">
+  <h3>Student Course Enrollment</h3>
+  <form onsubmit="return false;">
+    Semester:<br>
+    <select name="semester">
+      <option>Semester 1</option>
+      <option selected>Semester 2</option>
+      <option>Semester 3</option>
+      <option>Semester 4</option>
+    </select>
+    <br><br>
+    Choose Subjects (Multi-Select):<br>
+    <select multiple size="4" style="width: 100%; max-width: 240px; margin-top: 4px;">
+      <option selected>Web Technology</option>
+      <option>Artificial Intelligence</option>
+      <option selected>Cloud Computing</option>
+      <option>Cyber Security</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
+</div>
 
 ### Analysis of the Output:
 1. **Single-Select Dropdown (`<select name="semester">`)**:
@@ -1528,269 +1382,360 @@ To group radio buttons together so that selecting one automatically deselects th
    - The **`size="4"`** attribute displays 4 rows simultaneously without needing to click to open.
    - The user holds the `Ctrl` key to select both "Web Technology" and "Cloud Computing".
 
-### Exam-Ready Answer
-> - **Single Select List**: Uses `<select name="fieldName">` with child `<option>` tags to present a compact dropdown permitting only one active selection.
-> - **Multi-Choice Select List**: Adds the boolean attribute **`multiple`** (and optionally `size="N"`) to the `<select>` tag, allowing users to choose multiple options simultaneously by holding `Ctrl`/`Cmd`.
-> - **Program Output**: The single select renders as a closed 1-line dropdown, whereas the multi-select renders as an open scrollable box showing multiple options.
-
-### Quick Revision
-> **REMEMBER:**
-> • Single select allows picking only 1 option.
-> • Adding `multiple` allows picking multiple options using `Ctrl` + click.
-> • `size="N"` controls how many options are visible at once.
 
 ---
 
 ## Question 25: Evaluate the importance of the Form Object and its methods in web development, and justify the usefulness of a program that dynamically accesses form elements.
 
-### Simple Explanation
-When an HTML form is on a webpage, it is just static text boxes. What if a student types `"abc"` into their age box, or leaves their Roll Number blank and hits Submit?
-If we didn't have JavaScript, that bad data would travel across the Internet to the server, the server would reject it, and the user would have to reload the whole page and type everything again!
+### Answer:
 
-The **Form Object** in JavaScript represents the `<form>` inside the browser's memory. It lets JavaScript look inside each input box, check what the user typed, show instant error messages, and stop the form from submitting until all mistakes are corrected.
+The **Form Object** in JavaScript is used to access and control an HTML form. It helps us **read user input, validate data, submit the form, and reset the form**.
 
-### Answer
+### Important Form Methods:
 
-#### 1. Importance of the Form Object
-In the Document Object Model (DOM), the Form Object represents an HTML `<form>`.
-- **`document.forms`**: An array-like collection of all forms on the page.
-- **`form.elements`**: An array-like collection of all input fields, buttons, and dropdowns inside that form.
-- **Methods**:
-  - `form.submit()`: Submits the form programmatically via script.
-  - `form.reset()`: Resets all fields back to their default values.
+1. **`submit()`** – Submits the form.
+2. **`reset()`** – Clears the form and returns it to its original state.
+3. **`checkValidity()`** – Checks whether the entered data is valid.
 
-#### 2. Justification for Dynamically Accessing Form Elements
-- **Instant Client-Side Validation**: Validates empty fields, email formats, and number ranges before data leaves the computer.
-- **Saves Server Bandwidth**: Rejects invalid submissions locally without sending requests across the network.
-- **Improved User Experience**: Automatically focuses the blinking cursor (`element.focus()`) on the erroneous input box.
-
-### Program: Dynamically Accessing Form Elements
+### Simple Program:
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Form Object Demo</title>
+    <title>Form Object</title>
 </head>
 <body>
+    <form id="myForm">
+        Name:
+        <input type="text" id="name">
+        <br><br>
 
-  <h2>Student Registration</h2>
+        <input type="button" value="Show Name" onclick="showName()">
+        <input type="reset" value="Reset">
+    </form>
 
-  <form id="studentForm" onsubmit="return validateForm()">
-    <label for="roll">Roll Number:</label>
-    <input type="text" id="roll" name="rollNo"><br><br>
+    <p id="result"></p>
 
-    <label for="age">Age (18–60):</label>
-    <input type="number" id="age" name="studentAge"><br><br>
-
-    <input type="submit" value="Register">
-    <input type="button" value="Clear Form" onclick="resetForm()">
-  </form>
-
-  <p id="errorMsg" style="color: red; font-weight: bold;"></p>
-
-  <script>
-    function validateForm() {
-      // Dynamic access via Form Object
-      const form = document.getElementById('studentForm');
-      const rollValue = form.elements['rollNo'].value.trim();
-      const ageValue = parseInt(form.elements['studentAge'].value);
-
-      const err = document.getElementById('errorMsg');
-
-      if (rollValue === "") {
-        err.innerHTML = "Error: Roll number cannot be blank!";
-        form.elements['rollNo'].focus(); // Focus cursor
-        return false; // Prevents form submission
-      }
-
-      if (isNaN(ageValue) || ageValue < 18 || ageValue > 60) {
-        err.innerHTML = "Error: Age must be between 18 and 60!";
-        form.elements['studentAge'].focus();
-        return false;
-      }
-
-      err.innerHTML = "";
-      alert("Validation successful! Submitting data.");
-      return true; // Allows submission
-    }
-
-    function resetForm() {
-      document.getElementById('studentForm').reset(); // Form Object method
-      document.getElementById('errorMsg').innerHTML = "";
-    }
-  </script>
-
+    <script>
+        function showName() {
+            let form = document.getElementById("myForm");
+            let name = form.elements["name"].value;
+            document.getElementById("result").innerHTML = "Name: " + name;
+        }
+    </script>
 </body>
 </html>
 ```
 
-### Exam-Ready Answer
-> The **Form Object** in JavaScript represents an HTML form element within the DOM tree, accessible via `document.forms` or `document.getElementById()`.
->
-> - **Core Methods**: `submit()` programmatically transmits form data; `reset()` clears all inputs to initial values.
-> - **Dynamic Element Access**: Fields are accessed via `form.elements['fieldName'].value`.
-> - **Justification**: Dynamic access enables real-time client-side validation. Returning `false` from `onsubmit` halts invalid submissions, saving server processing time and network bandwidth while providing instant feedback to the user.
+**Output:**
 
-### Quick Revision
-> **REMEMBER:**
-> • The Form Object represents `<form>` in the DOM.
-> • Access fields using `form.elements['name'].value`.
-> • `form.submit()` and `form.reset()` are core Form Object methods.
-> • Returning `false` from `onsubmit` prevents submission of invalid data.
+<div class="rendered-form-container">
+  <form id="demo-q25-form" onsubmit="return false;">
+    Name:<br>
+    <input type="text" id="demo-q25-name" value="Rahul Sharma" style="margin-top: 4px; width: 100%; max-width: 220px;">
+    <br><br>
+    <input type="button" value="Show Name" style="background: #4f46e5; color: #fff; padding: 4px 10px; border-radius: 4px; border: 1px solid #6366f1; cursor: pointer; font-weight: 600;" onclick="var n=document.getElementById('demo-q25-name').value; document.getElementById('demo-q25-res').innerText = 'Name: ' + (n || '(empty)');">
+    <input type="reset" value="Reset" style="padding: 4px 10px; border-radius: 4px; cursor: pointer; margin-left: 6px;" onclick="document.getElementById('demo-q25-res').innerText = '';">
+  </form>
+  <p id="demo-q25-res" style="margin-top: 10px; font-weight: 600; color: #10b981; font-size: 0.9rem;">Name: Rahul Sharma</p>
+</div>
+
+### Explanation:
+
+- `document.getElementById("myForm")` → Accesses the form.
+- `form.elements["name"]` → Dynamically accesses the **name field**.
+- `.value` → Gets the value entered by the user.
+- `reset` → Clears the form.
+
+### Why is dynamic access useful?
+
+Dynamic access is useful because JavaScript can **access and work with form fields without directly writing separate code for every field**.
+
+For example, in a **college registration form**, JavaScript can access the student's name, email, course, and other fields and validate or process them before sending the data to the server.
+
+### Conclusion:
+
+The Form Object makes it easier to **access, validate, modify, submit, and reset form data**. Dynamic access makes web forms more **interactive, efficient, and user-friendly**. ✅
 
 ---
 
 ## Question 26: Develop a feedback form using text area and select elements where users can enter comments and select their satisfaction level.
 
-### What We Need to Do
-We need to write a complete, beginner-friendly HTML feedback form containing:
-1. A **`<select>`** dropdown element for picking a satisfaction level.
-2. A **`<textarea>`** element for typing multi-line comments.
-3. Supporting input fields (Name) and a Submit button.
+### Answer
 
-### Complete Program
+A feedback form is used to collect comments and opinions from users. The `<textarea>` is used for entering comments, and the `<select>` element is used to select the satisfaction level.
+
+### Simple HTML Program:
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Student Feedback Portal</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 30px; }
-    .form-group { margin-bottom: 15px; }
-    label { display: block; font-weight: bold; margin-bottom: 5px; }
-    textarea { width: 350px; height: 100px; padding: 8px; }
-    select { padding: 6px; width: 220px; }
-  </style>
+    <title>Feedback Form</title>
 </head>
 <body>
+    <h2>Feedback Form</h2>
 
-  <h2>Web Technology Course Feedback Form</h2>
+    <form>
+        Comments:<br>
+        <textarea rows="5" cols="30"></textarea>
+        <br><br>
 
-  <form action="save-feedback.php" method="POST">
+        Satisfaction Level:
+        <select>
+            <option>Very Satisfied</option>
+            <option>Satisfied</option>
+            <option>Neutral</option>
+            <option>Dissatisfied</option>
+        </select>
+        <br><br>
 
-    <!-- Student Name -->
-    <div class="form-group">
-      <label for="studentName">Student Name:</label>
-      <input type="text" id="studentName" name="studentName" required placeholder="Enter your full name">
-    </div>
-
-    <!-- 1. SELECT ELEMENT: Satisfaction Level -->
-    <div class="form-group">
-      <label for="satisfactionLevel">Course Satisfaction Level:</label>
-      <select id="satisfactionLevel" name="satisfaction" required>
-        <option value="" disabled selected>-- Select Satisfaction --</option>
-        <option value="5">Excellent (5 Stars)</option>
-        <option value="4">Very Good (4 Stars)</option>
-        <option value="3">Satisfactory (3 Stars)</option>
-        <option value="2">Needs Improvement (2 Stars)</option>
-      </select>
-    </div>
-
-    <!-- 2. TEXT AREA ELEMENT: Multi-line Comments -->
-    <div class="form-group">
-      <label for="userComments">Your Comments & Suggestions:</label>
-      <textarea id="userComments" 
-                name="comments" 
-                rows="5" 
-                cols="40" 
-                placeholder="Write your feedback here..."></textarea>
-    </div>
-
-    <!-- Submit Button -->
-    <input type="submit" value="Submit Feedback">
-
-  </form>
-
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
 ```
 
-### Line-by-Line Explanation
-1. `<select id="satisfactionLevel" name="satisfaction" required>`: Creates the dropdown box for satisfaction. The first option has `disabled selected` so it acts as an unselectable guide prompt.
-2. `<textarea id="userComments" rows="5" cols="40">`: Creates a multi-line input box. `rows="5"` sets the default height to 5 lines of text, and `cols="40"` sets the width to 40 characters.
-3. `<input type="submit" value="Submit Feedback">`: Sends the entered feedback to `save-feedback.php`.
+**Output:**
 
-### Expected Output
-- A text box for entering the student's name.
-- A dropdown menu to choose satisfaction (Excellent, Very Good, etc.).
-- A large multi-line text area to write detailed comments.
-- A Submit button to send the feedback.
+<div class="rendered-form-container">
+  <h3>Feedback Form</h3>
+  <form onsubmit="return false;">
+    Comments:<br>
+    <textarea rows="4" cols="26" placeholder="Enter comments here..."></textarea>
+    <br><br>
+    Satisfaction Level:
+    <select>
+      <option selected>Very Satisfied</option>
+      <option>Satisfied</option>
+      <option>Neutral</option>
+      <option>Dissatisfied</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
+</div>
 
-### Quick Revision
-> **REMEMBER:**
-> • `<select>` with `<option>` creates the satisfaction dropdown.
-> • `<textarea rows="5" cols="40"></textarea>` creates a multi-line text box.
-> • `<textarea>` has a closing tag (`</textarea>`), unlike `<input>`.
+### Explanation:
+
+- **`<textarea>`** → Used to enter multiple lines of comments.
+- **`<select>`** → Creates a dropdown list.
+- **`<option>`** → Provides different satisfaction levels.
+- **Submit** → Submits the feedback.
 
 ---
 
 ## Question 27: Determine the importance of the various form elements available in web pages and their role in effectively capturing and managing user input, with suitable examples.
 
-### Simple Explanation
-When users visit a website, you need different kinds of input controls depending on what you are asking:
-- For a name, you need a single-line text box.
-- For a password, you need a box that hides the letters.
-- For gender, you need a round radio button (only 1 choice).
-- For hobbies, you need checkboxes (can pick multiple).
-- For a long complaint or feedback, you need a multi-line textarea.
-- For picking a country, you need a select dropdown.
-
-Using the right form element prevents user mistakes, protects privacy, and packages data cleanly for the server.
-
 ### Answer
 
-#### Master Comparison Table of HTML Form Elements:
+HTML forms are used to collect information from users and send that information to a server for processing. Different form elements are used depending on the type of data that needs to be collected.
 
-| Form Element | Syntax | Primary Input Role | Real-World Example |
-| :--- | :--- | :--- | :--- |
-| **Text Field** | `<input type="text">` | Captures single-line alphanumeric text. | Full Name, Roll Number |
-| **Password** | `<input type="password">` | Masks characters with dots for visual privacy. | Login Password, PIN |
-| **Radio Button** | `<input type="radio">` | Single selection among mutually exclusive choices. | Gender, Payment Type |
-| **Checkbox** | `<input type="checkbox">` | Multiple independent selections (zero or more). | Hobbies, Terms Agreement |
-| **Text Area** | `<textarea rows="4">` | Multi-line text entry for long content. | Feedback, Address |
-| **Select Dropdown** | `<select><option>...` | Compact dropdown list for selecting choices. | Country, Semester |
-| **Submit Button** | `<input type="submit">`| Bundles and sends data to the server URL. | "Submit Application" |
-| **Reset Button** | `<input type="reset">` | Resets all fields back to default values. | "Clear Form" |
+---
 
-### How Form Data Moves to Processing (Diagram)
+### 1. Text Box
 
-```text
-User
- ↓  (Types name, password, picks dropdown, writes feedback)
-Form
- ↓  (Encloses inputs in <form action="..." method="...">)
-Input Elements
- ↓  (Data formatted into key=value pairs)
-Submit
- ↓  (Dispatches HTTP request across the Internet)
-Data Processing (Server script inserts into Database)
+A text box is used to accept single-line text from the user.
+
+**Example:**
+```html
+<input type="text" name="username">
 ```
 
-### Why Various Form Elements are Important in Managing Input:
-1. **Input Constraining (Prevents Errors)**: Restricts inputs to valid choices (e.g., using radio buttons for Gender avoids typos like "M", "male", "Boy").
-2. **Privacy and Security**: Password elements mask credentials on monitors to prevent shoulder-surfing.
-3. **Structured Data Packaging**: When Submit is clicked, the browser packages inputs into clean `name=value` pairs:
-   `fullName=Rahul&gender=Male&satisfaction=5`
-   This allows backend databases to parse and store the information seamlessly.
+**Output:**
 
-### Exam-Ready Answer
-> HTML form elements provide standardized controls for capturing, constraining, and transmitting user input:
-> - **`<input type="text">` & `type="password"`**: Single-line text input; password masks characters to prevent visual eavesdropping.
-> - **`<input type="radio">`**: Enforces a single selection among mutually exclusive choices bound by a common `name`.
-> - **`<input type="checkbox">`**: Allows independent multi-selection of non-exclusive options.
-> - **`<textarea>`**: Supports multi-line input for extended comments and messages.
-> - **`<select>` with `<option>`**: Compact dropdown menu saving screen space.
-> - **`<input type="submit">` & `type="reset"`**: Encodes and dispatches form data to the server or clears input fields.
-> 
-> **Importance**: These elements constrain user input to valid formats, prevent data-entry errors, protect confidential credentials, and package data into structured `key=value` pairs for backend processing.
+<div class="preview-output">
+  <input type="text" name="username" placeholder="Enter username">
+</div>
 
-### Quick Revision
-> **REMEMBER:**
-> • Form elements capture and constrain user input.
-> • Radio = 1 choice; Checkbox = multiple choices; Textarea = multi-line text.
-> • Submit buttons package data into `key=value` pairs and send them to the server.
+- **Use**: Used for entering names, addresses, usernames, etc.
+
+---
+
+### 2. Password Field
+
+A password field is used to enter confidential information. The entered characters are hidden or masked.
+
+**Example:**
+```html
+<input type="password" name="password">
+```
+
+**Output:**
+
+<div class="preview-output">
+  <input type="password" name="password" value="secretPass123">
+</div>
+
+- **Use**: Used for passwords and other sensitive information.
+
+---
+
+### 3. Radio Button
+
+Radio buttons allow the user to select only one option from a group.
+
+**Example:**
+```html
+<input type="radio" name="gender" value="male"> Male
+<input type="radio" name="gender" value="female"> Female
+```
+
+**Output:**
+
+<div class="preview-output">
+  <label style="margin-right: 12px; cursor: pointer;"><input type="radio" name="demo-gender" value="male" checked> Male</label>
+  <label style="cursor: pointer;"><input type="radio" name="demo-gender" value="female"> Female</label>
+</div>
+
+- **Use**: Useful when only one choice is allowed.
+
+---
+
+### 4. Checkbox
+
+Checkboxes allow the user to select one or more options.
+
+**Example:**
+```html
+<input type="checkbox" name="skill" value="python"> Python
+<input type="checkbox" name="skill" value="java"> Java
+```
+
+- **Use**: Useful for selecting multiple skills, hobbies, interests, etc.
+
+---
+
+### 5. Textarea
+
+A textarea is used to enter multiple lines of text.
+
+**Example:**
+```html
+<textarea name="address"></textarea>
+```
+
+- **Use**: Used for addresses, comments, feedback, messages, etc.
+
+---
+
+### 6. Select / Dropdown List
+
+A dropdown list allows the user to select an option from a predefined list.
+
+**Example:**
+```html
+<select name="city">
+    <option>Chandigarh</option>
+    <option>Delhi</option>
+    <option>Mumbai</option>
+</select>
+```
+
+- **Use**: It reduces typing errors because the user selects from available choices.
+
+---
+
+### 7. Submit Button
+
+The submit button is used to send the form data to the server for processing.
+
+**Example:**
+```html
+<input type="submit" value="Submit">
+```
+
+- **Use**: It completes the form submission process.
+
+---
+
+### 8. Reset Button
+
+The reset button is used to clear the entered data and restore the form to its initial state.
+
+**Example:**
+```html
+<input type="reset" value="Reset">
+```
+
+- **Use**: Helpful when the user wants to start filling the form again.
+
+---
+
+### Simple HTML Form Example
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Form Example</title>
+</head>
+<body>
+    <h2>User Registration Form</h2>
+
+    <form>
+        <!-- Text Box -->
+        Name: <input type="text" name="username"><br><br>
+
+        <!-- Password Field -->
+        Password: <input type="password" name="password"><br><br>
+
+        <!-- Radio Buttons -->
+        Gender:
+        <input type="radio" name="gender" value="male"> Male
+        <input type="radio" name="gender" value="female"> Female<br><br>
+
+        <!-- Checkboxes -->
+        Skills:
+        <input type="checkbox" name="skill" value="html"> HTML
+        <input type="checkbox" name="skill" value="css"> CSS<br><br>
+
+        <!-- Select / Dropdown List -->
+        City:
+        <select name="city">
+            <option>Delhi</option>
+            <option>Mumbai</option>
+            <option>Chandigarh</option>
+        </select><br><br>
+
+        <!-- Textarea -->
+        Address:<br>
+        <textarea name="address" rows="3" cols="25"></textarea><br><br>
+
+        <!-- Submit and Reset Buttons -->
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+</body>
+</html>
+```
+
+**Output:**
+
+<div class="rendered-form-container">
+  <h3>User Registration Form</h3>
+  <form onsubmit="return false;">
+    Name: <input type="text" name="username" placeholder="Enter name"><br><br>
+    Password: <input type="password" name="password" value="••••••••"><br><br>
+    Gender:
+    <input type="radio" name="gender" value="male" id="g-male-q27" checked> <label for="g-male-q27">Male</label>
+    <input type="radio" name="gender" value="female" id="g-female-q27"> <label for="g-female-q27">Female</label><br><br>
+    Skills:
+    <input type="checkbox" name="skill" value="html" id="s-html-q27" checked> <label for="s-html-q27">HTML</label>
+    <input type="checkbox" name="skill" value="css" id="s-css-q27"> <label for="s-css-q27">CSS</label><br><br>
+    City:
+    <select name="city">
+      <option selected>Delhi</option>
+      <option>Mumbai</option>
+      <option>Chandigarh</option>
+    </select><br><br>
+    Address:<br>
+    <textarea name="address" rows="3" cols="24" placeholder="Enter address..."></textarea><br><br>
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+  </form>
+</div>
 
 
 ---
@@ -1899,37 +1844,44 @@ This revision sheet is organized question-by-question to help you rapidly revise
 ---
 
 ### Question 13: Which type of Cascading Style Sheet is used within a web page?
-- **Answer**: The **Embedded Style Sheet** (also called **Internal Style Sheet**).
-- **Location**: Written inside `<style type="text/css">` in the `<head>` section of that document.
-- **Scope**: Styles all matching HTML elements on that single page without affecting other pages.
+- **Answer**: **Internal CSS (Embedded CSS)**.
+- **Description**: Written within the HTML page itself, inside the `<style>` tag, usually in the `<head>` section.
 
 ---
 
-### Question 14: Make use of embedded style sheet with appropriate description, syntax and program in HTML.
-- **Description**: Centralizes styling rules inside the document's `<head>`.
-- **Syntax**: Declared inside `<head>` via `<style type="text/css"> selector { property: value; } </style>`.
-- **Program Component**: Uses selectors (like `body`, `h1`, `p`, `.callout`) to set background colors, font families, and margins.
+### Question 14: Make use of Embedded Style Sheet with appropriate description, syntax and program in HTML.
+- **Syntax**: Declared inside `<head>` via `<style> selector { property: value; } </style>`.
+- **Program Component**: Uses selectors (like `h1`, `p`, `body`) to set colors, font sizes, and background color.
+- **Advantages**: Easy for a single web page, no separate CSS file required, styles multiple elements at once.
 
 ---
 
 ### Question 15: How does JavaScript support event-driven programming?
-- **Concept**: Execution is triggered by user interactions rather than executing top-to-bottom sequentially.
-- **Flow**: `User Action` ➔ `Event Dispatched` (`click`, `submit`) ➔ `Event Handler Function Executes` ➔ `DOM / Screen Updates`.
-- **Registration**: Registered via HTML attributes (`onclick="myFunc()"`) or DOM listeners (`addEventListener`).
-
----
-
-### Question 16: Give any four advantages of JavaScript.
-1. **Client-Side Execution**: Runs in the browser, saving server CPU and network bandwidth.
-2. **Immediate Feedback**: Updates the DOM instantly (e.g., red error alerts on forms) without page reloads.
-3. **Platform Independence**: Supported natively by every web browser and OS without plugins.
-4. **Versatility**: Clean syntax used for both front-end browser scripting and back-end development (via Node.js).
+Event-driven programming is an approach where programs respond to user or browser events (clicks, keypresses). JavaScript listens using `addEventListener()` and triggers a handler function to execute code when the event occurs (e.g. clicking "Add to Cart").
 
 ---
 
 ### Question 17: Explain the role of the Math object in JavaScript with any one method example.
-- **Role**: A built-in, static object that provides mathematical constants and functions. It requires no instantiation (never write `new Math()`).
-- **Method Example (`Math.round`)**: Rounds a number to the nearest integer (`Math.round(84.6) ➔ 85`; `Math.round(84.2) ➔ 84`).
+The Math object in JavaScript is a built-in object used to perform mathematical calculations.
+It provides many ready-made methods such as `sqrt()`, `round()`, `ceil()`, `floor()`, and `random()`.
+
+**Example using `sqrt()`:**
+```javascript
+let num = 25;
+let result = Math.sqrt(num);
+
+console.log(result);
+```
+
+**Output:**
+```text
+5
+```
+
+**Explanation:**
+- `Math` → JavaScript's built-in Math object.
+- `sqrt()` → Finds the square root of a number.
+- `Math.sqrt(25)` → Returns 5.
 
 ---
 
@@ -1942,39 +1894,120 @@ This revision sheet is organized question-by-question to help you rapidly revise
 ---
 
 ### Question 19: Describe Core Language objects with example.
-- **Definition**: Standard built-in objects provided natively by the ECMAScript runtime.
-- **`Math`**: Numerical calculations (`Math.sqrt(25)`).
-- **`String`**: Text processing (`"mca".toUpperCase()`).
-- **`Date`**: Calendar dates and clock timestamps (`new Date().getFullYear()`).
-- **`Array`**: Ordered collections of values (`[1, 2, 3]`).
-- **`Number`**: Numerical parsing (`Number.parseInt("42")`).
+
+Core Language Objects in JavaScript are built-in objects that provide useful properties and methods for performing common tasks:
+
+| Core Object | Purpose | Example Code | Output |
+| :--- | :--- | :--- | :--- |
+| **String** | Work with text | `let name = "IRONMAN";`<br>`console.log(name.length);` | `7` |
+| **Number** | Work with numbers | `let num = 25;`<br>`console.log(num);` | `25` |
+| **Array** | Store multiple values in one variable | `let fruits = ["Apple", "Mango", "Banana"];`<br>`console.log(fruits[0]);` | `Apple` |
+| **Date** | Work with date and time | `let today = new Date();`<br>`console.log(today);` | *(Current Date & Time)* |
+| **Math** | Mathematical calculations | `let x = Math.sqrt(25);`<br>`console.log(x);` | `5` |
 
 ---
 
 ### Question 20: Explain the role of Arrays in JavaScript and justify their importance in handling multiple data elements efficiently in web applications.
-- **Definition**: An ordered, zero-indexed collection of values stored under one variable name (`let scores = [80, 90, 85];`).
-- **Methods**: `push()` (adds to end), `pop()` (removes from end), `shift()` (removes from start), `unshift()` (adds to start).
-- **Importance in Web Apps**: Automatically expands/shrinks for dynamic user data (like shopping cart items) and allows easy looping to render HTML tables and search results.
+An **Array** is a collection used to store multiple values in a single variable (`let fruits = ["Apple", "Mango", "Banana"];`).
+- **Access**: Elements are zero-indexed (`fruits[0]` gives `"Apple"`).
+- **Importance in Web Apps**: Stores and organizes multiple data items, enables easy iteration with loops, and allows dynamic item addition/removal using methods like `push()` and `pop()` (e.g., e-commerce shopping carts).
 
 ---
 
 ### Question 21: Write the HTML syntax used to create a Submit button in a form.
-- **Syntax**: `<input type="submit" value="Submit Form">` (or `<button type="submit">Submit Form</button>`).
-- **Function**: Collects all form inputs, encodes them into `key=value` pairs, and sends an HTTP request to the URL specified in `<form action="...">`.
+A Submit button is used in an HTML form to send the entered form data to the server for processing.
+
+#### 2. Syntax
+```html
+<input type="submit" value="Submit">
+```
+
+#### 3. Simple Program
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <form>
+
+        Name:
+        <input type="text">
+
+        <br><br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+
+</body>
+
+</html>
+```
+
+**Output:**
+<div class="rendered-form-container">
+    <form onsubmit="event.preventDefault(); alert('Form submitted!');">
+        Name:
+        <input type="text">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 
 ---
 
 ### Question 22: What are radio buttons in HTML forms?
-- **Purpose**: Input controls for selecting **exactly one option** from a mutually exclusive set of choices (e.g., Gender, Payment method).
-- **Grouping Rule**: All radio buttons in a group **MUST share the exact same `name` attribute** (`name="gender"`).
-- **Syntax**: `<input type="radio" name="gender" value="male" checked> Male`.
+Radio buttons are form elements in HTML that allow the user to select only one option from a group of options.
+They are created using the `<input type="radio">` tag.
+
+**Syntax:**
+```html
+<input type="radio" name="gender" value="male"> Male
+<input type="radio" name="gender" value="female"> Female
+```
+
+**Example:**
+```html
+<form>
+    Gender:
+
+    <input type="radio" name="gender"> Male
+    <input type="radio" name="gender"> Female
+</form>
+```
+
+Here, the same `name="gender"` makes the options part of the same group, so the user can select only one.
+
+**Uses:**
+- Selecting gender
+- Selecting payment method
+- Selecting yes/no
+- Selecting one answer in a quiz
 
 ---
 
 ### Question 23: Compare text field and password field in forms.
-- **Text Field (`type="text"`)**: Characters appear as readable text; used for non-sensitive data (e.g., student name, roll number).
-- **Password Field (`type="password"`)**: Characters are masked with black dots (`••••`) for shoulder-surfing protection; used for confidential credentials (passwords, PINs).
-- **Security Note**: Password masking only protects the screen; network encryption requires **HTTPS**.
+Both text field and password field are used to take input from the user, but they are used for different purposes.
+
+| Text Field | Password Field |
+| :--- | :--- |
+| Used to enter normal text. | Used to enter passwords or sensitive information. |
+| Characters are visible to the user. | Characters are hidden/masked. |
+| Created using `<input type="text">`. | Created using `<input type="password">`. |
+| Used for name, username, city, etc. | Used for passwords, PINs, etc. |
+
+**Example:**
+
+- **Text Field:**
+  ```html
+  <input type="text" name="username">
+  ```
+
+- **Password Field:**
+  ```html
+  <input type="password" name="password">
+  ```
 
 ---
 
@@ -1986,21 +2019,217 @@ This revision sheet is organized question-by-question to help you rapidly revise
 ---
 
 ### Question 25: Evaluate the importance of the Form Object and its methods in web development, and justify the usefulness of a program that dynamically accesses form elements.
-- **Form Object**: Represents the `<form>` element in the DOM (`document.forms['formName']`).
-- **Methods**: `form.submit()` and `form.reset()`.
-- **Dynamic Access**: Reads inputs via `form.elements['fieldName'].value`.
-- **Justification**: Allows real-time client-side validation. Returning `false` from `onsubmit` blocks invalid submissions, saving server bandwidth and giving users instant feedback.
+- **Form Object**: Used to access and control an HTML form to read input, validate data, submit, and reset.
+- **Key Methods**: `submit()`, `reset()`, and `checkValidity()`.
+- **Dynamic Access**: Accessed via `form.elements["name"].value`.
+- **Why Dynamic Access is Useful**: Allows working with all form fields dynamically without writing separate code for every input, enabling instant client-side validation before sending data to the server.
 
 ---
 
 ### Question 26: Develop a feedback form using text area and select elements where users can enter comments and select their satisfaction level.
-- **Select Element**: `<select name="satisfaction">` with `<option>` choices (Excellent, Very Good, Satisfactory, Poor).
-- **Textarea Element**: `<textarea name="comments" rows="5" cols="40"></textarea>` for multi-line user feedback.
-- **Note**: `<textarea>` has a closing tag (`</textarea>`), unlike `<input>`.
+A feedback form is used to collect comments and opinions from users. The `<textarea>` is used for entering comments, and the `<select>` element is used to select the satisfaction level.
+
+#### Simple HTML Program:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Form</title>
+</head>
+<body>
+    <h2>Feedback Form</h2>
+
+    <form>
+        Comments:<br>
+        <textarea rows="5" cols="30"></textarea>
+        <br><br>
+
+        Satisfaction Level:
+        <select>
+            <option>Very Satisfied</option>
+            <option>Satisfied</option>
+            <option>Neutral</option>
+            <option>Dissatisfied</option>
+        </select>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+```
+
+**Output:**
+
+<div class="rendered-form-container">
+  <h3>Feedback Form</h3>
+  <form onsubmit="return false;">
+    Comments:<br>
+    <textarea rows="4" cols="26" placeholder="Enter comments here..."></textarea>
+    <br><br>
+    Satisfaction Level:
+    <select>
+      <option selected>Very Satisfied</option>
+      <option>Satisfied</option>
+      <option>Neutral</option>
+      <option>Dissatisfied</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+#### Explanation:
+- `<textarea>` → Used to enter multiple lines of comments.
+- `<select>` → Creates a dropdown list.
+- `<option>` → Provides different satisfaction levels.
+- `Submit` → Submits the feedback.
 
 ---
 
 ### Question 27: Determine the importance of the various form elements available in web pages and their role in effectively capturing and managing user input, with suitable examples.
-- **Element Toolkit**: Single-line text, Password (masked), Radio (single choice), Checkbox (multi-choice), Textarea (multi-line), Select dropdown, Submit, and Reset.
-- **Importance**: Constrains user input to valid choices, prevents data-entry mistakes, protects confidential credentials, and packages data into standardized `key=value` pairs for server-side processing.
+HTML forms are used to collect information from users and send that information to a server for processing. Different form elements are used depending on the type of data that needs to be collected.
+
+#### 1. Text Box
+A text box is used to accept single-line text from the user.  
+**Example:**
+```html
+<input type="text" name="username">
+```
+- **Use**: Used for entering names, addresses, usernames, etc.
+
+#### 2. Password Field
+A password field is used to enter confidential information. The entered characters are hidden or masked.  
+**Example:**
+```html
+<input type="password" name="password">
+```
+- **Use**: Used for passwords and other sensitive information.
+
+#### 3. Radio Button
+Radio buttons allow the user to select only one option from a group.  
+**Example:**
+```html
+<input type="radio" name="gender" value="male"> Male
+<input type="radio" name="gender" value="female"> Female
+```
+- **Use**: Useful when only one choice is allowed.
+
+#### 4. Checkbox
+Checkboxes allow the user to select one or more options.  
+**Example:**
+```html
+<input type="checkbox" name="skill" value="python"> Python
+<input type="checkbox" name="skill" value="java"> Java
+```
+- **Use**: Useful for selecting multiple skills, hobbies, interests, etc.
+
+#### 5. Textarea
+A textarea is used to enter multiple lines of text.  
+**Example:**
+```html
+<textarea name="address"></textarea>
+```
+- **Use**: Used for addresses, comments, feedback, messages, etc.
+
+#### 6. Select / Dropdown List
+A dropdown list allows the user to select an option from a predefined list.  
+**Example:**
+```html
+<select name="city">
+    <option>Chandigarh</option>
+    <option>Delhi</option>
+    <option>Mumbai</option>
+</select>
+```
+- **Use**: It reduces typing errors because the user selects from available choices.
+
+#### 7. Submit Button
+The submit button is used to send the form data to the server for processing.  
+**Example:**
+```html
+<input type="submit" value="Submit">
+```
+- **Use**: It completes the form submission process.
+
+#### 8. Reset Button
+The reset button is used to clear the entered data and restore the form to its initial state.  
+**Example:**
+```html
+<input type="reset" value="Reset">
+```
+- **Use**: Helpful when the user wants to start filling the form again.
+
+#### Simple HTML Form Example:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Form Example</title>
+</head>
+<body>
+    <h2>User Registration Form</h2>
+
+    <form>
+        <!-- Text Box -->
+        Name: <input type="text" name="username"><br><br>
+
+        <!-- Password Field -->
+        Password: <input type="password" name="password"><br><br>
+
+        <!-- Radio Buttons -->
+        Gender:
+        <input type="radio" name="gender" value="male"> Male
+        <input type="radio" name="gender" value="female"> Female<br><br>
+
+        <!-- Checkboxes -->
+        Skills:
+        <input type="checkbox" name="skill" value="html"> HTML
+        <input type="checkbox" name="skill" value="css"> CSS<br><br>
+
+        <!-- Select / Dropdown List -->
+        City:
+        <select name="city">
+            <option>Delhi</option>
+            <option>Mumbai</option>
+            <option>Chandigarh</option>
+        </select><br><br>
+
+        <!-- Textarea -->
+        Address:<br>
+        <textarea name="address" rows="3" cols="25"></textarea><br><br>
+
+        <!-- Submit and Reset Buttons -->
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+</body>
+</html>
+```
+
+**Output:**
+
+<div class="rendered-form-container">
+  <h3>User Registration Form</h3>
+  <form onsubmit="return false;">
+    Name: <input type="text" name="username" placeholder="Enter name"><br><br>
+    Password: <input type="password" name="password" value="••••••••"><br><br>
+    Gender:
+    <input type="radio" name="gender" value="male" id="g-male-qr" checked> <label for="g-male-qr">Male</label>
+    <input type="radio" name="gender" value="female" id="g-female-qr"> <label for="g-female-qr">Female</label><br><br>
+    Skills:
+    <input type="checkbox" name="skill" value="html" id="s-html-qr" checked> <label for="s-html-qr">HTML</label>
+    <input type="checkbox" name="skill" value="css" id="s-css-qr"> <label for="s-css-qr">CSS</label><br><br>
+    City:
+    <select name="city">
+      <option selected>Delhi</option>
+      <option>Mumbai</option>
+      <option>Chandigarh</option>
+    </select><br><br>
+    Address:<br>
+    <textarea name="address" rows="3" cols="24" placeholder="Enter address..."></textarea><br><br>
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+  </form>
+</div>
 

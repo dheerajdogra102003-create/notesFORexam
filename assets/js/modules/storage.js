@@ -16,15 +16,17 @@ const STORAGE_KEYS = {
 // --------------------------------------------------------------------------
 
 /**
- * Gets saved theme preference ('dark' or 'light'), defaulting to 'dark'
- * @returns {'dark'|'light'}
+ * Gets saved theme preference ('cream' or 'dark'), defaulting to 'cream'
+ * @returns {'cream'|'dark'}
  */
 export function getSavedTheme() {
   try {
-    return localStorage.getItem(STORAGE_KEYS.THEME) || 'dark';
+    const saved = localStorage.getItem(STORAGE_KEYS.THEME);
+    if (!saved || saved === 'dark' || saved === 'light') return 'cream';
+    return saved;
   } catch (e) {
     console.warn('Storage access warning:', e);
-    return 'dark';
+    return 'cream';
   }
 }
 

@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 3. Fetch Master Registry
   try {
-    const response = await fetch('data/subjects.json');
+    const response = await fetch(`data/subjects.json?_t=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) {
       throw new Error(`Failed to load subjects registry: ${response.status}`);
     }

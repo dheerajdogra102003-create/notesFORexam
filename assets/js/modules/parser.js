@@ -76,69 +76,151 @@ function enhanceCallouts(html) {
 }
 
 /**
- * Automatically pairs small script snippets with their immediate rendered output (lists/dl)
- * into a side-by-side layout, restricted strictly to snippet examples (like Q5 lists).
- * Prevents expanding to full-page scripts or places where not needed.
- * @param {string} html 
- * @returns {string}
+ * Automatically pairs code snippets with their immediate rendered output
+ * into an adjoining side-by-side layout (code on left, output on right).
+ * Operates directly on the rendered DOM tree for 100% reliability.
+ * @param {HTMLElement} container 
  */
-function enhanceCodePreviewGrid(html) {
-  // Pattern 1: Strict <p><strong>Output:</strong></p> followed immediately by <ol>, <ul>, <dl>, <table>, or link <p><a>
-  const blockRegex = /(<div class="code-wrapper">[\s\S]*?<\/div>)\s*<p>\s*(?:<strong>)?Output:?(?:<\/strong>)?\s*<\/p>\s*(<ol[\s\S]*?<\/ol>|<ul[\s\S]*?<\/ul>|<dl[\s\S]*?<\/dl>|<table[\s\S]*?<\/table>|<div class="table-wrapper">[\s\S]*?<\/div>|<p>\s*<a[\s\S]*?<\/a>\s*<\/p>)/gi;
+function enhanceCodePreviewGrid(container) {
+  if (!container) return;
 
-  html = html.replace(blockRegex, (match, codeBlock, outputBlock) => {
-    // Only apply if the code snippet is concise to avoid squishing large programs
-    if (codeBlock.length > 2500) {
-      return match;
-    }
-    const isCompact = /<p>\s*<a[\s\S]*?<\/a>\s*<\/p>/i.test(outputBlock) || outputBlock.length < 150;
-    const gridClass = isCompact ? 'code-preview-grid is-compact' : 'code-preview-grid';
+  const wrappers = Array.from(container.querySelectorAll('.code-wrapper'));
+  wrappers.forEach(wrapper => {
+    // Skip if already nested in a split grid
+    if (wrapper.closest('.code-preview-grid')) return;
 
-    return `
-      <div class="${gridClass}">
-        <div class="code-pane">${codeBlock}</div>
-        <div class="preview-pane">
+    let next = wrapper.nextElementSibling;
+    // Check if next is an "Output:" label (<p><strong>Output:</strong></p> or <h3>Rendered Output</h3>)
+    if (next && (/^(P|H[2-6])$/i.test(next.tagName)) && /^\s*(?:rendered\s+)?output:?\s*$/i.test(next.textContent.trim())) {
+      const outputEl = next.nextElementSibling;
+      if (!outputEl) return;
+
+      const isOutputTarget = (
+        outputEl.tagName === 'OL' ||
+        outputEl.tagName === 'UL' ||
+        outputEl.tagName === 'DL' ||
+        outputEl.tagName === 'TABLE' ||
+        outputEl.tagName === 'FORM' ||
+        outputEl.classList.contains('table-wrapper') ||
+        outputEl.classList.contains('rendered-form-container') ||
+        outputEl.classList.contains('rendered-page-preview') ||
+        outputEl.classList.contains('preview-output') ||
+        outputEl.querySelector('form, table, ul, ol, dl, input, textarea, select, button, h1, h2, h3, p') !== null ||
+        (outputEl.tagName === 'P' && outputEl.querySelector('a, input, textarea, select, button') !== null)
+      );
+
+      if (isOutputTarget) {
+        // Construct side-by-side grid
+        const grid = document.createElement('div');
+        grid.className = 'code-preview-grid';
+
+        const codePane = document.createElement('div');
+        codePane.className = 'code-pane';
+
+        const previewPane = document.createElement('div');
+        previewPane.className = 'preview-pane';
+        previewPane.innerHTML = `
           <div class="preview-header">
             <span class="preview-header-dot"></span>
             <span>Rendered Output</span>
           </div>
-          <div class="preview-body">${outputBlock}</div>
-        </div>
-      </div>
-    `;
-  });
+          <div class="preview-body"></div>
+        `;
 
-  // Pattern 2: Strict <p><strong>Output:</strong><br>- HTML...</p> (inline bullets in same paragraph)
-  const inlineListRegex = /(<div class="code-wrapper">[\s\S]*?<\/div>)\s*<p>\s*(?:<strong>)?Output:?(?:<\/strong>)?\s*(?:<br\s*\/?>|\n)([\s\S]*?)<\/p>/gi;
+        // Insert grid in place of wrapper
+        wrapper.parentNode.insertBefore(grid, wrapper);
 
-  html = html.replace(inlineListRegex, (match, codeBlock, content) => {
-    if (codeBlock.length > 2500) {
-      return match;
+        // Move wrapper into codePane
+        codePane.appendChild(wrapper);
+
+        // Move output element into preview-body
+        previewPane.querySelector('.preview-body').appendChild(outputEl);
+
+        // Remove the redundant "Output:" label
+        next.remove();
+
+        // Assemble the side-by-side grid
+        grid.appendChild(codePane);
+        grid.appendChild(previewPane);
+      }
     }
-    const rawLines = content.split(/<br\s*\/?>|\n/).map(l => l.replace(/^(?:<br\s*\/?>|\s)+/, '').trim()).filter(Boolean);
-    const isOrdered = rawLines.some(l => /^\d+[\.\)]/.test(l));
-    const tag = isOrdered ? 'ol' : 'ul';
-    const itemsHtml = rawLines.map(l => {
-      const clean = l.replace(/^(?:[-*•]|\d+[\.\)])\s*/, '');
-      return `<li>${clean}</li>`;
-    }).join('\n');
-    const outputBlock = `<${tag}>\n${itemsHtml}\n</${tag}>`;
-
-    return `
-      <div class="code-preview-grid">
-        <div class="code-pane">${codeBlock}</div>
-        <div class="preview-pane">
-          <div class="preview-header">
-            <span class="preview-header-dot"></span>
-            <span>Rendered Output</span>
-          </div>
-          <div class="preview-body">${outputBlock}</div>
-        </div>
-      </div>
-    `;
   });
+}
 
-  return html;
+/**
+ * Wraps each question and its solution inside a self-contained card container (.question-exam-card).
+ * This cleanly encapsulates the question header, answer, points, and side-by-side preview grid.
+ * @param {HTMLElement} container 
+ */
+function wrapQuestionsInCards(container) {
+  if (!container) return;
+
+  const headers = Array.from(container.querySelectorAll('.question-header-ribbon, h2[id^="question"]'));
+  if (headers.length === 0) return;
+
+  headers.forEach(header => {
+    // If already inside an exam card, skip
+    if (header.closest('.question-exam-card')) return;
+
+    // If there is an immediate preceding HR, remove it to keep layout clean
+    if (header.previousElementSibling && header.previousElementSibling.tagName === 'HR') {
+      header.previousElementSibling.remove();
+    }
+
+    const card = document.createElement('div');
+    card.className = 'question-exam-card';
+    if (header.id) {
+      card.id = header.id;
+    }
+
+    const cardHeader = document.createElement('div');
+    cardHeader.className = 'question-card-header';
+
+    const cardBody = document.createElement('div');
+    cardBody.className = 'question-card-body';
+
+    // Insert card before header
+    header.parentNode.insertBefore(card, header);
+
+    // Place header inside cardHeader
+    cardHeader.appendChild(header);
+    card.appendChild(cardHeader);
+    card.appendChild(cardBody);
+
+    // Move all sibling nodes up until the next question or major section
+    let nextEl = card.nextElementSibling;
+    while (nextEl) {
+      const isNextQuestion = nextEl.classList.contains('question-header-ribbon') || 
+                             (nextEl.tagName === 'H2' && /^question/i.test(nextEl.id || '')) ||
+                             (nextEl.classList && nextEl.classList.contains('question-exam-card'));
+      const isNextSection = (nextEl.tagName === 'H1');
+      const isDivider = (nextEl.tagName === 'HR');
+
+      if (isNextQuestion || isNextSection) {
+        break;
+      }
+
+      if (isDivider) {
+        // Look ahead to check if this divider precedes the next question or major section
+        const subsequent = nextEl.nextElementSibling;
+        const isFollowedByQuestionOrSection = subsequent && (
+          subsequent.classList.contains('question-header-ribbon') ||
+          (subsequent.tagName === 'H2' && /^question/i.test(subsequent.id || '')) ||
+          (subsequent.classList && subsequent.classList.contains('question-exam-card')) ||
+          subsequent.tagName === 'H1'
+        );
+
+        if (isFollowedByQuestionOrSection) {
+          nextEl.remove();
+          break; // This divider separates consecutive questions, so complete this card
+        }
+      }
+
+      const current = nextEl;
+      nextEl = nextEl.nextElementSibling;
+      cardBody.appendChild(current);
+    }
+  });
 }
 
 /**
@@ -149,7 +231,7 @@ function configureMarked() {
 
   const renderer = new window.marked.Renderer();
 
-  // Headings with IDs for TOC (supports both Marked v4-v11 and v12+)
+  // Headings with IDs for TOC and Question Ribbon Badges
   renderer.heading = function (arg1, arg2, arg3) {
     let text = '', level = 2, raw = '';
     if (typeof arg1 === 'object' && arg1 !== null) {
@@ -163,6 +245,20 @@ function configureMarked() {
       raw = arg3 || text;
     }
     const id = slugify(raw || text);
+
+    // If it's a Question heading (e.g. "Question 1: What is an IP address?")
+    const qMatch = text.match(/^Question\s+(\d+)[:\s]*(.*)/i);
+    if ((level === 2 || level === 3) && qMatch) {
+      const qNum = qMatch[1];
+      const qTitle = qMatch[2].trim();
+      return `
+        <h2 id="${id}" class="question-header-ribbon">
+          <span class="question-badge-pill">Q ${qNum}</span>
+          <span class="question-title-text">${qTitle}</span>
+        </h2>\n
+      `;
+    }
+
     return `<h${level} id="${id}">${text}</h${level}>\n`;
   };
 
@@ -202,21 +298,24 @@ function configureMarked() {
     const langMatch = (infostring || 'text').match(/\S*/);
     const lang = langMatch ? langMatch[0] : 'text';
     const displayLang = lang ? lang.toUpperCase() : 'CODE';
-    const safeCode = escapeCode(code);
+    
+    // Trim leading/trailing blank lines and collapse redundant blank lines to conserve vertical space
+    const cleanedCode = code.replace(/^\s*\n+|\n+\s*$/g, '').replace(/(\r?\n\s*){2,}\r?\n/g, '\n\n');
+    const safeCode = escapeCode(cleanedCode);
 
     return `
       <div class="code-wrapper">
         <div class="code-header">
           <span class="code-lang">${displayLang}</span>
           <button class="code-copy-button" data-action="copy-code" title="Copy code snippet">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
             <span>Copy</span>
           </button>
         </div>
-        <pre><code class="language-${lang}">${safeCode}</code></pre>
+        <pre class="language-${lang}"><code class="language-${lang}">${safeCode}</code></pre>
       </div>
     `;
   };
@@ -321,11 +420,14 @@ export function parseAndRender(rawContent, targetElement) {
   // Apply callout transformations
   html = enhanceCallouts(html);
 
-  // Apply side-by-side code & output transformation
-  html = enhanceCodePreviewGrid(html);
-
   // Set innerHTML
   targetElement.innerHTML = html;
+
+  // Apply side-by-side code & output transformation directly in DOM
+  enhanceCodePreviewGrid(targetElement);
+
+  // Wrap each question and its solution inside an enclosed exam card
+  wrapQuestionsInCards(targetElement);
 
   // Initialize interactive copy buttons
   attachCodeCopyListeners(targetElement);
@@ -393,6 +495,7 @@ function renderStructuredContent(data, targetElement) {
   }
 
   targetElement.innerHTML = html;
+  enhanceCodePreviewGrid(targetElement);
   attachCodeCopyListeners(targetElement);
 
   if (window.Prism) {
