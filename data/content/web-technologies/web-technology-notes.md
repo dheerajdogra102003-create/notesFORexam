@@ -489,9 +489,15 @@ In HTML, hyperlinks are created using the **Anchor tag**: `<a>`. The destination
 ```
 
 ### Example
+
 ```html
-<a href="https://www.example.com">Visit Examination Portal</a>
+<a href="https://www.example.com" target="_blank">Visit Examination Portal</a>
 ```
+
+**Output:**
+
+<p><a href="https://www.example.com" target="_blank">Visit Examination Portal</a></p>
+
 When a user clicks the words **"Visit Examination Portal"**, the browser navigates to `https://www.example.com`.
 
 ### How It Works
