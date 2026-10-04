@@ -431,34 +431,11 @@ Tables are useful for displaying:
 
 ### Visualizing Cellpadding vs Cellspacing
 
-```text
-       ┌────────── cellspacing ──────────┐
-       ▼                                 ▼
-┌──────────────┐                  ┌──────────────┐
-│  ┌────────┐  │                  │  ┌────────┐  │
-│  │CONTENT │  │ ◄──cellpadding──►│  │CONTENT │  │
-│  └────────┘  │                  │  └────────┘  │
-│     Cell 1   │                  │     Cell 2   │
-└──────────────┘                  └──────────────┘
-```
+![HTML Table Cellpadding vs Cellspacing](assets/images/diagrams/table_cellpadding_cellspacing.jpg)
 
 ### Visualizing `colspan` and `rowspan`
 
-```text
-               COLSPAN = 2 (Horizontal Merge)
-┌────────────────────────────────────────────────────────┐
-│        Subject Marks (Spans Column 1 and Column 2)     │
-├────────────────────────────┬───────────────────────────┤
-│         Subject A          │         Subject B         │
-└────────────────────────────┴───────────────────────────┘
-
-               ROWSPAN = 2 (Vertical Merge)
-┌────────────────────────────┬───────────────────────────┐
-│                            │ Semester 1 Marks: 85%     │
-│       MCA Department       ├───────────────────────────┤
-│       (Spans 2 Rows)       │ Semester 2 Marks: 88%     │
-└────────────────────────────┴───────────────────────────┘
-```
+![HTML Table Colspan and Rowspan](assets/images/diagrams/table_colspan_rowspan.jpg)
 
 ### Complete Code Example (Demonstrating All Attributes)
 
