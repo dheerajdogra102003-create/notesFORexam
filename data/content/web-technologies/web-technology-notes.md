@@ -753,11 +753,14 @@ Cascading Style Sheets (CSS) is used to style and format HTML elements. Embedded
 </div>
 
 ### Code Explanation
-- **`h1 { color: blue; text-align: center; }`**: The main heading text turns **blue** and aligns in the **center** of the screen.
-- **`p { color: green; font-size: 18px; }`**: The paragraph text turns **green** with a larger **18px** font size.
-- **`ul { color: red; }`**: The bulleted list and its list items (`<li>`) turn **red**.
-- **`<h2>`**: Renders with the browser's default heading style because no custom CSS was targeted at `h2`.
-- **`<style>` Tag**: Embedded directly inside the `<head>` section, demonstrating internal stylesheet usage.
+
+| Element / Selector | CSS Rule / Attribute | Applied Effect / Purpose |
+| :--- | :--- | :--- |
+| **`h1`** | `color: blue; text-align: center;` | The main heading text turns **blue** and aligns in the **center** of the screen. |
+| **`p`** | `color: green; font-size: 18px;` | The paragraph text turns **green** with a larger **18px** font size. |
+| **`ul`** | `color: red;` | The bulleted list and all its list items (`<li>`) turn **red**. |
+| **`<h2>`** | *(Default browser styling)* | Renders with the browser's default heading style because no custom CSS was targeted at `h2`. |
+| **`<style>` Tag** | Embedded inside `<head>` | Declares an **Internal (Embedded) Style Sheet** used specifically within this webpage. |
 
 ---
 
