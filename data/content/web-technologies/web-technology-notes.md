@@ -431,11 +431,11 @@ Tables are useful for displaying:
 
 ### Visualizing Cellpadding vs Cellspacing
 
-![HTML Table Cellpadding vs Cellspacing](assets/images/diagrams/table_cellpadding_cellspacing.jpg)
+![HTML Table Cellpadding vs Cellspacing](assets/images/diagrams/table_cellpadding_cellspacing.svg)
 
 ### Visualizing `colspan` and `rowspan`
 
-![HTML Table Colspan and Rowspan](assets/images/diagrams/table_colspan_rowspan.jpg)
+![HTML Table Colspan and Rowspan](assets/images/diagrams/table_colspan_rowspan.svg)
 
 ### Complete Code Example (Demonstrating All Attributes)
 
@@ -443,51 +443,36 @@ Tables are useful for displaying:
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Student Semester Examination Report</title>
+  <title>HTML Table Attributes Demo</title>
 </head>
 <body>
 
-  <!-- Table with Border, Width, Cellpadding, Cellspacing, and Background Color -->
-  <table border="2" width="80%" cellpadding="10" cellspacing="5" bgcolor="#f8fafc" align="center">
-    
-    <!-- Table Caption -->
-    <caption><strong>Master of Computer Applications - Semester Results</strong></caption>
-    
-    <!-- Header Row -->
-    <tr bgcolor="#6366f1">
-      <th style="color: white;">Roll No</th>
-      <th style="color: white;">Student Name</th>
-      <!-- COLSPAN: Merges 2 columns horizontally -->
-      <th colspan="2" style="color: white;">Subject Scores</th>
+  <!-- Table demonstrating core attributes: border, width, cellpadding, cellspacing, bgcolor, align -->
+  <table border="1" width="70%" cellpadding="8" cellspacing="4" align="center" bgcolor="#f9f9f9">
+    <caption><strong>Student Details</strong></caption>
+
+    <!-- COLSPAN: Merges 3 columns horizontally -->
+    <tr bgcolor="#dbeafe">
+      <th colspan="3">MCA Student List</th>
     </tr>
 
-    <!-- Sub-Header Row -->
-    <tr bgcolor="#e0e7ff">
-      <th></th>
-      <th></th>
-      <th>Web Technology</th>
-      <th>Algorithms</th>
-    </tr>
-
-    <!-- Data Row 1 -->
+    <!-- Column Headers -->
     <tr>
-      <!-- ROWSPAN: Merges 2 rows vertically -->
-      <td rowspan="2" align="center">MCA-2026-01</td>
-      <td rowspan="2">Rahul Sharma</td>
-      <td align="center">88</td>
-      <td align="center">92</td>
+      <th>Course</th>
+      <th>Roll No</th>
+      <th>Name</th>
     </tr>
 
-    <!-- Data Row 2 (Practical assessment row) -->
-    <tr bgcolor="#f1f5f9">
-      <td align="center">Grade: A+</td>
-      <td align="center">Grade: O</td>
+    <!-- ROWSPAN: Merges 2 rows vertically -->
+    <tr align="center">
+      <td rowspan="2">MCA</td>
+      <td>101</td>
+      <td>Rahul</td>
     </tr>
 
-    <!-- Summary Row with COLSPAN -->
-    <tr bgcolor="#fed7aa">
-      <td colspan="2" align="center"><strong>Status</strong></td>
-      <td colspan="2" align="center"><strong>Promoted to Next Semester</strong></td>
+    <tr align="center">
+      <td>102</td>
+      <td>Aman</td>
     </tr>
 
   </table>
@@ -495,37 +480,6 @@ Tables are useful for displaying:
 </body>
 </html>
 ```
-
-### Line-by-Line Code Explanation
-1. `<table border="2" width="80%" cellpadding="10" cellspacing="5" bgcolor="#f8fafc" align="center">`:
-   - Sets a 2px visible border.
-   - Sizes the table to occupy 80% of screen width.
-   - Sets 10px internal breathing room (`cellpadding`) and 5px gap between cell walls (`cellspacing`).
-   - Centers the table on the web page.
-2. `<caption>...</caption>`: Creates a centered title attached directly to the top of the table.
-3. `<th colspan="2">Subject Scores</th>`: Merges across two column headers ("Web Technology" and "Algorithms").
-4. `<td rowspan="2">MCA-2026-01</td>`: Merges across two rows vertically so the student's identity is not repeated.
-5. `<td colspan="2">`: Merges the bottom cells into a single summary block.
-
-### Exam-Ready Answer
-> An HTML table is defined using `<table>`, containing rows `<tr>`, header cells `<th>`, and data cells `<td>`.
->
-> **Core Table Attributes**:
-> 1. **`border`**: Specifies outline line thickness in pixels (e.g., `border="1"`).
-> 2. **`width`**: Defines horizontal table width in pixels or percentage (`width="80%"`).
-> 3. **`cellpadding`**: Internal cushion space between cell border and content text.
-> 4. **`cellspacing`**: External gap separating adjacent cell borders.
-> 5. **`bgcolor`**: Background color applied to the table, row, or cell.
-> 6. **`colspan="N"`**: Spans a cell horizontally across $N$ columns.
-> 7. **`rowspan="N"`**: Spans a cell vertically across $N$ rows.
-> 8. **`align`**: Positions the table horizontally (`left`, `center`, `right`).
-
-### Quick Revision
-> **REMEMBER:**
-> • `cellpadding` = space INSIDE the cell; `cellspacing` = space BETWEEN cells.
-> • `colspan` merges columns horizontally; `rowspan` merges rows vertically.
-> • `<th>` creates centered, bold header cells; `<td>` creates normal data cells.
-
 
 ---
 
