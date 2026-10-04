@@ -656,79 +656,35 @@ Here, clicking the **college logo** opens `home.html`.
 ## Question 11: Evaluate the effectiveness of frames in webpage design. Justify whether frames should be used in modern web development with proper reasoning.
 
 ### Simple Explanation
-Think of a picture frame with three separate glass panes. 
-In the 1990s, HTML allowed web designers to divide one browser window into multiple independent sub-windows called **Frames** (e.g., top frame for a banner, left frame for a menu, right frame for content). Clicking a link in the menu reloaded only the right frame.
+Frames were used in older HTML to divide a webpage into different sections. For example, one section could contain a menu and another section could display the content.
 
-While this saved bandwidth in dial-up Internet days, it created massive problems: users could not bookmark specific pages, the browser's "Back" button broke, mobile phones couldn't display them, and search engines like Google got confused. Therefore, **frames are completely obsolete and forbidden in modern web development**.
-
-### Answer
-
-#### 1. How Frames Were Built (`<frameset>` and `<frame>`)
-In classic HTML 4.01, a frameset document had **no `<body>` tag**. The `<body>` was replaced by a `<frameset>` tag:
-
+### Example
 ```html
-<!-- Classic HTML 4.01 Frameset -->
-<frameset cols="25%, 75%">
-  <frame src="menu.html" name="menu_frame">
-  <frame src="content.html" name="main_frame">
-  <noframes>
-    <body>Your browser does not support frames.</body>
-  </noframes>
+<frameset cols="25%,75%">
+    <frame src="menu.html">
+    <frame src="content.html">
 </frameset>
 ```
-Links in `menu.html` targeted the right frame using `target="main_frame"`.
 
-#### 2. Evaluation: Advantages vs Severe Disadvantages
+### Visual Layout
 
-| Historical Advantages (1990s) | Severe Technical Disadvantages |
-| :--- | :--- |
-| Saved dial-up bandwidth by reloading only the content panel. | **Broken Bookmarking**: The address bar never updated, so students could not bookmark or share a specific article. |
-| Kept navigation menu visible at all times. | **Broken Back Button**: Pressing "Back" frequently broke navigation loops. |
-| Reused header and menu files. | **SEO Disaster**: Search engines indexed orphan sub-pages with missing headers/menus. |
-| Worked on old, fixed desktop monitors. | **Unusable on Mobile Devices**: Cannot adapt to responsive phone or tablet screens. |
+![Frameset Layout](assets/images/diagrams/frameset_layout.svg)
 
-#### 3. Justification: Should Frames Be Used in Modern Web Development?
-**Verdict: NO, frames must NEVER be used in modern web development.**
+### Advantages of Frames
+- Navigation menu could remain visible.
+- Only one section needed to reload.
+- Useful for older websites with simple layouts.
 
-- **Deprecated in HTML5**: The W3C completely removed `<frameset>` and `<frame>` from the HTML5 standard. Modern browsers consider them obsolete.
-- **Modern Replacements**:
-  - Page layout is handled cleanly using **CSS Grid** and **CSS Flexbox**.
-  - Persistent menus are created using CSS `position: sticky;` or `position: fixed;`.
-  - Secure sandboxed third-party embedding (like YouTube or Google Maps) is achieved using the standardized **`<iframe>` (Inline Frame)** tag.
+### Disadvantages of Frames
+- Difficult to bookmark individual pages.
+- Can cause problems with the Back button.
+- Not suitable for mobile and responsive design.
+- Creates navigation and SEO problems.
 
-### Diagram
+### Should Frames Be Used Today?
+**No.** Frames should not be used in modern web development because they are obsolete and not suitable for responsive websites.
 
-```text
-┌────────────────────────────────────────────────────────┐
-│                   FRAMESET LAYOUT                      │
-│                                                        │
-│  ┌───────────────────────┬──────────────────────────┐  │
-│  │ Left Frame: menu.html │ Right Frame: main.html   │  │
-│  │ (cols="25%, *")       │ name="main_frame"        │  │
-│  │                       │                          │  │
-│  │ Link: target="main"   │ Content reloads here!    │  │
-│  └───────────────────────┴──────────────────────────┘  │
-└────────────────────────────────────────────────────────┘
-```
-
-### Exam-Ready Answer
-> #### 1. Effectiveness and Working of Frames
-> HTML frames (`<frameset>` and `<frame>`) divided a single browser window into multiple independent HTML panels. A `<frameset>` replaced the `<body>` tag, using `rows` and `cols` attributes to partition screen space. A menu frame could load new content into a named target frame without refreshing the entire browser window.
->
-> #### 2. Justification Against Using Frames in Modern Web Development
-> **Frames should NOT be used in modern web development for the following reasons**:
-> 1. **HTML5 Deprecation**: `<frameset>` and `<frame>` have been formally deprecated and removed from HTML5 standards.
-> 2. **Broken Bookmarking & URLs**: The browser address bar remains fixed on the parent frameset URL, preventing users from bookmarking or sharing specific pages.
-> 3. **Search Engine Optimization (SEO) Failure**: Web crawlers index sub-frame documents independently, causing visitors to land on broken pages lacking menus or branding.
-> 4. **Mobile Incompatibility**: Rigid row/column framesets cannot adapt to modern responsive mobile and tablet viewports.
-> 5. **Modern Alternatives**: Responsive layouts are achieved using **CSS Grid** and **Flexbox**, sticky headers with `position: sticky`, and isolated embeds with **`<iframe>`**.
-
-### Quick Revision
-> **REMEMBER:**
-> • Frames (`<frameset>`, `<frame>`) divided the screen into separate HTML documents.
-> • They are deprecated and obsolete in HTML5.
-> • They failed due to broken bookmarking, broken Back buttons, SEO problems, and poor mobile support.
-> • Modern websites use CSS Flexbox/Grid and `<iframe>`.
+Modern websites use **CSS, Flexbox, and Grid** for page layouts. The **`<iframe>`** tag is different and is still used when embedding content such as videos or maps.
 
 ---
 
