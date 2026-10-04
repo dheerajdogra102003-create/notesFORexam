@@ -515,14 +515,8 @@ When a user clicks the words **"Visit YouTube"**, the browser navigates to `http
 ## Question 8: Compare internal linking and external linking techniques in terms of usability, performance, and user experience with example.
 
 ### Simple Explanation
-- **Internal Linking**: Links that move you around inside the **same page** or between pages of the **same website** (like clicking "Go to Chapter 3" on a long page).
-- **External Linking**: Links that take you away to a **completely different website** (like a link on your college website pointing to Wikipedia).
-
-### Answer
-
-#### Conceptual Differences:
-- **Internal links** use relative URLs (e.g., `href="contact.html"`) or fragment identifiers (e.g., `href="#summary"`). They keep the visitor inside your website.
-- **External links** use absolute URLs (e.g., `href="https://www.w3.org"`). They direct visitors to external third-party servers.
+- **Internal Linking**: A link that takes the user to another page or section within the same website.
+- **External Linking**: A link that takes the user to a different website/domain.
 
 #### Comparison Table (Usability, Performance, User Experience):
 
