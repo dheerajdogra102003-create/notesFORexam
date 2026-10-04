@@ -437,48 +437,23 @@ Tables are useful for displaying:
 
 ![HTML Table Colspan and Rowspan](assets/images/diagrams/table_colspan_rowspan.svg)
 
-### Complete Code Example (Demonstrating All Attributes)
+### Example
 
 ```html
-<!DOCTYPE html>
-<html>
-<head>
-  <title>HTML Table Attributes Demo</title>
-</head>
-<body>
-
-  <!-- Table demonstrating core attributes: border, width, cellpadding, cellspacing, bgcolor, align -->
-  <table border="1" width="70%" cellpadding="8" cellspacing="4" align="center" bgcolor="#f9f9f9">
-    <caption><strong>Student Details</strong></caption>
-
-    <!-- COLSPAN: Merges 3 columns horizontally -->
-    <tr bgcolor="#dbeafe">
-      <th colspan="3">MCA Student List</th>
-    </tr>
-
-    <!-- Column Headers -->
-    <tr>
-      <th>Course</th>
-      <th>Roll No</th>
-      <th>Name</th>
-    </tr>
-
-    <!-- ROWSPAN: Merges 2 rows vertically -->
-    <tr align="center">
-      <td rowspan="2">MCA</td>
-      <td>101</td>
-      <td>Rahul</td>
-    </tr>
-
-    <tr align="center">
-      <td>102</td>
-      <td>Aman</td>
-    </tr>
-
-  </table>
-
-</body>
-</html>
+<table border="1" width="60%" cellpadding="10" cellspacing="5" align="center" bgcolor="lightblue">
+  <tr>
+    <!-- colspan merges 2 columns horizontally -->
+    <th colspan="2">Student Info</th>
+  </tr>
+  <tr>
+    <!-- rowspan merges 2 rows vertically -->
+    <td rowspan="2">MCA</td>
+    <td>Rahul</td>
+  </tr>
+  <tr>
+    <td>Aman</td>
+  </tr>
+</table>
 ```
 
 ---
