@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="100%" height="100%">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2563eb" />
+    </marker>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect x="0" y="0" width="600" height="220" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" />
+
+  <!-- Step 1: User Action -->
+  <g transform="translate(200, 20)">
+    <rect x="0" y="0" width="200" height="34" rx="17" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5" />
+    <text x="100" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#1e40af" text-anchor="middle">
+      👆 User Clicks Image
+    </text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <line x1="300" y1="54" x2="300" y2="82" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow)" />
+
+  <!-- Step 2: The Clickable Image Inside Anchor -->
+  <g transform="translate(170, 84)">
+    <rect x="0" y="0" width="260" height="56" rx="8" fill="#ffffff" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4 3" />
+    <text x="130" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0f172a" text-anchor="middle">
+      🖼️ College Logo &lt;img&gt;
+    </text>
+    <text x="130" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">
+      Nested inside &lt;a href="home.html"&gt;
+    </text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <line x1="300" y1="140" x2="300" y2="168" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow)" />
+
+  <!-- Step 3: Destination Page Opens -->
+  <g transform="translate(190, 170)">
+    <rect x="0" y="0" width="220" height="36" rx="8" fill="#dcfce7" stroke="#86efac" stroke-width="1.5" />
+    <text x="110" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#15803d" text-anchor="middle">
+      🌐 Browser Opens home.html
+    </text>
+  </g>
+</svg>

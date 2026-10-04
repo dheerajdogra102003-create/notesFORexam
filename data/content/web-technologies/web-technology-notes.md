@@ -611,35 +611,45 @@ Internal linking uses the standard **Anchor tag (`<a>`)**, where the **`href`** 
 
 ---
 
-## Question 10: Describe the use of Images As Hyperlinks in HTML.
+## Question 10: Describe the use of Images as Hyperlinks in HTML.
 
-### Simple Explanation
-Think of your favorite shopping website or YouTube. When you want to return to the home page, you don't search for the word "Home"; you simply click on the **company logo** at the top left. Clicking that picture takes you home! That is an **Image as a Hyperlink**.
+An **image can be used as a hyperlink** in HTML. When the user clicks the image, it takes them to another webpage, file, or location.
 
-### Answer
-In HTML, any image can be transformed into a clickable hyperlink by **nesting the `<img>` tag inside the anchor `<a>` tag**.
-
-When the user clicks anywhere on the image, the browser reads the surrounding anchor's `href` attribute and navigates to the destination.
+The **`<a>` (anchor) tag** is used to create the hyperlink, and the **`<img>` tag** is placed inside it.
 
 ### Syntax
+
 ```html
-<a href="destination_url">
-  <img src="image_file.png" alt="Description" border="0">
+<a href="destination.html">
+    <img src="image.jpg" alt="Image">
 </a>
 ```
 
 ### Example
+
 ```html
-<!-- Clicking the college logo navigates to the home page -->
-<a href="index.html" title="Return to Homepage">
-  <img src="college-logo.png" alt="University Logo" width="150" height="50" border="0">
+<a href="home.html">
+    <img src="logo.jpg" alt="College Logo" width="150">
 </a>
 ```
 
-### Practical Uses in Website Development
-1. **Logo Navigation**: Clicking the top-left logo returns to the website home page.
-2. **E-Commerce Product Thumbnails**: Clicking a photo of a laptop opens its full specification page.
-3. **Buttons & Social Media Icons**: Clicking a graphic icon (like Facebook, GitHub, or a Download button) navigates to that external profile or triggers a download.
+Here, clicking the **college logo** opens `home.html`.
+
+### Uses
+
+- **Website logo** → Opens the home page.
+- **Product image** → Opens product details.
+- **Image/icon** → Opens another webpage or resource.
+
+### Diagram
+
+![Image as Hyperlink Flow](assets/images/diagrams/image_as_hyperlink.svg)
+
+### 🧠 Remember
+
+- **`<a>` = Link 🔗**  
+- **`<img>` = Image 🖼️**  
+- **`<a>` + `<img>` = Image Hyperlink**
 
 ---
 
