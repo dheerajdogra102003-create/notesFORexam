@@ -489,12 +489,6 @@ Tables are useful for displaying:
 
 ## Question 7: Define a hyperlink in HTML with syntax.
 
-### Simple Explanation
-When you are reading a website and click on a blue, underlined piece of text that takes you to another page, you just clicked a **Hyperlink**.
-
-A hyperlink is the digital bridge that connects web pages together. Without hyperlinks, you would have to manually type long website addresses into the browser for every single page you want to see.
-
-### Answer
 A **Hyperlink** is an HTML element that links to another document, another location within the same document, an image, or a downloadable file.
 
 In HTML, hyperlinks are created using the **Anchor tag**: `<a>`. The destination address is provided through the **`href` (Hypertext Reference)** attribute.
