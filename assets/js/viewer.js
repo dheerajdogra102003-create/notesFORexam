@@ -222,22 +222,49 @@ async function loadContent(item, updateHistory = true) {
   try {
     let rawContent = item.body || item.content || null;
 
-    // If item points to a file, fetch it
-    if (item.file) {
-      const response = await fetch(item.file);
-      if (!response.ok) {
-        throw new Error(`Failed to load content file (${response.status})`);
-      }
-      const contentType = response.headers.get('content-type') || '';
-      if (contentType.includes('json') || item.file.endsWith('.json')) {
-        rawContent = await response.json();
-      } else {
-        rawContent = await response.text();
+    // If item points to a file, fetch it (strip any hash fragment for fetch)
+    const cleanFilePath = item.file ? item.file.split('#')[0] : null;
+    const targetHash = item.file && item.file.includes('#') ? item.file.split('#')[1] : (item.hash || null);
+
+    if (cleanFilePath) {
+      try {
+        const response = await fetch(cleanFilePath);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status} (${response.statusText || 'Not Found'})`);
+        }
+        const contentType = response.headers.get('content-type') || '';
+        if (contentType.includes('json') || cleanFilePath.endsWith('.json')) {
+          rawContent = await response.json();
+        } else {
+          rawContent = await response.text();
+        }
+      } catch (fetchErr) {
+        console.error('Fetch error:', fetchErr);
+        contentEl.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">⚠️</div>
+            <h2 class="empty-state-title">Content Not Found</h2>
+            <p class="empty-state-desc">The content file at <code>${escapeHtml(item.file || '')}</code> could not be loaded (${escapeHtml(fetchErr.message)}).</p>
+          </div>
+        `;
+        return;
       }
     }
 
     // Render content via parser
-    parseAndRender(rawContent, contentEl);
+    try {
+      parseAndRender(rawContent, contentEl);
+    } catch (parseErr) {
+      console.error('Render error:', parseErr);
+      contentEl.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-icon">⚠️</div>
+          <h2 class="empty-state-title">Display Error</h2>
+          <p class="empty-state-desc">Error rendering document: ${escapeHtml(parseErr.message)}</p>
+        </div>
+      `;
+      return;
+    }
 
     // Trigger high-level staggered cascade entrance animation
     contentEl.classList.remove('animating');
@@ -245,21 +272,38 @@ async function loadContent(item, updateHistory = true) {
     contentEl.classList.add('animating');
 
     // Build Table of Contents
-    if (tocContainer) {
-      buildTableOfContents(contentEl, tocContainer);
+    try {
+      if (tocContainer) {
+        buildTableOfContents(contentEl, tocContainer);
+      }
+    } catch (tocErr) {
+      console.warn('TOC build warning:', tocErr);
     }
 
     // Update UI Chrome (Breadcrumbs, Meta Header, Pagination, Bookmark state)
-    updateBreadcrumbs(breadcrumbsEl, currentSubject, item);
-    updateMetaHeader(metaHeaderEl, currentSubject, item);
-    updatePagination(paginationEl);
+    try {
+      updateBreadcrumbs(breadcrumbsEl, currentSubject, item);
+      updateMetaHeader(metaHeaderEl, currentSubject, item);
+      updatePagination(paginationEl);
+    } catch (uiErr) {
+      console.warn('UI Chrome update warning:', uiErr);
+    }
 
-    // Restore saved scroll position if available
-    const savedPos = getReadingPosition(item.id || item.file);
-    if (savedPos !== null && savedPos > 50) {
-      window.scrollTo({ top: savedPos, behavior: 'smooth' });
+    // Restore saved scroll position or jump to target question hash
+    if (targetHash) {
+      setTimeout(() => {
+        const targetEl = document.getElementById(targetHash);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 150);
     } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const savedPos = getReadingPosition(item.id || item.file);
+      if (savedPos !== null && savedPos > 50) {
+        window.scrollTo({ top: savedPos, behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
 
     // Save scroll position on leave/scroll
@@ -271,14 +315,7 @@ async function loadContent(item, updateHistory = true) {
     document.title = `${item.title || 'Notes'} | ${currentSubject ? currentSubject.title : 'Exam Portal'}`;
 
   } catch (error) {
-    console.error('Error loading content:', error);
-    contentEl.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-state-icon">⚠️</div>
-        <h2 class="empty-state-title">Content Not Found</h2>
-        <p class="empty-state-desc">The content file at <code>${escapeHtml(item.file || '')}</code> could not be loaded.</p>
-      </div>
-    `;
+    console.error('Unexpected error in loadContent:', error);
   }
 }
 

@@ -113,11 +113,15 @@ notesFORexam/
 │
 └── data/
     ├── subjects.json                  # Master subject registry (metadata, colors, navigation)
-    └── content/                       # Content repository (Markdown / JSON files per subject)
-        ├── daa/                       # Design & Analysis of Algorithms
-        ├── web-technologies/          # Web Technologies
-        ├── linux-administration/      # Linux Administration
-        └── java/                      # Java Programming
+    └── content/                       # Content repository (Structured Markdown per subject)
+        ├── daa/
+        │   └── daa-notes.md           # Design & Analysis of Algorithms notes
+        ├── web-technologies/
+        │   └── web-technology-notes.md# Web Technologies notes & Q&A bank
+        ├── linux-administration/
+        │   └── linux-notes.md         # Linux Administration notes
+        └── java/
+            └── java-notes.md          # Java Programming notes
 ```
 
 ---

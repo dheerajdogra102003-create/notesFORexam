@@ -40,6 +40,27 @@ export function buildIndex(subjects = []) {
         });
       });
     }
+
+    // 3. Index navigation groups and items
+    if (Array.isArray(subject.navigation)) {
+      subject.navigation.forEach(group => {
+        const items = group.items || group.children || [];
+        items.forEach(item => {
+          const targetUrl = `notes.html?subject=${encodeURIComponent(subject.id)}&content=${encodeURIComponent(item.id || item.file || '')}`;
+
+          index.push({
+            type: 'topic',
+            id: item.id || item.file,
+            title: item.title || 'Untitled Topic',
+            description: `${group.title || ''} • ${subject.title || ''}`,
+            subjectId: subject.id,
+            subjectTitle: subject.title,
+            url: targetUrl,
+            searchTokens: `${item.title || ''} ${group.title || ''} ${item.badge || ''} ${subject.title || ''}`.toLowerCase()
+          });
+        });
+      });
+    }
   });
 
   return index;

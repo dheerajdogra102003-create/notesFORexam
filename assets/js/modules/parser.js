@@ -11,7 +11,10 @@
  * @returns {string}
  */
 export function escapeCode(str) {
-  if (!str) return '';
+  if (str === null || str === undefined) return '';
+  if (typeof str !== 'string') {
+    str = typeof str === 'object' && str.text ? str.text : String(str);
+  }
   return str
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -73,6 +76,68 @@ function enhanceCallouts(html) {
 }
 
 /**
+ * Automatically groups code blocks with their immediately following Output into
+ * a responsive side-by-side split grid (code on left, rendered output on right).
+ * Handles lists (ol, ul, dl), tables, code blocks, and inline list output.
+ * @param {string} html 
+ * @returns {string}
+ */
+function enhanceCodePreviewGrid(html) {
+  // Pattern 1: Output heading or <p><strong>Output:</strong></p> followed by block element
+  const labelPattern = '(?:<p>\\s*(?:<strong>)?\\s*(?:Expected\\s+|Rendered\\s+|Browser\\s+)?Output:?\\s*(?:</strong>)?\\s*</p>|<h[1-6][^>]*>\\s*(?:Expected\\s+|Rendered\\s+|Browser\\s+)?Output:?\\s*</h[1-6]>)';
+  const blockRegex = new RegExp(
+    '(<div class="code-wrapper">[\\s\\S]*?</div>)\\s*' +
+    labelPattern +
+    '\\s*(<ol[\\s\\S]*?</ol>|<ul[\\s\\S]*?</ul>|<dl[\\s\\S]*?</dl>|<div class="table-wrapper">[\\s\S]*?</div>|<table[\\s\\S]*?</table>|<div class="code-wrapper">[\\s\\S]*?</div>|<pre[\\s\\S]*?</pre>)',
+    'gi'
+  );
+
+  html = html.replace(blockRegex, (match, codeBlock, outputBlock) => {
+    return `
+      <div class="code-preview-grid">
+        <div class="code-pane">${codeBlock}</div>
+        <div class="preview-pane">
+          <div class="preview-header">
+            <span class="preview-header-dot"></span>
+            <span>Rendered Output</span>
+          </div>
+          <div class="preview-body">${outputBlock}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  // Pattern 2: Output followed by inline items within the same <p> (e.g. <p><strong>Output:</strong><br>- HTML<br>- CSS</p>)
+  const inlineListRegex = /(<div class="code-wrapper">[\s\S]*?<\/div>)\s*<p>\s*(?:<strong>)?\s*(?:Expected\s+|Rendered\s+|Browser\s+)?Output:?\s*(?:<\/strong>)?\s*(?:<br\s*\/?>|\n)([\s\S]*?)<\/p>/gi;
+
+  html = html.replace(inlineListRegex, (match, codeBlock, content) => {
+    const rawLines = content.split(/<br\s*\/?>|\n/).map(l => l.replace(/^(?:<br\s*\/?>|\s)+/, '').trim()).filter(Boolean);
+    const isOrdered = rawLines.some(l => /^\d+[\.\)]/.test(l));
+    const tag = isOrdered ? 'ol' : 'ul';
+    const itemsHtml = rawLines.map(l => {
+      const clean = l.replace(/^(?:[-*•]|\d+[\.\)])\s*/, '');
+      return `<li>${clean}</li>`;
+    }).join('\n');
+    const outputBlock = `<${tag}>\n${itemsHtml}\n</${tag}>`;
+
+    return `
+      <div class="code-preview-grid">
+        <div class="code-pane">${codeBlock}</div>
+        <div class="preview-pane">
+          <div class="preview-header">
+            <span class="preview-header-dot"></span>
+            <span>Rendered Output</span>
+          </div>
+          <div class="preview-body">${outputBlock}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  return html;
+}
+
+/**
  * Configures Marked.js with custom renderers for headings, tables, and code blocks
  */
 function configureMarked() {
@@ -80,27 +145,58 @@ function configureMarked() {
 
   const renderer = new window.marked.Renderer();
 
-  // Headings with IDs for TOC
-  renderer.heading = function (text, level, raw) {
+  // Headings with IDs for TOC (supports both Marked v4-v11 and v12+)
+  renderer.heading = function (arg1, arg2, arg3) {
+    let text = '', level = 2, raw = '';
+    if (typeof arg1 === 'object' && arg1 !== null) {
+      // Marked v12+ token object
+      level = arg1.depth || 2;
+      raw = arg1.raw || arg1.text || '';
+      text = arg1.text || raw;
+    } else {
+      text = arg1 || '';
+      level = arg2 || 2;
+      raw = arg3 || text;
+    }
     const id = slugify(raw || text);
     return `<h${level} id="${id}">${text}</h${level}>\n`;
   };
 
   // Responsive Table Wrapper
-  renderer.table = function (header, body) {
+  renderer.table = function (arg1, arg2) {
+    if (typeof arg1 === 'object' && arg1 !== null && arg1.header) {
+      return `
+        <div class="table-wrapper">
+          <table>
+            <thead>${arg1.header}</thead>
+            <tbody>${arg1.rows || ''}</tbody>
+          </table>
+        </div>
+      `;
+    }
     return `
       <div class="table-wrapper">
         <table>
-          <thead>${header}</thead>
-          <tbody>${body}</tbody>
+          <thead>${arg1 || ''}</thead>
+          <tbody>${arg2 || ''}</tbody>
         </table>
       </div>
     `;
   };
 
   // Safe Code Block with Copy Button
-  renderer.code = function (code, infostring) {
-    const lang = (infostring || 'text').match(/\S*/)[0];
+  renderer.code = function (arg1, arg2) {
+    let code = '', infostring = '';
+    if (typeof arg1 === 'object' && arg1 !== null) {
+      code = arg1.text || '';
+      infostring = arg1.lang || '';
+    } else {
+      code = typeof arg1 === 'string' ? arg1 : String(arg1 || '');
+      infostring = typeof arg2 === 'string' ? arg2 : '';
+    }
+
+    const langMatch = (infostring || 'text').match(/\S*/);
+    const lang = langMatch ? langMatch[0] : 'text';
     const displayLang = lang ? lang.toUpperCase() : 'CODE';
     const safeCode = escapeCode(code);
 
@@ -121,15 +217,23 @@ function configureMarked() {
     `;
   };
 
-  window.marked.setOptions({
+  const markedConfig = {
     renderer: renderer,
     gfm: true,
     breaks: false,
     pedantic: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false // Preserves exact mathematical quotes and hyphens
-  });
+    smartLists: true
+  };
+
+  try {
+    if (typeof window.marked.use === 'function') {
+      window.marked.use(markedConfig);
+    } else if (typeof window.marked.setOptions === 'function') {
+      window.marked.setOptions(markedConfig);
+    }
+  } catch (e) {
+    console.warn('Marked configuration warning:', e);
+  }
 }
 
 /**
@@ -198,8 +302,13 @@ export function parseAndRender(rawContent, targetElement) {
   configureMarked();
 
   let html = '';
-  if (typeof window.marked !== 'undefined') {
-    html = window.marked.parse(rawContent);
+  if (typeof window.marked !== 'undefined' && typeof window.marked.parse === 'function') {
+    try {
+      html = window.marked.parse(rawContent);
+    } catch (parseErr) {
+      console.error('Marked parse error, using fallback:', parseErr);
+      html = `<div class="raw-markdown-fallback"><pre>${escapeCode(rawContent)}</pre></div>`;
+    }
   } else {
     // Basic fallback if marked CDN is unreachable
     html = `<p>${escapeCode(rawContent).replace(/\n/g, '<br>')}</p>`;
@@ -207,6 +316,9 @@ export function parseAndRender(rawContent, targetElement) {
 
   // Apply callout transformations
   html = enhanceCallouts(html);
+
+  // Apply side-by-side code & output transformation
+  html = enhanceCodePreviewGrid(html);
 
   // Set innerHTML
   targetElement.innerHTML = html;

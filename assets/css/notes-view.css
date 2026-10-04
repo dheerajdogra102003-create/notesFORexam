@@ -297,17 +297,37 @@
   scroll-margin-top: calc(var(--header-height) + 20px);
 }
 
+/* Exam Question Card Header */
+.content-body h2[id^="question"] {
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-medium);
+  border-left: 5px solid var(--primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  margin-top: var(--space-10);
+  margin-bottom: var(--space-6);
+  color: var(--text-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .content-body h2[id^="question"] {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  border-left-color: #4f46e5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
 .content-body h3 {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: var(--font-weight-semibold);
-  margin-top: var(--space-8);
-  margin-bottom: var(--space-3);
-  color: #e2e8f0;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-2);
+  color: #a5b4fc;
   scroll-margin-top: calc(var(--header-height) + 20px);
 }
 
 [data-theme="light"] .content-body h3 {
-  color: #1e293b;
+  color: #4338ca;
 }
 
 .content-body p {
@@ -509,6 +529,170 @@
   font-size: var(--text-xs);
   color: var(--text-muted);
   margin-top: var(--space-2);
+}
+
+.content-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  margin-block: var(--space-6);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.content-body img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   Side-by-Side Code & Output Layout (Split View)
+   ========================================================================== */
+.code-preview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: var(--space-4);
+  align-items: stretch;
+  margin-block: var(--space-4) var(--space-6);
+}
+
+@media (max-width: 820px) {
+  .code-preview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.code-preview-grid .code-pane,
+.code-preview-grid .code-pane .code-wrapper {
+  margin: 0 !important;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-preview-grid .code-pane .code-wrapper pre {
+  flex: 1;
+  margin: 0;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.code-preview-grid .preview-pane {
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .code-preview-grid .preview-pane {
+  background: #ffffff;
+  border-color: var(--border-subtle);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.code-preview-grid .preview-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.55rem 0.85rem;
+  background: var(--bg-surface-2);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.code-preview-grid .preview-header-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+.code-preview-grid .preview-body {
+  padding: var(--space-4) var(--space-5);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.code-preview-grid .preview-body ul,
+.code-preview-grid .preview-body ol {
+  margin: 0;
+  padding-left: var(--space-6);
+}
+
+.code-preview-grid .preview-body li {
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+}
+
+.code-preview-grid .preview-body dl {
+  margin: 0;
+}
+
+.code-preview-grid .preview-body dt {
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-top: var(--space-2);
+}
+
+.code-preview-grid .preview-body dt:first-child {
+  margin-top: 0;
+}
+
+.code-preview-grid .preview-body dd {
+  margin-left: var(--space-4);
+  margin-bottom: var(--space-2);
+  color: var(--text-secondary);
+}
+
+.code-preview-grid .preview-body .table-wrapper {
+  margin: 0;
+  border: none;
+  background: transparent;
+}
+
+.code-preview-grid .preview-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: var(--text-xs);
+}
+
+.code-preview-grid .preview-body th,
+.code-preview-grid .preview-body td {
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--border-subtle);
+}
+
+.code-preview-grid .preview-body th {
+  background: var(--bg-surface-2);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.code-preview-grid .preview-body .code-wrapper {
+  margin: 0;
+  border: none;
+  background: transparent;
+}
+
+.code-preview-grid .preview-body .code-wrapper pre {
+  background: transparent;
+  padding: 0;
+  margin: 0;
 }
 
 /* Previous / Next Navigation */
@@ -876,3 +1060,58 @@
   background: #ffffff;
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
 }
+
+/* ==========================================================================
+   Question-Centric Exam Card Styling
+   ========================================================================== */
+.content-body h2[id^="question"],
+.content-body h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 2px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.content-body h2::before {
+  content: '📌';
+  font-size: 1.1rem;
+}
+
+.content-body h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.content-body ul, .content-body ol {
+  margin: 0.75rem 0 1rem 1.75rem;
+}
+
+.content-body li {
+  margin-bottom: 0.4rem;
+}
+
+.content-body blockquote {
+  border-left: 4px solid var(--primary);
+  background: rgba(99, 102, 241, 0.08);
+  padding: 1rem 1.25rem;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin: 1.25rem 0;
+  font-size: 0.95rem;
+}
+
+[data-theme="light"] .content-body blockquote {
+  background: #f0fdf4;
+  border-left-color: #10b981;
+  color: #064e3b;
+}
+

@@ -8,7 +8,56 @@
       "icon": "⚡",
       "color": "#6366f1",
       "description": "Algorithm design paradigms, asymptotic analysis, divide-and-conquer, greedy techniques, dynamic programming, and graph algorithms.",
-      "navigation": []
+      "navigation": [
+        {
+          "id": "daa-unit-1",
+          "title": "UNIT 1 — Asymptotic Analysis & Divide-and-Conquer",
+          "items": [
+            {
+              "id": "daa-all",
+              "title": "All Units — Overview & Notes",
+              "badge": "Full Notes",
+              "file": "data/content/daa/daa-notes.md"
+            },
+            {
+              "id": "daa-q1",
+              "title": "Q1: Asymptotic Notations (Big-O, Omega, Theta)",
+              "badge": "Core",
+              "file": "data/content/daa/daa-notes.md#question-1-explain-asymptotic-notations-big-o-big-omega-big-theta-with-mathematical-definitions-and-graphical-interpretations"
+            },
+            {
+              "id": "daa-q2",
+              "title": "Q2: Merge Sort & Divide-and-Conquer Recurrence",
+              "badge": "Analysis",
+              "file": "data/content/daa/daa-notes.md#question-2-explain-the-divide-and-conquer-paradigm-with-merge-sort-state-its-recurrence-relation-and-analyze-its-time-complexity"
+            }
+          ]
+        },
+        {
+          "id": "daa-unit-2",
+          "title": "UNIT 2 — Greedy & Dynamic Programming",
+          "items": [
+            {
+              "id": "daa-q3",
+              "title": "Q3: Greedy vs Dynamic Programming (0/1 Knapsack)",
+              "badge": "DP",
+              "file": "data/content/daa/daa-notes.md#question-3-compare-greedy-algorithms-with-dynamic-programming-solve-the-01-knapsack-problem-using-dynamic-programming"
+            }
+          ]
+        },
+        {
+          "id": "daa-unit-3",
+          "title": "UNIT 3 — Graph Algorithms",
+          "items": [
+            {
+              "id": "daa-q4",
+              "title": "Q4: Dijkstra's Single Source Shortest Path",
+              "badge": "Graphs",
+              "file": "data/content/daa/daa-notes.md#question-4-explain-dijkstras-single-source-shortest-path-algorithm-with-step-by-step-procedure-and-complexity-analysis"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "web-technologies",
@@ -17,8 +66,207 @@
       "semester": "Semester 2",
       "icon": "🌐",
       "color": "#06b6d4",
-      "description": "HTML5, CSS3, DOM manipulation, ES6+ JavaScript, asynchronous workflows, HTTP protocols, and client-server architecture.",
-      "navigation": []
+      "description": "Exam preparation question bank with step-by-step beginner explanations, diagrams, code examples, and exam-ready answers for all 27 previous exam questions.",
+      "navigation": [
+        {
+          "id": "part-a-group",
+          "title": "PART A — Internet Basics & HTML",
+          "items": [
+            {
+              "id": "part-a-all",
+              "title": "Part A — All Questions (Q1 to Q6)",
+              "badge": "6 Questions",
+              "file": "data/content/web-technologies/web-technology-notes.md"
+            },
+            {
+              "id": "q1",
+              "title": "Q1: What is an IP address?",
+              "badge": "Short",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-1-what-is-an-ip-address"
+            },
+            {
+              "id": "q2",
+              "title": "Q2: Unique IP Assignment & Internet Communication",
+              "badge": "Long",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-2-apply-your-understanding-of-ip-addressing-to-explain-how-unique-ips-are-assigned-to-systems-and-how-they-enable-internet-communication"
+            },
+            {
+              "id": "q3",
+              "title": "Q3: Internet Server Identities",
+              "badge": "Short",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-3-explain-internet-server-identities"
+            },
+            {
+              "id": "q4",
+              "title": "Q4: Internet Structure & TCP/IP Communication",
+              "badge": "Long",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-4-explain-the-structure-of-the-internet-and-the-various-methods-through-which-communication-takes-place-over-it-with-suitable-examples"
+            },
+            {
+              "id": "q5",
+              "title": "Q5: Practical Use of Lists, Images, and Tables",
+              "badge": "Long",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-5-interpret-the-practical-use-of-html-lists-images-and-tables-in-website-development"
+            },
+            {
+              "id": "q6",
+              "title": "Q6: Attributes of a Table in HTML with Example",
+              "badge": "Long",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-6-explore-the-various-attributes-of-a-table-in-html-by-providing-a-suitable-example-in-detail"
+            }
+          ]
+        },
+        {
+          "id": "part-b-group",
+          "title": "PART B — Linking, Frames, CSS & JavaScript",
+          "items": [
+            {
+              "id": "part-b-all",
+              "title": "Part B — All Questions (Q7 to Q27)",
+              "badge": "21 Questions",
+              "file": "data/content/web-technologies/web-technology-notes.md"
+            },
+            {
+              "id": "q7",
+              "title": "Q7: Define a Hyperlink with Syntax",
+              "badge": "Short",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-7-define-a-hyperlink-in-html-with-syntax"
+            },
+            {
+              "id": "q8",
+              "title": "Q8: Compare Internal and External Linking",
+              "badge": "Medium",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-8-compare-internal-linking-and-external-linking-techniques-in-terms-of-usability-performance-and-user-experience-with-example"
+            },
+            {
+              "id": "q9",
+              "title": "Q9: Tag Used to Define Internal Link with Syntax",
+              "badge": "Short",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-9-write-the-tag-used-to-define-the-internal-link-with-syntax"
+            },
+            {
+              "id": "q10",
+              "title": "Q10: Images As Hyperlinks in HTML",
+              "badge": "Short",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-10-describe-the-use-of-images-as-hyperlinks-in-html"
+            },
+            {
+              "id": "q11",
+              "title": "Q11: Evaluate Effectiveness of Frames in Modern Web",
+              "badge": "Long",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-11-evaluate-the-effectiveness-of-frames-in-webpage-design-justify-whether-frames-should-be-used-in-modern-web-development-with-proper-reasoning"
+            },
+            {
+              "id": "q12",
+              "title": "Q12: Design Page with CSS (Headings, Paragraphs, Lists)",
+              "badge": "Program",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-12-make-use-of-cascading-style-sheets-css-to-design-an-html-page-containing-headings-paragraphs-and-lists-with-different-styles"
+            },
+            {
+              "id": "q13",
+              "title": "Q13: Type of CSS Used Within a Web Page",
+              "badge": "Short",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-13-which-type-of-cascading-style-sheet-is-used-within-a-web-page"
+            },
+            {
+              "id": "q14",
+              "title": "Q14: Embedded Style Sheet Description, Syntax & Program",
+              "badge": "Program",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-14-make-use-of-embedded-style-sheet-with-appropriate-description-syntax-and-program-in-html"
+            },
+            {
+              "id": "q15",
+              "title": "Q15: How JavaScript Supports Event-Driven Programming",
+              "badge": "Medium",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-15-how-does-javascript-support-event-driven-programming"
+            },
+            {
+              "id": "q16",
+              "title": "Q16: Give Any Four Advantages of JavaScript",
+              "badge": "Short",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-16-give-any-four-advantages-of-javascript"
+            },
+            {
+              "id": "q17",
+              "title": "Q17: Role of Math Object with Method Example",
+              "badge": "Short",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-17-explain-the-role-of-the-math-object-in-javascript-with-any-one-method-example"
+            },
+            {
+              "id": "q18",
+              "title": "Q18: Math Object Properties and Methods for Real-World Problems",
+              "badge": "Long",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-18-explain-the-properties-and-methods-of-the-math-object-in-javascript-that-are-used-in-solving-real-world-computational-problems"
+            },
+            {
+              "id": "q19",
+              "title": "Q19: Describe Core Language Objects with Example",
+              "badge": "Medium",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-19-describe-core-language-objects-with-example"
+            },
+            {
+              "id": "q20",
+              "title": "Q20: Role of Arrays in JavaScript & Data Handling",
+              "badge": "Long",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-20-explain-the-role-of-arrays-in-javascript-and-justify-their-importance-in-handling-multiple-data-elements-efficiently-in-web-applications"
+            },
+            {
+              "id": "q21",
+              "title": "Q21: HTML Syntax for Submit Button in a Form",
+              "badge": "Short",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-21-write-the-html-syntax-used-to-create-a-submit-button-in-a-form"
+            },
+            {
+              "id": "q22",
+              "title": "Q22: What are Radio Buttons in HTML Forms?",
+              "badge": "Short",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-22-what-are-radio-buttons-in-html-forms"
+            },
+            {
+              "id": "q23",
+              "title": "Q23: Compare Text Field and Password Field",
+              "badge": "Short",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-23-compare-text-field-and-password-field-in-forms"
+            },
+            {
+              "id": "q24",
+              "title": "Q24: Single Select vs Multi-Choice Select Lists",
+              "badge": "Program",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-24-distinguish-between-single-select-and-multi-choice-select-list-elements-and-also-create-a-program-to-demonstrate-both-and-analyze-the-output"
+            },
+            {
+              "id": "q25",
+              "title": "Q25: Form Object and Dynamic Access to Form Elements",
+              "badge": "Long",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-25-evaluate-the-importance-of-the-form-object-and-its-methods-in-web-development-and-justify-the-usefulness-of-a-program-that-dynamically-accesses-form-elements"
+            },
+            {
+              "id": "q26",
+              "title": "Q26: Feedback Form Using Text Area and Select Elements",
+              "badge": "Program",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-26-develop-a-feedback-form-using-text-area-and-select-elements-where-users-can-enter-comments-and-select-their-satisfaction-level"
+            },
+            {
+              "id": "q27",
+              "title": "Q27: Importance of Form Elements in Capturing User Input",
+              "badge": "Long",
+              "file": "data/content/web-technologies/web-technology-notes.md#question-27-determine-the-importance-of-the-various-form-elements-available-in-web-pages-and-their-role-in-effectively-capturing-and-managing-user-input-with-suitable-examples"
+            }
+          ]
+        },
+        {
+          "id": "quick-revision-group",
+          "title": "QUICK REVISION",
+          "items": [
+            {
+              "id": "quick-revision-sheet",
+              "title": "Questions Quick Revision (Q1 to Q27)",
+              "badge": "All Questions",
+              "file": "data/content/web-technologies/web-technology-notes.md"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "linux-administration",
@@ -28,7 +276,56 @@
       "icon": "🐧",
       "color": "#f59e0b",
       "description": "Linux filesystem hierarchy, bash shell scripting, user permissions, process control, systemd daemon management, and network configuration.",
-      "navigation": []
+      "navigation": [
+        {
+          "id": "linux-unit-1",
+          "title": "UNIT 1 — Linux Architecture & Filesystem",
+          "items": [
+            {
+              "id": "linux-all",
+              "title": "All Units — Overview & Notes",
+              "badge": "Full Notes",
+              "file": "data/content/linux-administration/linux-notes.md"
+            },
+            {
+              "id": "linux-q1",
+              "title": "Q1: Filesystem Hierarchy Standard (FHS)",
+              "badge": "FHS",
+              "file": "data/content/linux-administration/linux-notes.md#question-1-describe-the-linux-filesystem-hierarchy-standard-fhs-and-the-purpose-of-core-root-directories"
+            },
+            {
+              "id": "linux-q2",
+              "title": "Q2: File Permissions, chmod, chown & umask",
+              "badge": "Permissions",
+              "file": "data/content/linux-administration/linux-notes.md#question-2-explain-linux-file-permissions-ownership-models-and-demonstrate-chmod-chown-and-umask"
+            }
+          ]
+        },
+        {
+          "id": "linux-unit-2",
+          "title": "UNIT 2 — Processes & System Services",
+          "items": [
+            {
+              "id": "linux-q3",
+              "title": "Q3: Process States, ps, top, kill & Signals",
+              "badge": "Processes",
+              "file": "data/content/linux-administration/linux-notes.md#question-3-explain-process-management-in-linux-contrast-ps-top-and-kill-commands-and-define-process-states"
+            }
+          ]
+        },
+        {
+          "id": "linux-unit-3",
+          "title": "UNIT 3 — Bash Shell Scripting",
+          "items": [
+            {
+              "id": "linux-q4",
+              "title": "Q4: Bash Scripting (Conditionals, Args & Loops)",
+              "badge": "Scripting",
+              "file": "data/content/linux-administration/linux-notes.md#question-4-write-a-bash-shell-script-illustrating-conditional-statements-command-line-arguments-and-loops"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "java",
@@ -38,7 +335,50 @@
       "icon": "☕",
       "color": "#ef4444",
       "description": "OOP principles, inheritance, interfaces, exception handling, multithreading, synchronization, Java Collections Framework, and JVM architecture.",
-      "navigation": []
+      "navigation": [
+        {
+          "id": "java-unit-1",
+          "title": "UNIT 1 — OOP Principles & Interfaces",
+          "items": [
+            {
+              "id": "java-all",
+              "title": "All Units — Overview & Notes",
+              "badge": "Full Notes",
+              "file": "data/content/java/java-notes.md"
+            },
+            {
+              "id": "java-q1",
+              "title": "Q1: Four OOP Pillars (Encapsulation, Inheritance, etc.)",
+              "badge": "Core OOP",
+              "file": "data/content/java/java-notes.md#question-1-explain-the-four-pillars-of-object-oriented-programming-oop-in-java-with-code-illustrations"
+            },
+            {
+              "id": "java-q2",
+              "title": "Q2: Abstract Classes vs Interfaces",
+              "badge": "Design",
+              "file": "data/content/java/java-notes.md#question-2-compare-abstract-classes-and-interfaces-in-java-when-should-each-be-used"
+            }
+          ]
+        },
+        {
+          "id": "java-unit-2",
+          "title": "UNIT 2 — Exception Handling & Multithreading",
+          "items": [
+            {
+              "id": "java-q3",
+              "title": "Q3: Exception Hierarchy & try-catch-finally",
+              "badge": "Exceptions",
+              "file": "data/content/java/java-notes.md#question-3-explain-the-java-exception-hierarchy-checked-vs-unchecked-exceptions-and-try-catch-finally-mechanics"
+            },
+            {
+              "id": "java-q4",
+              "title": "Q4: Multithreading & Synchronization",
+              "badge": "Threads",
+              "file": "data/content/java/java-notes.md#question-4-explain-java-multithreading-contrast-extending-thread-vs-implementing-runnable-and-explain-thread-synchronization"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

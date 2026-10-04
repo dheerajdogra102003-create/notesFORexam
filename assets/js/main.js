@@ -140,7 +140,7 @@ function renderSubjects(subjects, container) {
   container.className = 'subject-grid';
   container.innerHTML = subjects.map(subject => {
     const itemCount = Array.isArray(subject.content) ? subject.content.length : (subject.count || null);
-    const viewerUrl = `notes.html?subject=${encodeURIComponent(subject.id)}`;
+    const viewerUrl = subject.url || `notes.html?subject=${encodeURIComponent(subject.id)}`;
 
     const accentColor = subject.color || 'var(--primary)';
     return `
