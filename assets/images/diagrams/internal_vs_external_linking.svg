@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 280" width="100%" height="100%">
+  <defs>
+    <!-- Arrowhead markers -->
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#16a34a" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2563eb" />
+    </marker>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect x="0" y="0" width="820" height="280" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" />
+
+  <!-- Main Title -->
+  <text x="410" y="28" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="700" fill="#0f172a" text-anchor="middle">
+    Internal Linking vs External Linking
+  </text>
+
+  <!-- ================= TOP: INTERNAL LINKING ================= -->
+  <!-- Outer boundary box for Same Website -->
+  <rect x="30" y="46" width="760" height="100" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="42" y="38" width="220" height="20" rx="4" fill="#dcfce7" />
+  <text x="152" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#15803d" text-anchor="middle">
+    INTERNAL LINKING (Same Website)
+  </text>
+
+  <!-- Page 1 Card -->
+  <g transform="translate(60, 68)">
+    <rect x="0" y="0" width="190" height="64" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="95" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0f172a" text-anchor="middle">Home Page</text>
+    <text x="95" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">index.html</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="260" y1="100" x2="360" y2="100" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrow-green)" />
+  <text x="310" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#16a34a" text-anchor="middle">Clicks Link</text>
+
+  <!-- Page 2 Card -->
+  <g transform="translate(370, 68)">
+    <rect x="0" y="0" width="190" height="64" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="95" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0f172a" text-anchor="middle">Contact Page</text>
+    <text x="95" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">contact.html</text>
+  </g>
+
+  <!-- Status pill -->
+  <g transform="translate(580, 78)">
+    <rect x="0" y="0" width="190" height="44" rx="6" fill="#dcfce7" />
+    <text x="95" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#166534" text-anchor="middle">✓ User Stays On Site</text>
+    <text x="95" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#15803d" text-anchor="middle">Fast, Cached, Smooth</text>
+  </g>
+
+  <!-- ================= BOTTOM: EXTERNAL LINKING ================= -->
+  <!-- Outer boundary for External Linking -->
+  <rect x="30" y="160" width="760" height="104" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" stroke-dasharray="5 4" />
+  <rect x="42" y="152" width="230" height="20" rx="4" fill="#dbeafe" />
+  <text x="157" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#1e40af" text-anchor="middle">
+    EXTERNAL LINKING (Different Website)
+  </text>
+
+  <!-- Your Site Card -->
+  <g transform="translate(60, 184)">
+    <rect x="0" y="0" width="190" height="64" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="95" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0f172a" text-anchor="middle">Your Website</text>
+    <text x="95" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">mysite.com</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="260" y1="216" x2="360" y2="216" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow-blue)" />
+  <text x="310" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#2563eb" text-anchor="middle">Leaves Site</text>
+
+  <!-- External Site Card -->
+  <g transform="translate(370, 184)">
+    <rect x="0" y="0" width="190" height="64" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" />
+    <text x="95" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#1e40af" text-anchor="middle">External Website</text>
+    <text x="95" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#2563eb" text-anchor="middle">w3.org / wikipedia.org</text>
+  </g>
+
+  <!-- Status pill -->
+  <g transform="translate(580, 194)">
+    <rect x="0" y="0" width="190" height="44" rx="6" fill="#fef3c7" />
+    <text x="95" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#92400e" text-anchor="middle">↗ User Leaves Website</text>
+    <text x="95" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#b45309" text-anchor="middle">New Domain, DNS Lookup</text>
+  </g>
+</svg>

@@ -520,40 +520,17 @@ When a user clicks the words **"Visit YouTube"**, the browser navigates to `http
 
 #### Comparison Table (Usability, Performance, User Experience):
 
-| Feature | Internal Linking | External Linking |
-| :--- | :--- | :--- |
-| **Usability** | Helps students navigate long chapters easily and jump between related syllabus pages. | Provides citations, reference materials, official documentation, or source credits. |
-| **Performance** | **Very Fast**: Reuses cached stylesheets and images; requires no new external DNS lookups. | **Slower**: Requires a new DNS lookup, new TCP/TLS handshake, and loading third-party servers. |
-| **User Experience** | Seamless; keeps the student focused inside the portal without distraction. | Navigates the student away; best opened in a new tab (`target="_blank"`) to avoid losing their place. |
-| **URL Example** | `<a href="#unit2">Unit 2</a>` or `<a href="syllabus.html">Syllabus</a>` | `<a href="https://www.w3.org" target="_blank">W3C Standards</a>` |
+| **Basis** | **Internal Linking** | **External Linking** |
+|---|---|---|
+| **Meaning** | Links to another page/section of the **same website**. | Links to a **different website**. |
+| **Usability** | Helps users move around the website easily. | Gives users extra information from other websites. |
+| **Performance** | Usually faster. | May be slower. |
+| **User Experience** | User stays on the same website. | User may leave the website. |
+| **Example** | `<a href="contact.html">Contact</a>` | `<a href="https://www.w3.org">W3C</a>` |
 
 ### Diagram
 
-```text
-               INTERNAL LINKING (Same Site)
-[ Home Page ] ────────► [ Notes Page ] (Fast, Cached Assets)
-     │
-     └──► [ Jump to Section: href="#tips" ] (Instant Scroll)
-
-               EXTERNAL LINKING (Different Domain)
-[ Your Portal ] ──────► [ External Site: www.w3.org ]
-                        (New DNS Lookup, SSL Handshake, Slower)
-```
-
-### Exam-Ready Answer
-> | Comparison Criteria | Internal Linking | External Linking |
-> | :--- | :--- | :--- |
-> | **Definition** | Links between sections of the same page or within the same domain. | Links pointing to an external third-party domain. |
-> | **Usability** | Allows seamless exploration of site structure and intra-page bookmarks. | Provides supplementary references and external citations. |
-> | **Performance** | Fast loading; reuses browser cache without new DNS resolutions. | Higher latency due to new DNS lookups, TCP handshakes, and remote assets. |
-> | **User Experience** | Retains student attention within the application shell. | Directs visitors away; recommended to open in a new tab (`target="_blank"`). |
-> | **Syntax Example** | `<a href="#section2">Jump</a>` | `<a href="https://www.w3.org" target="_blank">External</a>` |
-
-### Quick Revision
-> **REMEMBER:**
-> • Internal linking connects pages or sections within the same website.
-> • External linking connects to a foreign third-party domain.
-> • Internal links load faster and preserve user context; external links require DNS lookups and should open in a new tab.
+![Internal Linking vs External Linking](assets/images/diagrams/internal_vs_external_linking.svg)
 
 ---
 
