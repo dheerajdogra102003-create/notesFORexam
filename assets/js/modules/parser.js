@@ -76,23 +76,21 @@ function enhanceCallouts(html) {
 }
 
 /**
- * Automatically groups code blocks with their immediately following Output into
- * a responsive side-by-side split grid (code on left, rendered output on right).
- * Handles lists (ol, ul, dl), tables, code blocks, and inline list output.
+ * Automatically pairs small script snippets with their immediate rendered output (lists/dl)
+ * into a side-by-side layout, restricted strictly to snippet examples (like Q5 lists).
+ * Prevents expanding to full-page scripts or places where not needed.
  * @param {string} html 
  * @returns {string}
  */
 function enhanceCodePreviewGrid(html) {
-  // Pattern 1: Output heading or <p><strong>Output:</strong></p> followed by block element
-  const labelPattern = '(?:<p>\\s*(?:<strong>)?\\s*(?:Expected\\s+|Rendered\\s+|Browser\\s+)?Output:?\\s*(?:</strong>)?\\s*</p>|<h[1-6][^>]*>\\s*(?:Expected\\s+|Rendered\\s+|Browser\\s+)?Output:?\\s*</h[1-6]>)';
-  const blockRegex = new RegExp(
-    '(<div class="code-wrapper">[\\s\\S]*?</div>)\\s*' +
-    labelPattern +
-    '\\s*(<ol[\\s\\S]*?</ol>|<ul[\\s\\S]*?</ul>|<dl[\\s\\S]*?</dl>|<div class="table-wrapper">[\\s\S]*?</div>|<table[\\s\\S]*?</table>|<div class="code-wrapper">[\\s\\S]*?</div>|<pre[\\s\\S]*?</pre>)',
-    'gi'
-  );
+  // Pattern 1: Strict <p><strong>Output:</strong></p> followed immediately by <ol>, <ul>, or <dl>
+  const blockRegex = /(<div class="code-wrapper">[\s\S]*?<\/div>)\s*<p>\s*(?:<strong>)?Output:?(?:<\/strong>)?\s*<\/p>\s*(<ol[\s\S]*?<\/ol>|<ul[\s\S]*?<\/ul>|<dl[\s\S]*?<\/dl>)/gi;
 
   html = html.replace(blockRegex, (match, codeBlock, outputBlock) => {
+    // Only apply if the code snippet is concise to avoid squishing large programs
+    if (codeBlock.length > 2500) {
+      return match;
+    }
     return `
       <div class="code-preview-grid">
         <div class="code-pane">${codeBlock}</div>
@@ -107,10 +105,13 @@ function enhanceCodePreviewGrid(html) {
     `;
   });
 
-  // Pattern 2: Output followed by inline items within the same <p> (e.g. <p><strong>Output:</strong><br>- HTML<br>- CSS</p>)
-  const inlineListRegex = /(<div class="code-wrapper">[\s\S]*?<\/div>)\s*<p>\s*(?:<strong>)?\s*(?:Expected\s+|Rendered\s+|Browser\s+)?Output:?\s*(?:<\/strong>)?\s*(?:<br\s*\/?>|\n)([\s\S]*?)<\/p>/gi;
+  // Pattern 2: Strict <p><strong>Output:</strong><br>- HTML...</p> (inline bullets in same paragraph)
+  const inlineListRegex = /(<div class="code-wrapper">[\s\S]*?<\/div>)\s*<p>\s*(?:<strong>)?Output:?(?:<\/strong>)?\s*(?:<br\s*\/?>|\n)([\s\S]*?)<\/p>/gi;
 
   html = html.replace(inlineListRegex, (match, codeBlock, content) => {
+    if (codeBlock.length > 2500) {
+      return match;
+    }
     const rawLines = content.split(/<br\s*\/?>|\n/).map(l => l.replace(/^(?:<br\s*\/?>|\s)+/, '').trim()).filter(Boolean);
     const isOrdered = rawLines.some(l => /^\d+[\.\)]/.test(l));
     const tag = isOrdered ? 'ol' : 'ul';

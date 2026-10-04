@@ -984,19 +984,19 @@ HTML provides the bare skeleton (text, headings, bullet points). CSS adds the st
 </html>
 ```
 
-### Expected Output
-- A centered dark blue title with an underline.
-- A styled introductory paragraph on a clean white card with an accent bar on the left.
-- Section headings on light-blue ribbon backgrounds.
-- An unordered list with clean square bullets.
-- An ordered list with bold `01.`, `02.`, `03.` numbering inside a soft yellow container.
-
 ### Line-by-Line Explanation
 1. `h1 { color: #1e3a8a; border-bottom: 3px solid #3b82f6; ... }`: Colors the title deep blue, centers it, and draws an underline accent.
 2. `h2 { background-color: #e0f2fe; padding: 6px 12px; ... }`: Adds a light blue ribbon background behind all secondary headings.
 3. `p.intro-text`: Gives the paragraph a clean white card background with a blue left accent border.
 4. `ul.topics-list { list-style-type: square; ... }`: Customizes the unordered list to show square bullets instead of round circles.
 5. `ol.steps-list { list-style-type: decimal-leading-zero; ... }`: Formats the ordered numbers with two digits (`01.`, `02.`, `03.`).
+
+### Expected Output
+- A centered dark blue title with an underline.
+- A styled introductory paragraph on a clean white card with an accent bar on the left.
+- Section headings on light-blue ribbon backgrounds.
+- An unordered list with clean square bullets.
+- An ordered list with bold `01.`, `02.`, `03.` numbering inside a soft yellow container.
 
 ### Exam-Ready Explanation
 > CSS separates presentation from structure:
@@ -1137,11 +1137,6 @@ An **Embedded Style Sheet** embeds CSS rules directly into the HTML document's h
 </html>
 ```
 
-### Expected Output
-- A centered deep indigo heading with an underline accent.
-- Formatted paragraph with comfortable reading font and line spacing.
-- A highlighted callout card with a bold indigo left border and lavender background.
-
 ### Line-by-Line Explanation
 1. `<style type="text/css">`: Opens the embedded style sheet block inside `<head>`.
 2. `body { background-color: #f8fafc; ... }`: Sets page background and font.
@@ -1229,11 +1224,6 @@ Result (Screen updates with new content)
 </body>
 </html>
 ```
-
-### Expected Output
-- A button labeled **"Click to Check Result"**.
-- Upon clicking, green status text appears below:  
-  **Event Handled:** Your marks have been calculated successfully! (Grade: A+)
 
 ### Line-by-Line Explanation
 1. `<button ... onclick="showScore()">`: Binds the `click` event of the button to the `showScore()` function.
@@ -1338,10 +1328,6 @@ The `Math.round(x)` method rounds a floating-point decimal number to the nearest
 </body>
 </html>
 ```
-
-#### Output
-- Clicking **"Round Marks"** displays:  
-  `Raw Score: 84.7 ➔ Rounded Exam Score: 85`
 
 ### Exam-Ready Answer
 > The **`Math` Object** in JavaScript is a built-in static object providing mathematical properties (constants like `Math.PI`) and methods for numerical computation without requiring instantiation via `new Math()`.
@@ -1780,7 +1766,7 @@ To group radio buttons together so that selecting one automatically deselects th
 </html>
 ```
 
-### Expected Output
+### Analysis of the Output:
 1. **Single-Select Dropdown (`<select name="semester">`)**:
    - Appears as a compact single-line dropdown box.
    - Clicking opens the list; choosing an option closes it, displaying only the selected choice.
@@ -1969,16 +1955,16 @@ We need to write a complete, beginner-friendly HTML feedback form containing:
 </html>
 ```
 
+### Line-by-Line Explanation
+1. `<select id="satisfactionLevel" name="satisfaction" required>`: Creates the dropdown box for satisfaction. The first option has `disabled selected` so it acts as an unselectable guide prompt.
+2. `<textarea id="userComments" rows="5" cols="40">`: Creates a multi-line input box. `rows="5"` sets the default height to 5 lines of text, and `cols="40"` sets the width to 40 characters.
+3. `<input type="submit" value="Submit Feedback">`: Sends the entered feedback to `save-feedback.php`.
+
 ### Expected Output
 - A text box for entering the student's name.
 - A dropdown menu to choose satisfaction (Excellent, Very Good, etc.).
 - A large multi-line text area to write detailed comments.
 - A Submit button to send the feedback.
-
-### Line-by-Line Explanation
-1. `<select id="satisfactionLevel" name="satisfaction" required>`: Creates the dropdown box for satisfaction. The first option has `disabled selected` so it acts as an unselectable guide prompt.
-2. `<textarea id="userComments" rows="5" cols="40">`: Creates a multi-line input box. `rows="5"` sets the default height to 5 lines of text, and `cols="40"` sets the width to 40 characters.
-3. `<input type="submit" value="Submit Feedback">`: Sends the entered feedback to `save-feedback.php`.
 
 ### Quick Revision
 > **REMEMBER:**
