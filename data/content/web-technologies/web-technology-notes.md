@@ -682,9 +682,12 @@ Frames were used in older HTML to divide a webpage into different sections. For 
 - Creates navigation and SEO problems.
 
 ### Should Frames Be Used Today?
-**No.** Frames should not be used in modern web development because they are obsolete and not suitable for responsive websites.
 
-Modern websites use **CSS, Flexbox, and Grid** for page layouts. The **`<iframe>`** tag is different and is still used when embedding content such as videos or maps.
+> 🚫 **VERDICT: NO.**  
+> Frames should **not** be used in modern web development because they are **obsolete** and not suitable for responsive websites.  
+>  
+> 💡 **What to use instead:**  
+> Modern websites use **CSS, Flexbox, and Grid** for page layouts. The **`<iframe>`** tag is different and is still used when embedding content such as videos or maps.
 
 ---
 
