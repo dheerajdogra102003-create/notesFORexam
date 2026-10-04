@@ -414,20 +414,6 @@ Tables are useful for displaying:
 
 ## Question 6: Explore the various attributes of a table in HTML by providing a suitable example in detail.
 
-### Simple Explanation
-Think of an HTML table like an Excel spreadsheet:
-- The whole grid is the **`<table>`**.
-- The title centered at the very top is the **`<caption>`**.
-- Each horizontal row is a **`<tr>`** (Table Row).
-- The bold column headings are **`<th>`** (Table Header) cells.
-- The normal boxes holding the actual numbers and words are **`<td>`** (Table Data) cells.
-
-HTML provides special attributes to style this grid:
-- To merge two or more columns horizontally, use **`colspan`** (Column Span).
-- To merge two or more rows vertically, use **`rowspan`** (Row Span).
-- To add space inside the cell around text, use **`cellpadding`**.
-- To add space between neighboring cells, use **`cellspacing`**.
-
 ### Answer
 
 #### Core Table Attributes & Descriptions:
