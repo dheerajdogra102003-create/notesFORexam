@@ -641,36 +641,6 @@ When the user clicks anywhere on the image, the browser reads the surrounding an
 2. **E-Commerce Product Thumbnails**: Clicking a photo of a laptop opens its full specification page.
 3. **Buttons & Social Media Icons**: Clicking a graphic icon (like Facebook, GitHub, or a Download button) navigates to that external profile or triggers a download.
 
-### Diagram
-
-```text
-User clicks on graphic image
-       ↓
-Browser detects surrounding <a> tag
-       ↓
-Browser reads href="index.html"
-       ↓
-Home page opens
-```
-
-### Exam-Ready Answer
-> An **Image as a Hyperlink** is created by wrapping an `<img>` tag within an anchor `<a>` tag.
->
-> - **Working**: The image replaces plain text as the clickable trigger. Clicking the graphic causes the browser to follow the `href` URL.
-> - **Syntax**:
->   ```html
->   <a href="destination.html">
->     <img src="image.jpg" alt="Description" border="0">
->   </a>
->   ```
-> - **Practical Use**: Website header logos that return to the homepage, clickable product catalog thumbnails, and social media icon links. Always include `alt` for accessibility and `border="0"` to avoid unwanted border outlines in older browsers.
-
-### Quick Revision
-> **REMEMBER:**
-> • Wrap `<img src="...">` inside `<a href="...">...</a>` to make an image clickable.
-> • Set `border="0"` to prevent default outline boxes.
-> • Widely used for header logos and product thumbnails.
-
 ---
 
 ## Question 11: Evaluate the effectiveness of frames in webpage design. Justify whether frames should be used in modern web development with proper reasoning.
