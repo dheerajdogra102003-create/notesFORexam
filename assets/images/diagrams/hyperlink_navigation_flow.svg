@@ -20,7 +20,7 @@
     <rect x="12" y="12" width="60" height="22" rx="4" fill="#dbeafe" />
     <text x="42" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#1e40af" text-anchor="middle">Step 1</text>
     <text x="14" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0f172a">User Clicks Link</text>
-    <text x="14" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#2563eb">"Visit Exam Portal"</text>
+    <text x="14" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#dc2626">"Visit YouTube"</text>
     <text x="14" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">Inside &lt;a&gt; tag</text>
   </g>
 
@@ -33,7 +33,7 @@
     <rect x="12" y="12" width="60" height="22" rx="4" fill="#e0e7ff" />
     <text x="42" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#4338ca" text-anchor="middle">Step 2</text>
     <text x="14" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0f172a">Browser Reads href</text>
-    <text x="14" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#4f46e5">href="https://..."</text>
+    <text x="14" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#4f46e5">youtube.com</text>
     <text x="14" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">Sends HTTP Request</text>
   </g>
 
