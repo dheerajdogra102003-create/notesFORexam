@@ -456,6 +456,21 @@ Tables are useful for displaying:
 </table>
 ```
 
+**Output:**
+
+<table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse; text-align: center;">
+  <tr style="background-color: lightblue;">
+    <th colspan="2">Student Info</th>
+  </tr>
+  <tr>
+    <td rowspan="2" style="background-color: #f1f5f9; font-weight: bold;">MCA</td>
+    <td>Rahul</td>
+  </tr>
+  <tr>
+    <td>Aman</td>
+  </tr>
+</table>
+
 ---
 
 # PART B — LINKING, FRAMES, CSS AND JAVASCRIPT
@@ -487,28 +502,7 @@ When a user clicks the words **"Visit Examination Portal"**, the browser navigat
 
 ### Diagram
 
-```text
-User clicks link ("Visit Examination Portal")
-       ↓
-Browser reads href="https://www.example.com"
-       ↓
-Destination Web Server
-       ↓
-New page opens in browser
-```
-
-### Exam-Ready Answer
-> A **Hyperlink** in HTML is a clickable navigational element that connects one web resource to another (such as a different webpage, an image, a file, or a specific section of the same page).
->
-> - **Tag & Attribute**: It is created using the anchor tag `<a>` with the required `href` (Hypertext Reference) attribute.
-> - **Syntax**: `<a href="destination_url">Clickable Text</a>`
-> - **Example**: `<a href="notes.html">Open Lecture Notes</a>`
-
-### Quick Revision
-> **REMEMBER:**
-> • Hyperlinks are created using the `<a>` (anchor) tag.
-> • The `href` attribute specifies the destination URL.
-> • Content between `<a>` and `</a>` is the clickable label visible to the user.
+![How a Hyperlink Works: From Click to Page Load](assets/images/diagrams/hyperlink_navigation_flow.svg)
 
 ---
 

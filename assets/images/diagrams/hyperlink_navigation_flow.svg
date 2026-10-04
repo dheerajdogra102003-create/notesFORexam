@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 200" width="100%" height="100%">
+  <defs>
+    <!-- Arrowhead Marker -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3b82f6" />
+    </marker>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect x="0" y="0" width="880" height="200" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" />
+
+  <!-- Title -->
+  <text x="440" y="30" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="700" fill="#0f172a" text-anchor="middle">
+    How a Hyperlink Works: From Click to Page Load
+  </text>
+
+  <!-- ================= STEP 1: USER CLICKS LINK ================= -->
+  <g transform="translate(30, 52)">
+    <rect x="0" y="0" width="175" height="120" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <rect x="12" y="12" width="60" height="22" rx="4" fill="#dbeafe" />
+    <text x="42" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#1e40af" text-anchor="middle">Step 1</text>
+    <text x="14" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0f172a">User Clicks Link</text>
+    <text x="14" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#2563eb">"Visit Exam Portal"</text>
+    <text x="14" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">Inside &lt;a&gt; tag</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="210" y1="112" x2="240" y2="112" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arrow)" />
+
+  <!-- ================= STEP 2: BROWSER READS HREF ================= -->
+  <g transform="translate(245, 52)">
+    <rect x="0" y="0" width="180" height="120" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <rect x="12" y="12" width="60" height="22" rx="4" fill="#e0e7ff" />
+    <text x="42" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#4338ca" text-anchor="middle">Step 2</text>
+    <text x="14" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0f172a">Browser Reads href</text>
+    <text x="14" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#4f46e5">href="https://..."</text>
+    <text x="14" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">Sends HTTP Request</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <line x1="430" y1="112" x2="460" y2="112" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arrow)" />
+
+  <!-- ================= STEP 3: DESTINATION SERVER ================= -->
+  <g transform="translate(465, 52)">
+    <rect x="0" y="0" width="175" height="120" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <rect x="12" y="12" width="60" height="22" rx="4" fill="#fef3c7" />
+    <text x="42" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Step 3</text>
+    <text x="14" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0f172a">Web Server</text>
+    <text x="14" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#d97706">Locates Resource</text>
+    <text x="14" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">Returns HTML page</text>
+  </g>
+
+  <!-- Arrow 3 -> 4 -->
+  <line x1="645" y1="112" x2="675" y2="112" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arrow)" />
+
+  <!-- ================= STEP 4: NEW PAGE OPENS ================= -->
+  <g transform="translate(680, 52)">
+    <rect x="0" y="0" width="170" height="120" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <rect x="12" y="12" width="60" height="22" rx="4" fill="#dcfce7" />
+    <text x="42" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#15803d" text-anchor="middle">Step 4</text>
+    <text x="14" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0f172a">New Page Opens</text>
+    <text x="14" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#16a34a">Rendered in Window</text>
+    <text x="14" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">User views new site</text>
+  </g>
+</svg>

@@ -83,8 +83,8 @@ function enhanceCallouts(html) {
  * @returns {string}
  */
 function enhanceCodePreviewGrid(html) {
-  // Pattern 1: Strict <p><strong>Output:</strong></p> followed immediately by <ol>, <ul>, or <dl>
-  const blockRegex = /(<div class="code-wrapper">[\s\S]*?<\/div>)\s*<p>\s*(?:<strong>)?Output:?(?:<\/strong>)?\s*<\/p>\s*(<ol[\s\S]*?<\/ol>|<ul[\s\S]*?<\/ul>|<dl[\s\S]*?<\/dl>)/gi;
+  // Pattern 1: Strict <p><strong>Output:</strong></p> followed immediately by <ol>, <ul>, <dl>, or <table>
+  const blockRegex = /(<div class="code-wrapper">[\s\S]*?<\/div>)\s*<p>\s*(?:<strong>)?Output:?(?:<\/strong>)?\s*<\/p>\s*(<ol[\s\S]*?<\/ol>|<ul[\s\S]*?<\/ul>|<dl[\s\S]*?<\/dl>|<table[\s\S]*?<\/table>|<div class="table-wrapper">[\s\S]*?<\/div>)/gi;
 
   html = html.replace(blockRegex, (match, codeBlock, outputBlock) => {
     // Only apply if the code snippet is concise to avoid squishing large programs
