@@ -693,147 +693,71 @@ Frames were used in older HTML to divide a webpage into different sections. For 
 
 ## Question 12: Make use of Cascading Style Sheets (CSS) to design an HTML page containing headings, paragraphs, and lists with different styles.
 
-### What We Need to Do
-We need to create a complete HTML webpage that uses an embedded CSS stylesheet to apply distinct visual styles (colors, fonts, borders, backgrounds, and list markers) to:
-1. Headings (`<h1>`, `<h2>`)
-2. Paragraphs (`<p>`)
-3. Lists (Unordered `<ul>` and Ordered `<ol>`)
-
 ### Simple Concept
-HTML provides the bare skeleton (text, headings, bullet points). CSS adds the styling (colors, margins, padding, fonts, and borders) to turn raw text into an attractive presentation.
+Cascading Style Sheets (CSS) is used to style and format HTML elements. Embedded (Internal) CSS is written inside the `<style>` tag within the `<head>` section to define custom colors, alignment, and fonts for headings, paragraphs, and lists.
 
-### Complete Program
+### HTML and CSS Code
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Styled Examination Portal</title>
+    <title>CSS Example</title>
 
-  <!-- Embedded CSS Style Sheet -->
-  <style type="text/css">
-    /* 1. Global Page Body */
-    body {
-      background-color: #f1f5f9;
-      font-family: Arial, sans-serif;
-      margin: 25px;
-      line-height: 1.6;
-    }
+    <style>
+        h1 {
+            color: blue;
+            text-align: center;
+        }
 
-    /* 2. Styling Headings */
-    h1 {
-      color: #1e3a8a;
-      text-align: center;
-      border-bottom: 3px solid #3b82f6;
-      padding-bottom: 8px;
-    }
+        p {
+            color: green;
+            font-size: 18px;
+        }
 
-    h2 {
-      color: #0369a1;
-      background-color: #e0f2fe;
-      padding: 6px 12px;
-      border-radius: 4px;
-    }
-
-    /* 3. Styling Paragraphs */
-    p.intro-text {
-      color: #334155;
-      font-size: 16px;
-      background-color: #ffffff;
-      padding: 12px;
-      border-left: 4px solid #3b82f6;
-    }
-
-    /* 4. Styling Unordered List */
-    ul.topics-list {
-      list-style-type: square;
-      background-color: #ffffff;
-      padding: 15px 30px;
-      border-radius: 6px;
-    }
-
-    ul.topics-list li {
-      color: #0f172a;
-      margin-bottom: 6px;
-    }
-
-    /* 5. Styling Ordered List */
-    ol.steps-list {
-      list-style-type: decimal-leading-zero;
-      background-color: #fefce8;
-      padding: 15px 30px;
-      border-radius: 6px;
-    }
-
-    ol.steps-list li {
-      color: #854d0e;
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
-  </style>
-
+        ul {
+            color: red;
+        }
+    </style>
 </head>
+
 <body>
 
-  <!-- Heading 1 -->
-  <h1>Web Technology Examination Portal</h1>
+    <h1>My Web Page</h1>
 
-  <!-- Paragraph with class styling -->
-  <p class="intro-text">
-    Cascading Style Sheets (CSS) transforms plain HTML documents into attractive, 
-    user-friendly web pages by defining fonts, colors, spacing, and layouts.
-  </p>
+    <p>This is a paragraph styled using CSS.</p>
 
-  <!-- Heading 2 -->
-  <h2>Core Examination Topics</h2>
+    <h2>My Subjects</h2>
 
-  <!-- Unordered list with square markers -->
-  <ul class="topics-list">
-    <li>Internet Architecture & IP Addressing</li>
-    <li>HTML Tables and Hyperlinks</li>
-    <li>Embedded and External CSS</li>
-    <li>JavaScript Event Handling</li>
-  </ul>
-
-  <!-- Heading 2 -->
-  <h2>Preparation Steps</h2>
-
-  <!-- Ordered list with leading-zero numbers (01, 02) -->
-  <ol class="steps-list">
-    <li>Read through every question and simple explanation.</li>
-    <li>Practice drawing the diagrams by hand.</li>
-    <li>Write small HTML/CSS code samples on paper.</li>
-  </ol>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
 
 </body>
 </html>
 ```
 
-### Line-by-Line Explanation
-1. `h1 { color: #1e3a8a; border-bottom: 3px solid #3b82f6; ... }`: Colors the title deep blue, centers it, and draws an underline accent.
-2. `h2 { background-color: #e0f2fe; padding: 6px 12px; ... }`: Adds a light blue ribbon background behind all secondary headings.
-3. `p.intro-text`: Gives the paragraph a clean white card background with a blue left accent border.
-4. `ul.topics-list { list-style-type: square; ... }`: Customizes the unordered list to show square bullets instead of round circles.
-5. `ol.steps-list { list-style-type: decimal-leading-zero; ... }`: Formats the ordered numbers with two digits (`01.`, `02.`, `03.`).
+### Rendered Output
 
-### Expected Output
-- A centered dark blue title with an underline.
-- A styled introductory paragraph on a clean white card with an accent bar on the left.
-- Section headings on light-blue ribbon backgrounds.
-- An unordered list with clean square bullets.
-- An ordered list with bold `01.`, `02.`, `03.` numbering inside a soft yellow container.
+<div style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 20px; background-color: #ffffff; max-width: 500px; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); font-family: Arial, sans-serif;">
+  <h1 style="color: blue; text-align: center; margin: 0 0 16px 0; font-size: 26px;">My Web Page</h1>
+  <p style="color: green; font-size: 18px; margin: 0 0 16px 0;">This is a paragraph styled using CSS.</p>
+  <h2 style="color: #000000; margin: 0 0 10px 0; font-size: 20px;">My Subjects</h2>
+  <ul style="color: red; margin: 0; padding-left: 24px; font-size: 16px; line-height: 1.6;">
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ul>
+</div>
 
-### Exam-Ready Explanation
-> CSS separates presentation from structure:
-> - **Headings** are styled using properties like `color`, `text-align`, `font-size`, and `border-bottom`.
-> - **Paragraphs** are formatted with `line-height`, `padding`, `background-color`, and `font-size` for readability.
-> - **Lists** are styled using `list-style-type` (such as `square`, `circle`, `decimal-leading-zero`) along with padding and background colors.
-
-### Quick Revision
-> **REMEMBER:**
-> • CSS styles are declared using `selector { property: value; }`.
-> • `list-style-type` changes bullet styles (`square`, `decimal-leading-zero`).
-> • Embedded CSS is placed inside `<style>` tags within the `<head>` section.
+### Code Explanation
+- **`h1 { color: blue; text-align: center; }`**: The main heading text turns **blue** and aligns in the **center** of the screen.
+- **`p { color: green; font-size: 18px; }`**: The paragraph text turns **green** with a larger **18px** font size.
+- **`ul { color: red; }`**: The bulleted list and its list items (`<li>`) turn **red**.
+- **`<h2>`**: Renders with the browser's default heading style because no custom CSS was targeted at `h2`.
+- **`<style>` Tag**: Embedded directly inside the `<head>` section, demonstrating internal stylesheet usage.
 
 ---
 
