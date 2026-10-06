@@ -81,7 +81,6 @@ So, the algorithm has **linear time complexity**.
 | **$O$ (Big-O)** | Upper bound / worst-case growth | $O(n^2)$ |
 | **$\Omega$ (Omega)** | Lower bound / best-case growth | $\Omega(n)$ |
 | **$\Theta$ (Theta)** | Tight bound / exact growth order | $\Theta(n)$ |
-
 ---
 
 ## Question 5: Analyze the time complexity of a non-recursive algorithm.
