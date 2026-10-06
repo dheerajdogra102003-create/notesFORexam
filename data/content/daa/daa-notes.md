@@ -1,210 +1,1565 @@
-# DESIGN AND ANALYSIS OF ALGORITHMS — EXAM PREPARATION NOTES
-
-# UNIT 1 — ASYMPTOTIC ANALYSIS & DIVIDE-AND-CONQUER
+﻿# DESIGN AND ANALYSIS OF ALGORITHMS — EXAM PREPARATION NOTES
 
 ---
 
-## Question 1: Explain Asymptotic Notations (Big-O, Big-Omega, Big-Theta) with mathematical definitions and graphical interpretations.
-
-### Answer
-**Asymptotic notations** are mathematical tools used to describe and compare the running time or space complexity of an algorithm as the input size $n$ approaches infinity ($n \to \infty$).
-
-#### 1. Big-O Notation ($O$ - Upper Bound)
-- **Concept**: Represents the **worst-case scenario** (or upper limit) of algorithm growth. It guarantees that the algorithm will never take more time than this bound.
-- **Mathematical Definition**:
-  $$f(n) = O(g(n)) \iff \text{there exist constants } c > 0 \text{ and } n_0 \ge 1 \text{ such that } 0 \le f(n) \le c \cdot g(n) \text{ for all } n \ge n_0$$
-- **Example**: Linear search takes at most $O(n)$ comparisons when searching an array of $n$ elements.
-
-#### 2. Big-Omega Notation ($\Omega$ - Lower Bound)
-- **Concept**: Represents the **best-case scenario** (or minimum time required). It guarantees that the algorithm will take at least this much time for large $n$.
-- **Mathematical Definition**:
-  $$f(n) = \Omega(g(n)) \iff \text{there exist constants } c > 0 \text{ and } n_0 \ge 1 \text{ such that } 0 \le c \cdot g(n) \le f(n) \text{ for all } n \ge n_0$$
-- **Example**: Finding an item in an unsorted array takes $\Omega(1)$ time if the target is at the very first index.
-
-#### 3. Big-Theta Notation ($\Theta$ - Tight Bound)
-- **Concept**: Represents an **exact or tight bound** where an algorithm's performance is enclosed between lower and upper limits.
-- **Mathematical Definition**:
-  $$f(n) = \Theta(g(n)) \iff \text{there exist constants } c_1, c_2 > 0 \text{ and } n_0 \ge 1 \text{ such that } c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n) \text{ for all } n \ge n_0$$
-- **Rule**: $f(n) = \Theta(g(n))$ holds if and only if $f(n) = O(g(n))$ AND $f(n) = \Omega(g(n))$.
-
-| Notation | Growth Bound | Practical Meaning | Real-world Analogy |
-| :--- | :--- | :--- | :--- |
-| **Big-O ($O$)** | Upper Bound | Worst-case ceiling | Trip takes *at most* 4 hours |
-| **Big-Omega ($\Omega$)** | Lower Bound | Best-case floor | Trip takes *at least* 1 hour |
-| **Big-Theta ($\Theta$)** | Tight Bound | Exact behavior | Trip takes *consistently* 2.5 hours |
+# PART A — THEORY
 
 ---
 
-## Question 2: Explain the Divide-and-Conquer paradigm with Merge Sort. State its recurrence relation and analyze its time complexity.
+# SECTION 1: ALGORITHM ANALYSIS & COMPLEXITY
+
+---
+
+## Question 1: What are the parameters used to measure the efficiency of an algorithm?
 
 ### Answer
 
-#### 1. Divide-and-Conquer Paradigm
-The divide-and-conquer strategy solves a problem by breaking it into three distinct steps:
-1. **Divide**: Break the primary problem of size $n$ into smaller, independent subproblems of the same type.
-2. **Conquer**: Recursively solve the subproblems. If the subproblem is small enough (base condition), solve it directly.
-3. **Combine**: Merge the solutions of the subproblems into the solution for the original problem.
+Two fundamental parameters measure algorithmic efficiency:
 
-#### 2. Merge Sort Algorithm
-Merge Sort splits an unsorted array of size $n$ into two halves of size $n/2$, recursively sorts each half, and merges the two sorted halves into a single sorted list.
+#### 1. Time Complexity
+The number of basic computational operations an algorithm performs as a function of input size $n$.
+
+#### 2. Space Complexity
+The total memory space required as a function of input size $n$:
+- **Fixed part**: Code, constants, simple variables (independent of $n$).
+- **Variable part**: Recursion stack, dynamic data structures (depends on $n$).
+
+| Parameter | Description |
+| :--- | :--- |
+| **Time Complexity** | Count of basic operations as $f(n)$ |
+| **Space Complexity** | Memory consumed as $f(n)$ |
+| **Correctness** | Produces right output for all valid inputs |
+| **Optimality** | Achieves the theoretically best bound |
+| **Simplicity** | Ease of implementation and verification |
+| **Generality** | Breadth of problem instances it handles |
+
+---
+
+## Question 2: Describe asymptotic analysis and explain the significance of asymptotic notations.
+
+### Answer
+
+Asymptotic analysis evaluates algorithm performance as $n \to \infty$, describing **growth rate** of running time.
+
+**1. Big-O** $O$ — Upper Bound: $f(n) = O(g(n)) \iff \exists\; c>0, n_0\ge 1: f(n) \le c\cdot g(n)\; \forall n\ge n_0$
+
+**2. Big-Omega** $\Omega$ — Lower Bound: $f(n) = \Omega(g(n)) \iff \exists\; c>0, n_0\ge 1: c\cdot g(n) \le f(n)\; \forall n\ge n_0$
+
+**3. Big-Theta** $\Theta$ — Tight Bound: $f(n) = \Theta(g(n)) \iff f(n) = O(g(n))$ AND $f(n) = \Omega(g(n))$
+
+| Significance | Explanation |
+| :--- | :--- |
+| **Machine Independence** | No CPU speed reference needed |
+| **Algorithm Comparison** | $O(\log n)\ll O(n)\ll O(n\log n)\ll O(n^2)\ll O(2^n)$ |
+| **Worst-Case Guarantee** | Big-O gives reliability ceiling |
+| **Problem Solvability** | Identifies intractable problems early |
+
+---
+
+## Question 3: Apply asymptotic analysis to determine time complexity under different input conditions.
+
+### Answer
+
+#### Linear Search Example
 
 ```python
-def merge_sort(arr):
-    if len(arr) <= 1:
-        return arr
-    
-    mid = len(arr) // 2
-    left_half = merge_sort(arr[:mid])
-    right_half = merge_sort(arr[mid:])
-    
-    return merge(left_half, right_half)
-
-def merge(left, right):
-    result = []
-    i = j = 0
-    while i < len(left) and j < len(right):
-        if left[i] <= right[j]:
-            result.append(left[i])
-            i += 1
-        else:
-            result.append(right[j])
-            j += 1
-    result.extend(left[i:])
-    result.extend(right[j:])
-    return result
+def linear_search(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target: return i
+    return -1
 ```
 
-#### 3. Recurrence Relation & Complexity Analysis
-- **Divide step**: Computing the middle element takes $O(1)$ time.
-- **Conquer step**: Solving two subproblems of size $n/2$ takes $2 \cdot T(n/2)$.
-- **Combine (Merge) step**: Merging $n$ elements takes linear time $\Theta(n)$.
-
-**Recurrence Relation**:
-$$T(n) = 2T(n/2) + \Theta(n), \quad \text{for } n > 1$$
-$$T(1) = \Theta(1)$$
-
-**Solving using Master Theorem ($T(n) = aT(n/b) + f(n)$)**:
-- Here $a = 2$, $b = 2$, $f(n) = \Theta(n) = \Theta(n^{\log_b a}) = \Theta(n^{\log_2 2}) = \Theta(n^1)$.
-- By Case 2 of the Master Theorem:
-  $$T(n) = \Theta(n^{\log_b a} \log n) = \Theta(n \log n)$$
-
-- **Worst Case Time**: $O(n \log n)$
-- **Best Case Time**: $\Omega(n \log n)$
-- **Average Case Time**: $\Theta(n \log n)$
-- **Auxiliary Space Complexity**: $O(n)$ for auxiliary buffers during the merge phase.
-
----
-
-# UNIT 2 — GREEDY & DYNAMIC PROGRAMMING
-
----
-
-## Question 3: Compare Greedy Algorithms with Dynamic Programming. Solve the 0/1 Knapsack problem using Dynamic Programming.
-
-### Answer
-
-#### 1. Comparison: Greedy vs Dynamic Programming
-
-| Characteristic | Greedy Approach | Dynamic Programming (DP) |
+| Condition | Operations | Complexity |
 | :--- | :--- | :--- |
-| **Decision Rule** | Makes the locally optimal choice at each step without reconsidering. | Explores all possible choices and builds solutions from subproblems. |
-| **Subproblem Overlap**| Does not require overlapping subproblems. | Requires overlapping subproblems and optimal substructure. |
-| **Backtracking** | Never backtracks or reconsiders previous choices. | Re-uses memoized answers to guarantee global optimum. |
-| **Knapsack Problem**| Solves **Fractional Knapsack** optimally ($O(n \log n)$). | Required for **0/1 Knapsack** ($O(n \cdot W)$ pseudo-polynomial). |
-| **Guarantee** | Does not always guarantee the optimal solution for every problem. | Guarantees the globally optimal solution when preconditions are met. |
+| **Best Case** | 1 comparison (target at idx 0) | $\Omega(1)$ |
+| **Average Case** | $n/2$ comparisons | $\Theta(n)$ |
+| **Worst Case** | $n$ comparisons (absent/last) | $O(n)$ |
 
-#### 2. 0/1 Knapsack Problem Formulation
-Given $n$ items, each with weight $w_i$ and value $v_i$, and a knapsack of capacity $W$, determine the maximum value that can be put in the knapsack without exceeding capacity $W$. Each item can either be taken completely ($1$) or left behind ($0$).
-
-**Recurrence Relation**:
-Let $DP[i][w]$ be the maximum value obtained using a subset of the first $i$ items with capacity $w$:
-$$DP[i][w] = \begin{cases} 
-0 & \text{if } i = 0 \text{ or } w = 0 \\
-DP[i-1][w] & \text{if } w_i > w \\
-\max(DP[i-1][w], \, v_i + DP[i-1][w - w_i]) & \text{if } w_i \le w 
-\end{cases}$$
-
-#### 3. Tabulation Implementation
-
-```python
-def knapsack_01(weights, values, W):
-    n = len(values)
-    # Initialize DP table of size (n + 1) x (W + 1)
-    dp = [[0] * (W + 1) for _ in range(n + 1)]
-    
-    for i in range(1, n + 1):
-        w_curr = weights[i - 1]
-        v_curr = values[i - 1]
-        for w in range(W + 1):
-            if w_curr > w:
-                dp[i][w] = dp[i - 1][w]
-            else:
-                dp[i][w] = max(dp[i - 1][w], v_curr + dp[i - 1][w - w_curr])
-                
-    return dp[n][W]
-
-# Example Usage:
-weights = [2, 3, 4, 5]
-values = [3, 4, 5, 6]
-capacity = 5
-print("Maximum Value:", knapsack_01(weights, values, capacity))  # Output: 7 (items 1 & 2)
-```
-
-- **Time Complexity**: $O(n \cdot W)$ where $n$ is the number of items and $W$ is the maximum knapsack capacity.
-- **Space Complexity**: $O(n \cdot W)$ with 2D array, or $O(W)$ when optimized with a 1D state array.
+**Nested loop example** (Matrix Multiply): 3 nested loops of $n$ → $T(n) = O(n^3)$ for all cases.
 
 ---
 
-# UNIT 3 — GRAPH ALGORITHMS
-
----
-
-## Question 4: Explain Dijkstra's Single Source Shortest Path Algorithm with step-by-step procedure and complexity analysis.
+## Question 4: Evaluate the suitability of an asymptotic bound for a problem.
 
 ### Answer
 
-#### 1. Overview & Constraints
-**Dijkstra's Algorithm** finds the shortest path from a single source vertex $S$ to all other vertices in a directed or undirected graph with **non-negative edge weights**.
-> **Important Limitation**: Dijkstra's algorithm fails if the graph contains negative edge weights (Bellman-Ford algorithm must be used instead).
+A bound is **suitable** if it is tight and practically meaningful.
 
-#### 2. Step-by-Step Procedure
-1. Initialize distance array `dist[u] = ∞` for all vertices $u \in V$.
-2. Set source distance `dist[S] = 0`.
-3. Insert all vertices into a Priority Queue (Min-Heap) keyed by distance.
-4. While the Min-Heap is not empty:
-   - Extract vertex $u$ with the minimum distance.
-   - For each adjacent neighbor $v$ connected by edge weight $w(u, v)$:
-     - **Relaxation Step**: If `dist[u] + w(u, v) < dist[v]`:
-       - Update `dist[v] = dist[u] + w(u, v)`.
-       - Update $v$'s key in the Min-Heap.
-       - Set `parent[v] = u` for path reconstruction.
+- Bubble Sort as $O(n^3)$: technically correct but **NOT suitable** (too loose). $O(n^2)$ is suitable.
+- Merge Sort as $O(n \log n)$: **Suitable** — tight and matches all cases.
+- Insertion Sort on sorted data: $O(n^2)$ is **NOT suitable** (best case is $O(n)$).
+
+| Use Case | Suitable Bound | Reason |
+| :--- | :--- | :--- |
+| Real-time system | $O$ (worst-case) | Must guarantee deadline |
+| General comparison | $\Theta$ (tight) | Most accurate |
+| Proving optimality | $\Omega$ (lower bound) | Shows no faster algorithm exists |
+
+---
+
+## Question 5: Analyze the time complexity of a non-recursive algorithm.
+
+### Answer
+
+#### Selection Sort Step-Count Analysis
+
+Inner loop executes: $(n-1)+(n-2)+\cdots+1 = n(n-1)/2$
+
+Drop constants: $T(n) = \Theta(n^2)$ — same for best, average, and worst case.
+
+---
+
+## Question 6: Explain the difference between polynomial and exponential running time.
+
+### Answer
+
+| Parameter | Polynomial $O(n^k)$ | Exponential $O(c^n)$ |
+| :--- | :--- | :--- |
+| Growth | Manageable | Explosive |
+| Tractability | Feasible | Infeasible for large $n$ |
+| Problem Class | P | Often NP-Hard |
+
+| $n$ | $n^2$ | $2^n$ | $n!$ |
+| :--- | :--- | :--- | :--- |
+| 10 | 100 | 1,024 | 3.6M |
+| 20 | 400 | 1M | $2.4\times10^{18}$ |
+| 50 | 2,500 | $10^{15}$ | astronomical |
+
+---
+
+# SECTION 2: DETERMINISTIC ALGORITHMS
+
+---
+
+## Question 7: Write the concept of deterministic algorithms and mention their applications.
+
+### Answer
+
+A **deterministic algorithm** always produces the **same output** for a given input following a **fixed, predictable path** with no randomness.
+
+| Property | Description |
+| :--- | :--- |
+| Predictability | Same output for same input always |
+| No Randomness | No RNGs used |
+| Reproducibility | Exactly traceable and debuggable |
+
+| Application | Algorithm | Domain |
+| :--- | :--- | :--- |
+| Sorting | Merge Sort, Heap Sort | Data processing |
+| Shortest path | Dijkstra's | GPS Navigation |
+| Searching | Binary Search | Database indexing |
+| Encryption | AES, RSA | Cybersecurity |
+| Network routing | Bellman-Ford | Telecommunications |
+
+---
+
+# SECTION 3: RECURSION
+
+---
+
+## Question 8: Interpret the working of recursion in problem-solving.
+
+### Answer
+
+A function calls itself with a **smaller version** of the same problem until a **base case** is reached.
 
 ```python
-import heapq
-
-def dijkstra(graph, source):
-    # graph: dict mapping u -> list of (v, weight)
-    distances = {node: float('inf') for node in graph}
-    distances[source] = 0
-    pq = [(0, source)]  # (dist, node)
-    
-    while pq:
-        curr_dist, u = heapq.heappop(pq)
-        
-        if curr_dist > distances[u]:
-            continue
-            
-        for neighbor, weight in graph[u]:
-            distance = curr_dist + weight
-            if distance < distances[neighbor]:
-                distances[neighbor] = distance
-                heapq.heappush(pq, (distance, neighbor))
-                
-    return distances
+def factorial(n):
+    if n == 0: return 1           # Base case
+    return n * factorial(n - 1)  # Recursive call
 ```
 
-#### 3. Time Complexity
-- **Using an Adjacency Matrix and Array**: $O(V^2)$
-- **Using an Adjacency List and Binary Min-Heap**: $O((V + E) \log V)$
-- **Using a Fibonacci Heap**: $O(E + V \log V)$ (theoretically optimal for dense graphs)
-- **Space Complexity**: $O(V)$ for distance tracking and priority queue.
+Call stack for `factorial(4)`: 4×3×2×1×1 = 24
+
+| Step | Action |
+| :--- | :--- |
+| Divide | Break into smaller same-type subproblem |
+| Base Case | Stop when trivially small |
+| Combine | Build solution from subproblem results |
+
+---
+
+## Question 9: Explain the difference between recursive and non-recursive algorithms.
+
+### Answer
+
+| Parameter | Recursive | Iterative |
+| :--- | :--- | :--- |
+| Memory | Call stack; overflow risk | No overflow; loop variable |
+| Speed | Slower (call overhead) | Faster |
+| Space | $O(n)$ stack | $O(1)$ for loops |
+| Best For | Tree traversals, D&C | Sorting, searching |
+
+```python
+def fib_r(n): return n if n<=1 else fib_r(n-1)+fib_r(n-2)  # O(2^n)
+def fib_i(n):                                                 # O(n)
+    a,b=0,1
+    for _ in range(n): a,b=b,a+b
+    return a
+```
+
+---
+
+# SECTION 4: DIVIDE-AND-CONQUER
+
+---
+
+## Question 10: Explain the divide-and-conquer strategy used in solving problems.
+
+### Answer
+
+1. **DIVIDE**: Split problem of size $n$ into $a$ subproblems of size $n/b$.
+2. **CONQUER**: Recursively solve each subproblem.
+3. **COMBINE**: Merge sub-solutions into the final solution.
+
+**Recurrence**: $T(n)=a\cdot T(n/b)+f(n)$
+
+**Master Theorem**:
+- Case 1: $f(n)=O(n^{\log_b a-\epsilon})$ → $T(n)=\Theta(n^{\log_b a})$
+- Case 2: $f(n)=\Theta(n^{\log_b a})$ → $T(n)=\Theta(n^{\log_b a}\log n)$
+- Case 3: $f(n)=\Omega(n^{\log_b a+\epsilon})$ → $T(n)=\Theta(f(n))$
+
+| Algorithm | Divide | Combine | Complexity |
+| :--- | :--- | :--- | :--- |
+| Merge Sort | Split in half | Merge sorted halves | $\Theta(n\log n)$ |
+| Quick Sort | Partition by pivot | Nothing (in-place) | $O(n\log n)$ avg |
+| Binary Search | Compare with middle | Nothing | $O(\log n)$ |
+
+---
+
+## Question 11: Describe the steps of divide-and-conquer in Merge Sort.
+
+### Answer
+
+**DIVIDE**: Find $mid=\lfloor(l+r)/2\rfloor$. Split into `arr[l..mid]` and `arr[mid+1..r]`.
+
+**CONQUER**: Recursively sort each half (base: size 1 already sorted).
+
+**COMBINE**: Merge two sorted halves.
+
+**Example `[38,27,43,3]`**:
+```
+DIVIDE:  [38,27,43,3] → [38,27][43,3] → [38][27][43][3]
+COMBINE: [27,38] [3,43] → [3,27,38,43] ✓
+```
+
+**Recurrence**: $T(n)=2T(n/2)+\Theta(n)=\Theta(n\log n)$
+
+---
+
+## Question 12: Judge the effectiveness of divide-and-conquer for large inputs.
+
+### Answer
+
+| Reason | Explanation |
+| :--- | :--- |
+| Sub-linear depth | Recursion tree depth $=\log n$ |
+| Parallelizability | Independent subproblems on multiple cores |
+| Optimal bounds | $\Theta(n\log n)$ — proven optimal for comparison sorting |
+
+At $n=10^6$: Bubble Sort needs $10^{12}$ ops; Merge Sort needs $\approx2\times10^7$ ops.
+
+---
+
+# SECTION 5: GREEDY ALGORITHM
+
+---
+
+## Question 13: Define the basic principle of the greedy algorithm and mention its main features.
+
+### Answer
+
+Makes the **locally optimal choice** at each step, hoping it leads to a **globally optimal solution**.
+
+**Required properties**: Greedy Choice Property + Optimal Substructure.
+
+| Feature | Description |
+| :--- | :--- |
+| No Backtracking | Choices never reconsidered |
+| Local Optimality | Best currently available option |
+| Efficiency | Generally $O(n\log n)$ or better |
+
+| Problem | Optimal? |
+| :--- | :--- |
+| Activity Selection | ✅ Yes |
+| Fractional Knapsack | ✅ Yes |
+| Huffman Coding | ✅ Yes |
+| 0/1 Knapsack | ❌ No |
+| TSP (nearest neighbor) | ❌ No |
+
+---
+
+## Question 14: Construct a solution using the greedy strategy for a suitable problem.
+
+### Answer
+
+#### Activity Selection (Greedy: Earliest Finish Time)
+
+Activities sorted by finish: A1(1,4), A2(3,5), A3(0,6), A4(5,7), A5(8,11)
+
+- Select A1 (finish=4)
+- Skip A2 (start=3<4), Skip A3 (start=0<4)
+- Select A4 (start=5≥4, finish=7)
+- Select A5 (start=8≥7) ✓
+
+**Result**: {A1,A4,A5} — 3 activities (maximum) | **Time**: $O(n\log n)$
+
+---
+
+## Question 15: Apply the greedy approach to obtain a feasible solution for an optimization problem.
+
+### Answer
+
+#### Fractional Knapsack (Greedy: Highest $v/w$ ratio)
+
+| Item | Weight | Value | Ratio |
+| :--- | :--- | :--- | :--- |
+| 1 | 10 | 60 | 6.0 |
+| 2 | 20 | 100 | 5.0 |
+| 3 | 30 | 120 | 4.0 |
+
+**Capacity=50**: Take all Item1($60)+all Item2($100)+2/3 Item3($80) = **$240** ✓ (Optimal)
+
+---
+
+## Question 16: Explain the use of the greedy approach for solving TSP.
+
+### Answer
+
+TSP is NP-Hard. **Greedy Nearest Neighbour**: always move to nearest unvisited city.
+
+**Example (A–E)**: A→B(10)→D(25)→E(15)→C(20)→A(15) = **Total=85**
+
+**Limitations**: Not optimal, order-dependent, Time=$O(n^2)$.
+
+---
+
+# SECTION 6: DYNAMIC PROGRAMMING
+
+---
+
+## Question 17: Explain overlapping subproblems in Dynamic Programming.
+
+### Answer
+
+Same subproblem solved **multiple times** in naive recursion. DP stores results to avoid redundant work.
+
+**Fibonacci**: `fib(3)` computed 2×, `fib(2)` computed 3× in naive recursion → $O(2^n)$.
+
+**With Memoization** ($O(n)$):
+```python
+memo = {}
+def fib_dp(n):
+    if n in memo: return memo[n]
+    if n<=1: return n
+    memo[n]=fib_dp(n-1)+fib_dp(n-2)
+    return memo[n]
+```
+
+**Techniques**: Memoization (top-down) or Tabulation (bottom-up).
+
+**Conditions**: Overlapping subproblems + Optimal substructure.
+
+---
+
+## Question 18: Explain the use of Dynamic Programming for solving TSP.
+
+### Answer
+
+#### Held-Karp DP Algorithm
+
+$dp[S][i]$ = min cost starting at 0, visiting cities in subset $S$, ending at $i$.
+
+**Base**: $dp[\{0\}][0]=0$
+
+**Recurrence**: $dp[S][i]=\min_{j\in S,j\ne i}(dp[S\setminus\{i\}][j]+d(j,i))$
+
+**Answer**: $\min_{i\ne0}(dp[V][i]+d(i,0))$
+
+| Metric | Value |
+| :--- | :--- |
+| Time | $O(n^2\cdot 2^n)$ |
+| Space | $O(n\cdot 2^n)$ |
+
+Far better than brute-force $O(n!)$.
+
+---
+
+## Question 19: Compare Dynamic Programming with other approaches.
+
+### Answer
+
+| Parameter | Brute Force | Greedy | D&C | DP |
+| :--- | :--- | :--- | :--- | :--- |
+| Optimality | Always | Not always | Varies | Always (if conditions met) |
+| Time | $O(n!)$ | $O(n\log n)$ | $O(n\log n)$ | Better than brute |
+| Examples | TSP brute | Fractional Knapsack | Merge Sort | 0/1 Knapsack |
+
+---
+
+# SECTION 7: BACKTRACKING
+
+---
+
+## Question 20: Explain backtracking for the Subset-Sum Problem.
+
+### Answer
+
+**Backtracking**: Incrementally build candidates; prune as soon as constraint violated.
+
+**Example**: $S=\{3,1,4,2\}$, $T=5$
+
+```python
+def subset_sum(S,T,current=[],start=0,curr_sum=0):
+    if curr_sum==T: print(current); return
+    if curr_sum>T or start>=len(S): return  # PRUNE
+    for i in range(start,len(S)):
+        current.append(S[i])
+        subset_sum(S,T,current,i+1,curr_sum+S[i])
+        current.pop()  # BACKTRACK
+```
+
+**Solutions**: {3,2} and {1,4} | **Time**: $O(2^n)$ worst case.
+
+---
+
+## Question 21: Differentiate Backtracking and Branch-and-Bound.
+
+### Answer
+
+| Parameter | Backtracking | Branch-and-Bound |
+| :--- | :--- | :--- |
+| Goal | Find all feasible solutions | Find optimal solution |
+| Pruning | Feasibility check | Bounding function (cost bound) |
+| Search | DFS | BFS/DFS/Best-First |
+| Application | N-Queens, Subset-Sum | TSP, Assignment, Knapsack |
+
+---
+
+## Question 22: Explain backtracking for N-Queens and Hamiltonian Circuit.
+
+### Answer
+
+#### N-Queens
+```python
+def is_safe(board,row,col,N):
+    for i in range(row):
+        if board[i]==col or abs(board[i]-col)==abs(i-row): return False
+    return True
+def solve(board,row,N):
+    if row==N: print(board); return
+    for col in range(N):
+        if is_safe(board,row,col,N):
+            board[row]=col; solve(board,row+1,N); board[row]=-1
+```
+
+#### Hamiltonian Circuit
+```python
+def hamiltonian(graph,path,n):
+    if len(path)==n: return graph[path[-1]][path[0]]==1
+    for v in range(n):
+        if graph[path[-1]][v]==1 and v not in path:
+            path.append(v)
+            if hamiltonian(graph,path,n): return True
+            path.pop()  # BACKTRACK
+    return False
+```
+
+---
+
+# SECTION 8: BRANCH-AND-BOUND
+
+---
+
+## Question 23: Differentiate Backtracking and Branch-and-Bound.
+
+### Answer
+
+*(Refer to Question 21)* Additional: Backtracking is a special case of B&B with no bounding function. B&B is superior for optimization problems.
+
+---
+
+## Question 24: Explain Branch-and-Bound for the Assignment Problem.
+
+### Answer
+
+**Problem**: Assign $n$ workers to $n$ jobs minimizing total cost.
+
+**Lower Bound**: Subtract row minimums. Example: row mins 2,3,1,4 → LB=10.
+
+**Branch**: Try each job for Worker1. At each node compute new LB. Prune if LB ≥ best known. Continue until optimal assignment found.
+
+---
+
+## Question 25: Explain Branch-and-Bound for the Knapsack Problem.
+
+### Answer
+
+**Strategy**:
+1. Sort items by $v/w$ descending.
+2. At each node: Upper Bound = current value + fractional knapsack on remaining items.
+3. Prune if UB ≤ best known value.
+4. Branch: include item (if fits) OR exclude item.
+5. Update best at feasible leaves.
+
+---
+
+# SECTION 9: RANDOMIZATION
+
+---
+
+## Question 26: Define randomization in algorithm design.
+
+### Answer
+
+**Randomization** uses **random numbers** within an algorithm to improve expected performance or avoid worst-case inputs.
+
+| Type | Guarantee | Example |
+| :--- | :--- | :--- |
+| Las Vegas | Always correct; runtime random | Randomized QuickSort |
+| Monte Carlo | Fixed time; may have small error | Miller-Rabin primality |
+
+---
+
+## Question 27: Explain randomized algorithms and their applications.
+
+### Answer
+
+**Randomized QuickSort**: Random pivot avoids $O(n^2)$ worst case → Expected $O(n\log n)$.
+
+| Application | Algorithm | Benefit |
+| :--- | :--- | :--- |
+| Sorting | Randomized QuickSort | Avoids worst case |
+| Primality | Miller-Rabin | Fast probabilistic |
+| Hashing | Universal Hashing | Minimizes collisions |
+| Graph | Karger's Min-Cut | Simple minimum cut |
+| AI | Monte Carlo Tree Search | Chess, Go |
+
+---
+
+# SECTION 10: OPTIMIZATION PROBLEMS
+
+---
+
+## Question 28: Summarize the Assignment Problem and the Knapsack Problem.
+
+### Answer
+
+**Assignment Problem**: Assign $n$ workers to $n$ jobs to minimize cost. Optimal: Hungarian Algorithm $O(n^3)$.
+
+| Aspect | 0/1 Knapsack | Fractional Knapsack |
+| :--- | :--- | :--- |
+| Items | Whole or nothing | Fractions allowed |
+| Approach | DP $O(nW)$ | Greedy $O(n\log n)$ |
+| Greedy Optimal | ❌ | ✅ |
+
+$DP[i][w]=\max(DP[i-1][w],\;v_i+DP[i-1][w-w_i])$ if $w_i\le w$
+
+---
+
+## Question 29: Explain TSP and different approaches for solving it.
+
+### Answer
+
+**TSP**: Shortest Hamiltonian cycle visiting all $n$ cities. **Class**: NP-Hard.
+
+| Approach | Time | Quality |
+| :--- | :--- | :--- |
+| Brute Force | $O(n!)$ | Exact |
+| DP (Held-Karp) | $O(n^2\cdot2^n)$ | Exact |
+| Greedy (Nearest) | $O(n^2)$ | Approximate |
+| B&B | Varies | Exact |
+| Christofides | $O(n^3)$ | 1.5× optimal |
+
+
+---
+
+# PART B — SORTING
+
+---
+
+# SECTION 11: INSERTION SORT
+
+---
+
+## Question 30: Define the Insertion Sort algorithm.
+
+### Answer
+
+**Insertion Sort** builds the sorted array **one element at a time** by inserting each element into its correct position among already-sorted elements. **Analogy**: Sorting a hand of playing cards.
+
+| Case | Time | Space | Stable |
+| :--- | :--- | :--- | :--- |
+| Best (sorted) | $O(n)$ | $O(1)$ | ✅ |
+| Average | $O(n^2)$ | $O(1)$ | ✅ |
+| Worst (reverse) | $O(n^2)$ | $O(1)$ | ✅ |
+
+---
+
+## Question 31: Explain the working of Insertion Sort with a suitable example.
+
+### Answer
+
+```python
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j+1] = arr[j]  # Shift right
+            j -= 1
+        arr[j+1] = key         # Insert key
+```
+
+#### Example: `[12, 11, 13, 5, 6]`
+
+| Pass | Key | Array State |
+| :--- | :--- | :--- |
+| Initial | — | `[12, 11, 13, 5, 6]` |
+| Pass 1 | 11 | `[11, 12, 13, 5, 6]` |
+| Pass 2 | 13 | `[11, 12, 13, 5, 6]` (no shift) |
+| Pass 3 | 5 | `[5, 11, 12, 13, 6]` |
+| Pass 4 | 6 | `[5, 6, 11, 12, 13]` ✓ |
+
+---
+
+# SECTION 12: SELECTION SORT
+
+---
+
+## Question 32: Explain the working of Selection Sort with a suitable example.
+
+### Answer
+
+**Selection Sort** repeatedly finds the **minimum** from the unsorted portion and places it at the beginning.
+
+```python
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n-1):
+        min_idx = i
+        for j in range(i+1, n):
+            if arr[j] < arr[min_idx]: min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+```
+
+#### Example: `[64, 25, 12, 22, 11]`
+
+| Pass | Min | Array After |
+| :--- | :--- | :--- |
+| 1 | 11 (idx 4) | `[11, 25, 12, 22, 64]` |
+| 2 | 12 (idx 2) | `[11, 12, 25, 22, 64]` |
+| 3 | 22 (idx 3) | `[11, 12, 22, 25, 64]` |
+| 4 | 25 (idx 3) | `[11, 12, 22, 25, 64]` ✓ |
+
+**Total comparisons**: $n(n-1)/2=10$ (same regardless of input) | **Time**: $O(n^2)$ | **Stable**: ❌
+
+---
+
+# SECTION 13: BUBBLE SORT
+
+---
+
+## Question 33: Arrange {25, 12, 9, 30, 18} using Bubble Sort. Illustrate each pass and calculate total comparisons.
+
+### Answer
+
+**Pass 1** (4 comparisons — largest element 30 bubbles to end):
+```
+[25,12,9,30,18]: 25>12→swap, 25>9→swap, 25<30→no, 30>18→swap
+→ [12, 9, 25, 18, 30]
+```
+
+**Pass 2** (3 comparisons):
+```
+[12,9,25,18,30]: 12>9→swap, 12<25→no, 25>18→swap
+→ [9, 12, 18, 25, 30]
+```
+
+**Pass 3** (2 comparisons — no swaps → early termination):
+```
+[9,12,18,25,30]: 9<12→no, 12<18→no
+→ [9, 12, 18, 25, 30] ✓
+```
+
+| Pass | Comparisons | Array After |
+| :--- | :--- | :--- |
+| 1 | 4 | `[12, 9, 25, 18, 30]` |
+| 2 | 3 | `[9, 12, 18, 25, 30]` |
+| 3 | 2 | `[9, 12, 18, 25, 30]` ✓ |
+
+**Total Comparisons = 9** | **Sorted**: `[9, 12, 18, 25, 30]` ✓
+
+---
+
+## Question 34: Explain the working of Bubble Sort with an example and analyze its running time.
+
+### Answer
+
+Bubble Sort **"bubbles up"** the largest unsorted element each pass via adjacent comparisons and swaps.
+
+```python
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n-1):
+        swapped = False
+        for j in range(n-1-i):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+                swapped = True
+        if not swapped: break  # Early termination
+```
+
+| Case | Complexity |
+| :--- | :--- |
+| Best (sorted, early stop) | $O(n)$ |
+| Average | $O(n^2)$ |
+| Worst (reverse sorted) | $O(n^2)$ |
+
+**Stable**: ✅ | **In-place**: ✅
+
+---
+
+# SECTION 14: MERGE SORT
+
+---
+
+## Question 35: Describe the divide-and-conquer strategy used in Merge Sort.
+
+### Answer
+
+| Phase | Action | Cost |
+| :--- | :--- | :--- |
+| **Divide** | Find midpoint, split into two halves | $O(1)$ |
+| **Conquer** | Recursively sort each half | $2T(n/2)$ |
+| **Combine** | Merge two sorted halves | $\Theta(n)$ |
+
+**Recurrence**: $T(n)=2T(n/2)+\Theta(n)\Rightarrow\Theta(n\log n)$
+
+Recursion tree: $\log_2 n$ levels, each costs $n$ → **Total $=n\log n$**
+
+---
+
+## Question 36: Explain the working of Merge Sort with a suitable example and analyze its complexity.
+
+### Answer
+
+#### Example: Sort `[38, 27, 43, 3, 9, 82, 10]`
+
+```
+DIVIDE: [38,27,43,3,9,82,10]→[38,27,43,3][9,82,10]→[38,27][43,3][9,82][10]→[38][27][43][3][9][82][10]
+
+MERGE:
+merge([38],[27])=[27,38]  merge([43],[3])=[3,43]  merge([9],[82])=[9,82]
+merge([27,38],[3,43])=[3,27,38,43]  merge([9,82],[10])=[9,10,82]
+merge([3,27,38,43],[9,10,82])=[3,9,10,27,38,43,82] ✓
+```
+
+| Metric | Value |
+| :--- | :--- |
+| Best/Avg/Worst | $\Theta(n\log n)$ |
+| Space | $O(n)$ auxiliary |
+| Stable | ✅ |
+| In-place | ❌ |
+
+---
+
+# SECTION 15: QUICK SORT
+
+---
+
+## Question 37: Solve Quick Sort for [38, 27, 43, 3, 9, 82, 10] step-by-step.
+
+### Answer
+
+**Pivot=10 (last element). Lomuto partition:**
+
+```
+i=-1, scan j=0..5:
+j=0:38>10→skip; j=1:27>10→skip; j=2:43>10→skip
+j=3: 3≤10→i=0,swap: [3,27,43,38,9,82,10]
+j=4: 9≤10→i=1,swap: [3,9,43,38,27,82,10]
+j=5:82>10→skip
+Place pivot: swap arr[2]↔arr[6]: [3,9,10,38,27,82,43]   ↑ pivot at index 2
+```
+
+**Left [3,9]** (pivot=9): 3≤9→[3,9] ✓
+
+**Right [38,27,82,43]** (pivot=43): 38,27≤43→swap→[27,38,82,43]; place pivot→[27,38,43,82] ✓
+
+**Final**: `[3, 9, 10, 27, 38, 43, 82]` ✓
+
+---
+
+## Question 38: Explain the partitioning process of Quick Sort with a suitable example.
+
+### Answer
+
+#### Lomuto Partition Scheme
+
+```python
+def partition(arr, l, r):
+    pivot = arr[r]
+    i = l - 1
+    for j in range(l, r):
+        if arr[j] <= pivot:
+            i += 1; arr[i], arr[j] = arr[j], arr[i]
+    arr[i+1], arr[r] = arr[r], arr[i+1]
+    return i+1
+```
+
+**Example `[10,80,30,90,40,50,70]` pivot=70**:
+```
+j=0:10≤70→i=0; j=1:80>70→skip; j=2:30≤70→i=1,swap→[10,30,80,90,40,50,70]
+j=3:90>70→skip; j=4:40≤70→i=2,swap→[10,30,40,90,80,50,70]
+j=5:50≤70→i=3,swap→[10,30,40,50,80,90,70]
+Place pivot: swap arr[4]↔arr[6]→[10,30,40,50,70,90,80]  ↑ pivot at index 4
+```
+
+---
+
+## Question 39: Analyze the best, average and worst-case time complexity of Quick Sort.
+
+### Answer
+
+| Case | Condition | Recurrence | Complexity |
+| :--- | :--- | :--- | :--- |
+| **Best** | Pivot always at middle | $T(n)=2T(n/2)+O(n)$ | $O(n\log n)$ |
+| **Average** | Random pivot | Probabilistic | $O(n\log n)$ |
+| **Worst** | Pivot always min/max | $T(n)=T(n-1)+O(n)$ | $O(n^2)$ |
+| **Space** | Stack depth | — | $O(\log n)$ avg |
+
+**Remedy**: Randomized pivot → Expected $O(n\log n)$ for all inputs.
+
+---
+
+# SECTION 16: HEAP SORT
+
+---
+
+## Question 40: Explain Heap Sort by constructing a max-heap for {20, 7, 15, 3, 10, 5}.
+
+### Answer
+
+**Build Max-Heap from `[20,7,15,3,10,5]`**:
+- i=2 (val=15): child=5, no swap
+- i=1 (val=7): children=3,10; 10>7 → swap: `[20,10,15,3,7,5]`
+- i=0 (val=20): children=10,15; 20>both, no swap
+
+**Max-Heap**: `[20,10,15,3,7,5]`
+
+**Extract Phase**:
+
+| Step | Swap Root With | Array State |
+| :--- | :--- | :--- |
+| 1 | 5 (last) | `[15,10,5,3,7 | 20]` |
+| 2 | 7 (arr[4]) | `[10,7,5,3 | 15,20]` |
+| 3 | 3 (arr[3]) | `[7,3,5 | 10,15,20]` |
+| 4 | 5 (arr[2]) | `[5,3 | 7,10,15,20]` |
+| 5 | 3 (arr[1]) | `[3 | 5,7,10,15,20]` |
+
+**Sorted**: `[3, 5, 7, 10, 15, 20]` ✓
+
+---
+
+## Question 41: Explain the working of Heap Sort and its time complexity.
+
+### Answer
+
+**Phase 1: Build Max-Heap** — $O(n)$: Heapify from last non-leaf upward.
+
+**Phase 2: Extract & Sort** — $O(n\log n)$: Swap root with last, reduce heap size, heapify root.
+
+```python
+def heapify(arr,n,i):
+    largest=i; l,r=2*i+1,2*i+2
+    if l<n and arr[l]>arr[largest]: largest=l
+    if r<n and arr[r]>arr[largest]: largest=r
+    if largest!=i: arr[i],arr[largest]=arr[largest],arr[i]; heapify(arr,n,largest)
+
+def heap_sort(arr):
+    n=len(arr)
+    for i in range(n//2-1,-1,-1): heapify(arr,n,i)    # O(n)
+    for i in range(n-1,0,-1): arr[0],arr[i]=arr[i],arr[0]; heapify(arr,i,0)  # O(n log n)
+```
+
+**Time**: $O(n\log n)$ all cases | **Space**: $O(1)$ | **Stable**: ❌
+
+> Heap Sort: only sort guaranteeing $O(n\log n)$ worst-case AND $O(1)$ space.
+
+---
+
+# SECTION 17: RADIX SORT
+
+---
+
+## Question 42: Describe the working principle of Radix Sort.
+
+### Answer
+
+**Non-comparison** sort processing digits **LSD → MSD** using Counting Sort (stable) at each pass.
+
+**Steps**: Find max number → determine $d$ digits → for each digit position: stable sort by that digit.
+
+| Metric | Value |
+| :--- | :--- |
+| Time | $O(d(n+k))$, $k$=radix(10) |
+| Space | $O(n+k)$ |
+| Stable | ✅ |
+| Comparison-based | ❌ |
+
+---
+
+## Question 43: Explain Radix Sort with a suitable example and analyze its complexity.
+
+### Answer
+
+#### Example: `[170, 45, 75, 90, 802, 24, 2, 66]`
+
+| Pass | Sort By | Result |
+| :--- | :--- | :--- |
+| 1 (ones) | 0,5,5,0,2,4,2,6 | `[170,90,802,2,24,45,75,66]` |
+| 2 (tens) | 7,9,0,0,2,4,7,6 | `[802,2,24,45,66,170,75,90]` |
+| 3 (hundreds) | 8,0,0,0,0,1,0,0 | `[2,24,45,66,75,90,170,802]` ✓ |
+
+**When $d=O(1)$**: $T(n)=O(n)$ — linear! **Advantage** over comparison sorts.
+
+---
+
+# PART B — SEARCHING
+
+---
+
+# SECTION 18: LINEAR SEARCH
+
+---
+
+## Question 44: Explain the working of Linear Search and its time complexity.
+
+### Answer
+
+Scans each element left to right until target found or array exhausted.
+
+```python
+def linear_search(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target: return i
+    return -1
+```
+
+| Case | Complexity |
+| :--- | :--- |
+| Best | $O(1)$ |
+| Average | $O(n)$ |
+| Worst | $O(n)$ |
+
+Works on **any array** — sorted or unsorted.
+
+---
+
+# SECTION 19: BINARY SEARCH
+
+---
+
+## Question 45: Explain the suitability of Binary Search over Linear Search for large ordered datasets.
+
+### Answer
+
+Binary Search eliminates **half** the search space at each step → $O(\log n)$.
+
+| $n$ | Linear ($n$) | Binary ($\log_2 n$) |
+| :--- | :--- | :--- |
+| 1,000 | 1,000 | 10 |
+| 1,000,000 | 1M | 20 |
+| 1,000,000,000 | 1 billion | 30 |
+
+**Precondition**: Array must be **sorted**.
+
+---
+
+## Question 46: Explain the working of Binary Search with a suitable example.
+
+### Answer
+
+```python
+def binary_search(arr, target):
+    low, high = 0, len(arr)-1
+    while low <= high:
+        mid = (low+high)//2
+        if arr[mid]==target: return mid
+        elif arr[mid]<target: low=mid+1
+        else: high=mid-1
+    return -1
+```
+
+**Search 7 in `[1,3,5,7,9,11,13]`**:
+
+| Step | low | high | mid | arr[mid] | Action |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | 0 | 6 | 3 | 7 | **FOUND at index 3** ✓ |
+
+**Search 11 in `[2,3,4,10,40]`**:
+
+| Step | low | high | mid | arr[mid] | Action |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | 0 | 4 | 2 | 4 | 4<11→low=3 |
+| 2 | 3 | 4 | 3 | 10 | 10<11→low=4 |
+| 3 | 4 | 4 | 4 | 40 | 40>11→high=3 |
+| 4 | low>high | — | — | — | **NOT FOUND** |
+
+---
+
+## Question 47: Compare the time complexity of Linear Search and Binary Search.
+
+### Answer
+
+| Metric | Linear Search | Binary Search |
+| :--- | :--- | :--- |
+| Best | $O(1)$ | $O(1)$ |
+| Average | $O(n)$ | $O(\log n)$ |
+| Worst | $O(n)$ | $O(\log n)$ |
+| Space | $O(1)$ | $O(1)$ iterative |
+| Precondition | None | Must be sorted |
+
+---
+
+# EXHAUSTIVE SEARCH & STRING MATCHING
+
+---
+
+# SECTION 20: BRUTE FORCE
+
+---
+
+## Question 48: Explain exhaustive/brute-force search with a suitable example.
+
+### Answer
+
+**Brute-Force**: Enumerate **all candidates** and check each against conditions. Simple, always correct, very slow.
+
+**TSP Example**: Generate all $(n-1)!$ tours, compute cost, return minimum. **Complexity**: $O(n!)$.
+
+```python
+from itertools import permutations
+def brute_tsp(dist,n):
+    min_cost=float('inf')
+    for perm in permutations(range(1,n)):
+        cost=dist[0][perm[0]]
+        for i in range(len(perm)-1): cost+=dist[perm[i]][perm[i+1]]
+        cost+=dist[perm[-1]][0]
+        min_cost=min(min_cost,cost)
+    return min_cost
+```
+
+---
+
+## Question 49: Compare brute-force, greedy and DP for solving TSP.
+
+### Answer
+
+| Aspect | Brute Force | Greedy | DP (Held-Karp) |
+| :--- | :--- | :--- | :--- |
+| Time | $O(n!)$ | $O(n^2)$ | $O(n^2\cdot2^n)$ |
+| Optimality | ✅ Exact | ❌ Approximate | ✅ Exact |
+| Feasible for $n$ | $\le 12$ | Any | $\le 20$ |
+
+---
+
+# SECTION 21: BRUTE-FORCE STRING MATCHING
+
+---
+
+## Question 50: Illustrate brute-force string matching.
+
+### Answer
+
+**Text=`"AABABC"`**, **Pattern=`"AB"`**
+
+| Position | Comparison | Result |
+| :--- | :--- | :--- |
+| $i=0$ | A=A✓, A≠B✗ | Mismatch |
+| $i=1$ | A=A✓, B=B✓ | **MATCH at index 1** ✓ |
+| $i=2$ | B≠A✗ | Mismatch |
+| $i=3$ | A=A✓, B=B✓ | **MATCH at index 3** ✓ |
+| $i=4$ | B≠A✗ | Mismatch |
+
+---
+
+## Question 51: Explain brute-force string matching and its time complexity.
+
+### Answer
+
+```python
+def brute_match(text, pattern):
+    n,m=len(text),len(pattern)
+    for i in range(n-m+1):
+        j=0
+        while j<m and text[i+j]==pattern[j]: j+=1
+        if j==m: print(f"Match at {i}")
+```
+
+| Case | Complexity |
+| :--- | :--- |
+| Best | $O(n)$ |
+| Worst | $O(n\times m)$ |
+
+KMP ($O(n+m)$) and Boyer-Moore are faster alternatives.
+
+---
+
+# PART B — GRAPH ALGORITHMS
+
+---
+
+# SECTION 22: GRAPH TRAVERSAL
+
+---
+
+## Question 52: Identify and explain the concept of graph traversal.
+
+### Answer
+
+**Graph traversal**: Visit each vertex **exactly once** systematically.
+
+**Applications**: Connected components, cycle detection, finding paths, topological sorting.
+
+| Algorithm | Strategy | Data Structure |
+| :--- | :--- | :--- |
+| DFS | Deep first, backtrack | Stack / Recursion |
+| BFS | Level by level | Queue (FIFO) |
+
+---
+
+## Question 53: Explain the concept of DFS in graph traversal.
+
+### Answer
+
+**DFS** explores as far as possible along each branch before backtracking. Uses a **stack** (implicit via recursion).
+
+**Properties**: Marks vertices visited. Detects cycles. Enables topological sort.
+
+*(Detailed implementation: see Questions 56–58)*
+
+---
+
+# SECTION 23: BFS
+
+---
+
+## Question 54: Explain the concept of Breadth-First Search (BFS).
+
+### Answer
+
+```python
+from collections import deque
+def bfs(graph,source):
+    visited=set([source]); queue=deque([source]); order=[]
+    while queue:
+        v=queue.popleft(); order.append(v)
+        for u in graph[v]:
+            if u not in visited: visited.add(u); queue.append(u)
+    return order
+```
+
+**Example `{A:[B,C],B:[D,E],C:[F]}`**: BFS from A → **A→B→C→D→E→F** (level by level)
+
+**Time**: $O(V+E)$ | **Space**: $O(V)$
+
+---
+
+## Question 55: Compare BFS and DFS.
+
+### Answer
+
+| Parameter | BFS | DFS |
+| :--- | :--- | :--- |
+| Data Structure | Queue (FIFO) | Stack / Recursion |
+| Traversal | Level by level | Deep branch first |
+| Shortest Path | ✅ (unweighted) | ❌ |
+| Topological Sort | ❌ | ✅ |
+| Cycle Detection | ✅ | ✅ |
+| Time & Space | $O(V+E)$, $O(V)$ | $O(V+E)$, $O(V)$ |
+
+---
+
+# SECTION 24: DFS
+
+---
+
+## Question 56: Apply DFS to traverse a graph and illustrate the order of visiting vertices.
+
+### Answer
+
+**Graph `{1:[2,3],2:[4,5],3:[6],4:[],5:[],6:[]}`**, DFS from 1:
+
+| Step | Action | Visited |
+| :--- | :--- | :--- |
+| 1 | Visit **1** | {1} |
+| 2 | Visit **2** (neighbor of 1) | {1,2} |
+| 3 | Visit **4** (neighbor of 2) | {1,2,4} |
+| 4 | 4 no unvisited → **BACKTRACK** | {1,2,4} |
+| 5 | Visit **5** (next of 2) | {1,2,4,5} |
+| 6 | 5 no unvisited → **BACKTRACK** | {1,2,4,5} |
+| 7 | Visit **3** (next of 1) | {1,2,3,4,5} |
+| 8 | Visit **6** (neighbor of 3) | {1,2,3,4,5,6} |
+
+**DFS Order**: **1 → 2 → 4 → 5 → 3 → 6**
+
+---
+
+## Question 57: Evaluate the application of DFS justifying each step.
+
+### Answer
+
+**Graph**: A-B, A-C, B-D, B-E, C-E | **DFS from A**:
+
+| Step | Vertex | Justification |
+| :--- | :--- | :--- |
+| 1 | **A** | Starting vertex |
+| 2 | **B** | First unexplored neighbor of A; go deep |
+| 3 | **D** | First unexplored neighbor of B; go deep |
+| 4 | backtrack | D has no unexplored neighbors |
+| 5 | **E** | Next unexplored neighbor of B |
+| 6 | **C** | Unexplored neighbor of E |
+
+**Order**: A→B→D→E→C
+
+**Applications justified**: Cycle detection (revisit in stack=cycle), connected components, topological sort.
+
+---
+
+## Question 58: Explain the working of DFS using an example.
+
+### Answer
+
+```python
+def dfs_iterative(graph, source):
+    visited=set(); stack=[source]; order=[]
+    while stack:
+        v=stack.pop()
+        if v not in visited:
+            visited.add(v); order.append(v)
+            for u in reversed(graph[v]):
+                if u not in visited: stack.append(u)
+    return order
+```
+
+**Time**: $O(V+E)$ | **Space**: $O(V)$
+
+DFS uses **stack (LIFO)** — goes deep before wide. BFS uses **queue (FIFO)** — level by level.
+
+---
+
+# SECTION 25: DIJKSTRA'S ALGORITHM
+
+---
+
+## Question 59: Explain the purpose of Dijkstra's algorithm in finding the shortest path.
+
+### Answer
+
+Solves **Single Source Shortest Path (SSSP)** — min-cost path from source to all vertices with **non-negative edge weights**.
+
+**Core**: Greedy relaxation. For edge $(u,v,w)$: if $dist[u]+w<dist[v]$ → update $dist[v]$.
+
+**Applications**: GPS, network routing (OSPF), game AI pathfinding.
+
+⚠️ **Fails for negative edge weights** → use Bellman-Ford.
+
+---
+
+## Question 60: Differentiate and analyze the efficiency of Dijkstra's for various graph structures.
+
+### Answer
+
+| Implementation | Time | Best For |
+| :--- | :--- | :--- |
+| Naive Array | $O(V^2)$ | Dense ($E\approx V^2$) |
+| Binary Min-Heap | $O((V+E)\log V)$ | Sparse ($E\ll V^2$) |
+| Fibonacci Heap | $O(E+V\log V)$ | Theoretical optimum |
+
+Dense graph → $O(V^2)$ array better. Sparse (road network) → $O((V+E)\log V)$ heap better.
+
+---
+
+## Question 61: Explain the working of Dijkstra's algorithm with a suitable example.
+
+### Answer
+
+**Graph (Source: A)**: A→B:4, A→C:2, C→B:1, C→D:8, C→E:10, B→D:5, D→E:2
+
+**Initialize**: `dist={A:0,B:∞,C:∞,D:∞,E:∞}`
+
+| Step | Extract | Relax | Updated dist[] |
+| :--- | :--- | :--- | :--- |
+| 1 | **A(0)** | B:4, C:2 | B=4, C=2 |
+| 2 | **C(2)** | B:3✓, D:10, E:12 | B=3, D=10, E=12 |
+| 3 | **B(3)** | D:8✓ | D=8 |
+| 4 | **D(8)** | E:10✓ | E=10 |
+| 5 | **E(10)** | — | done |
+
+**Paths**: B via A→C→B(3), C via A→C(2), D via A→C→B→D(8), E via A→C→B→D→E(10)
+
+---
+
+# NP & COMPUTATIONAL COMPLEXITY
+
+---
+
+# SECTION 26: P AND NP
+
+---
+
+## Question 62: Explain the relevance of P and NP in computational complexity and algorithm development.
+
+### Answer
+
+**Class P**: Solvable in polynomial time $O(n^k)$. **Tractable**. Examples: Sorting, Binary Search, Dijkstra.
+
+**Class NP**: Verifiable in polynomial time. Examples: SAT, TSP (decision), Graph Coloring.
+
+**Relationship**: $P\subseteq NP$. **Open question**: Is $P=NP$? (Millennium Prize Problem)
+
+| Relevance | Explanation |
+| :--- | :--- |
+| Tractability boundary | P=efficient; NP might need exponential time |
+| Cryptography | Security relies on P≠NP |
+| Approximations | Design poly-time approx for NP problems |
+| Algorithm design | Determines exact vs heuristic approach |
+
+---
+
+# SECTION 27: NP-HARD
+
+---
+
+## Question 63: State the meaning of NP-Hard problems.
+
+### Answer
+
+A problem $H$ is **NP-Hard** if every NP problem can be polynomial-time reduced to $H$.
+
+**Key Points**: Need not be in NP. Solving any NP-Hard in poly time → P=NP. Considered **intractable**.
+
+**Examples**: TSP (optimization), 0/1 Knapsack (optimization), Graph Coloring, Halting Problem.
+
+---
+
+## Question 64: Explain the relevance of NP-Hard problems in computational complexity.
+
+### Answer
+
+| Relevance | Explanation |
+| :--- | :--- |
+| Defines hardness ceiling | NP-Hard = hardest known class |
+| Design direction | Stop seeking exact poly-time algorithm |
+| Approximations | Design with provable approximation ratio |
+| Security foundation | Cryptography relies on NP-Hard intractability |
+
+**Strategies**: B&B/DP (small $n$), Approximation (bounded error), Heuristics (large $n$).
+
+---
+
+## Question 65: Use NP-Hard concepts to determine solution strategies for real-world challenges.
+
+### Answer
+
+| Problem | Context | Strategy |
+| :--- | :--- | :--- |
+| TSP | Delivery routes | Christofides (~1.5×) |
+| Job Scheduling | Cloud computing | List scheduling (2-approx) |
+| Graph Coloring | Register allocation | Greedy heuristic |
+| Bin Packing | Container shipping | First-Fit Decreasing |
+
+```
+NP-Hard → exact needed?
+  YES + n small → B&B/DP/Backtracking
+  NO → Approximation or Heuristic
+```
+
+---
+
+# SECTION 28: NP-COMPLETE
+
+---
+
+## Question 66: Explain the concept of NP-Complete problems.
+
+### Answer
+
+**NP-Complete**: $C\in NP$ AND $C$ is NP-Hard.
+
+**First**: SAT (Cook-Levin Theorem, 1971). All NP-Complete problems equivalently hard.
+
+| Problem | Decision Form |
+| :--- | :--- |
+| SAT | Satisfying Boolean assignment exists? |
+| Vertex Cover | Cover of size ≤ k exists? |
+| Hamiltonian Cycle | Hamiltonian cycle exists? |
+| TSP (decision) | Tour of cost ≤ k exists? |
+| Subset Sum | Subset summing to T exists? |
+
+---
+
+## Question 67: Differentiate between NP-Hard and NP-Complete problems.
+
+### Answer
+
+| Parameter | NP-Hard | NP-Complete |
+| :--- | :--- | :--- |
+| In NP? | May NOT be | Must be ✅ |
+| Verifier | May not have poly-time | Has poly-time ✅ |
+| Examples | TSP (optimization) | TSP (decision), SAT |
+| Relationship | NP-Complete ⊆ NP-Hard | Proper subset |
+
+```
+ALL PROBLEMS: NP-Hard ⊃ NP ⊃ P
+                NP-Complete = NP ∩ NP-Hard
+```
+
+---
+
+## Question 68: Evaluate the relevance of P, NP, NP-Hard and NP-Complete in complexity.
+
+### Answer
+
+| Class | Definition | Example |
+| :--- | :--- | :--- |
+| P | Solvable in poly time | Sorting, Search |
+| NP | Verifiable in poly time | SAT, TSP decision |
+| NP-Hard | All NP reduces to it | TSP optimization |
+| NP-Complete | In NP ∩ NP-Hard | Subset-Sum, SAT |
+
+> These classes define the boundary between **what computers can efficiently solve** and **what they fundamentally cannot**.
+
+---
+
+# REMAINING SYLLABUS TOPICS
+
+---
+
+# SECTION 29: N-QUEENS
+
+---
+
+## Question 69: Explain how Backtracking solves the N-Queens Problem.
+
+### Answer
+
+Place $N$ queens on $N\times N$ board — no two queens attack each other.
+
+**Strategy**: Place row by row, check safety, backtrack if stuck.
+
+```python
+def is_safe(board,row,col,N):
+    for i in range(row):
+        if board[i]==col or abs(board[i]-col)==abs(i-row): return False
+    return True
+def solve(board,row,N):
+    if row==N: print(board); return
+    for col in range(N):
+        if is_safe(board,row,col,N):
+            board[row]=col; solve(board,row+1,N); board[row]=-1
+```
+
+**N=4 solution** `[1,3,0,2]`:
+```
+. Q . .
+. . . Q
+Q . . .
+. . Q .
+```
+
+| N | Solutions |
+| :--- | :--- |
+| 4 | 2 |
+| 8 | 92 |
+
+**Time**: $O(N!)$ worst case.
+
+---
+
+# SECTION 30: HAMILTONIAN CIRCUIT
+
+---
+
+## Question 70: Explain how Backtracking solves the Hamiltonian Circuit Problem.
+
+### Answer
+
+**Problem**: Visit every vertex exactly once, return to start.
+
+**Extension**: Add $v$ if edge exists AND $v$ unvisited. **Success**: All visited + edge back to start.
+
+```python
+def hamiltonian(graph,path,n):
+    if len(path)==n: return graph[path[-1]][path[0]]==1
+    for v in range(n):
+        if graph[path[-1]][v]==1 and v not in path:
+            path.append(v)
+            if hamiltonian(graph,path,n): return True
+            path.pop()  # BACKTRACK
+    return False
+```
+
+**Time**: $O(n!)$ worst case.
+
+---
+
+# SECTION 31: LOWER BOUND ON SORTING
+
+---
+
+## Question 71: Explain the lower bound on sorting and its significance.
+
+### Answer
+
+**Theorem**: Any comparison-based sorting algorithm requires $\Omega(n\log n)$ comparisons in the worst case.
+
+**Proof**: $n$ elements → $n!$ permutations → binary decision tree needs $\ge\log_2(n!)$ height.
+
+Stirling: $\log_2(n!)\approx n\log_2 n=\Omega(n\log n)$.
+
+| Significance | Explanation |
+| :--- | :--- |
+| Optimality | Merge Sort, Heap Sort are asymptotically optimal |
+| No improvement possible | No comparison sort can beat $\Omega(n\log n)$ |
+| Breaking bound | Only non-comparison sorts (Radix, Counting) can achieve $O(n)$ |
+
+| Algorithm | Worst Case | Achieves LB? |
+| :--- | :--- | :--- |
+| Bubble/Insertion/Selection | $O(n^2)$ | ❌ |
+| Merge Sort | $O(n\log n)$ | ✅ |
+| Heap Sort | $O(n\log n)$ | ✅ |
+
+---
+
+# SECTION 32: POLYNOMIAL VS EXPONENTIAL
+
+---
+
+## Question 72: Differentiate between polynomial and exponential running time with examples.
+
+### Answer
+
+| Feature | Polynomial $O(n^k)$ | Exponential $O(c^n)$ |
+| :--- | :--- | :--- |
+| Growth | Power (manageable) | Explosive — doubles per step |
+| Tractability | Feasible for large $n$ | Infeasible for moderate $n$ |
+| Problem Class | P | NP-Hard typically |
+
+**Polynomial**: $O(n)$ Linear Search, $O(n^2)$ Bubble Sort, $O(n^3)$ Matrix Multiply.
+
+**Exponential**: $O(2^n)$ Subset generation ($n=50\to10^{15}$ ops), $O(n!)$ Brute TSP ($n=20\to2.4\times10^{18}$ ops).
+
+| $n$ | $n^2$ | $2^n$ | $n!$ |
+| :--- | :--- | :--- | :--- |
+| 10 | 100 | 1,024 | 3.6M |
+| 20 | 400 | 1M | $2.4\times10^{18}$ |
+| 50 | 2,500 | $10^{15}$ | astronomical |
+
+> **Practical Rule**: Polynomial algorithms are engineered for real-world use. Exponential algorithms are only practical for very small inputs ($n\le20$).
+
+---
+
+*End of DAA Exam Preparation Notes — All 72 Questions Covered*
