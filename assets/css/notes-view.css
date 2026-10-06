@@ -931,6 +931,14 @@
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
+.content-body img[src*="diagram"],
+.content-body img[src$=".svg"],
+.content-body img.diagram-img {
+  max-width: 96%;
+  width: 100%;
+  max-height: 520px;
+}
+
 .content-body img:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.5);

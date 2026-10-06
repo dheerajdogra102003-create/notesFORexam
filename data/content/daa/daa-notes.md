@@ -1,12 +1,4 @@
-﻿# DESIGN AND ANALYSIS OF ALGORITHMS — EXAM PREPARATION NOTES
-
----
-
-# PART A — THEORY
-
----
-
-# SECTION 1: ALGORITHM ANALYSIS & COMPLEXITY
+# DESIGN AND ANALYSIS OF ALGORITHMS — EXAM PREPARATION NOTES
 
 ---
 
@@ -14,86 +6,81 @@
 
 ### Answer
 
-Two fundamental parameters measure algorithmic efficiency:
+The efficiency of an algorithm is mainly measured using two parameters:
 
-#### 1. Time Complexity
-The number of basic computational operations an algorithm performs as a function of input size $n$.
+#### 1. Time Complexity ⏱️
+It measures how much time an algorithm takes to execute as the input size increases.
+- It is usually expressed using Big-O notation, such as $O(1)$, $O(n)$, $O(n^2)$.
+- **Example:** Searching for a name in an unsorted list may take $O(n)$ time.
 
-#### 2. Space Complexity
-The total memory space required as a function of input size $n$:
-- **Fixed part**: Code, constants, simple variables (independent of $n$).
-- **Variable part**: Recursion stack, dynamic data structures (depends on $n$).
-
-| Parameter | Description |
-| :--- | :--- |
-| **Time Complexity** | Count of basic operations as $f(n)$ |
-| **Space Complexity** | Memory consumed as $f(n)$ |
-| **Correctness** | Produces right output for all valid inputs |
-| **Optimality** | Achieves the theoretically best bound |
-| **Simplicity** | Ease of implementation and verification |
-| **Generality** | Breadth of problem instances it handles |
+**Real-life example:**
+> Suppose there are 1,000 student names in a list. If we search for a name one by one, we may have to check many names before finding it. Therefore, the time increases as the number of students increases.
 
 ---
+
+#### 2. Space Complexity 💾
+It measures how much extra memory an algorithm requires while executing.
+- It includes memory used for variables, arrays, data structures, recursion, etc.
+- **Example:** An algorithm that creates an extra array of size $n$ requires $O(n)$ space.
+
+**Real-life example:**
+> If an application stores information about 1,000 students in an additional array, it will require more memory than storing information about only 100 students.
+
+---
+
+### 📌 Simple Example to Remember
+
+If an algorithm takes:
+- **Less time** → Better Time Complexity ⏱️
+- **Less memory** → Better Space Complexity 💾
+
+$$\text{Time Complexity} + \text{Space Complexity} = \text{Main parameters used to measure the efficiency of an algorithm}$$
+
+> [!TIP]
+> **In simple words:** A good algorithm should run faster and use less memory.
+
+---
+
+### Visual Complexity Graph (Big-O Growth Rates)
+
+The graph below visually compares how various time complexities scale as the input size ($n$) increases:
+
+![Algorithm Complexity Graph - Big O Growth Rates](assets/images/diagrams/algorithm_complexity_graph.svg)
+
+---
+
 
 ## Question 2: Describe asymptotic analysis and explain the significance of asymptotic notations.
 
 ### Answer
 
-Asymptotic analysis evaluates algorithm performance as $n \to \infty$, describing **growth rate** of running time.
+Asymptotic analysis is the technique of analyzing the time and space complexity of an algorithm based on the growth of input size $n$, especially when $n$ becomes very large.
 
-**1. Big-O** $O$ — Upper Bound: $f(n) = O(g(n)) \iff \exists\; c>0, n_0\ge 1: f(n) \le c\cdot g(n)\; \forall n\ge n_0$
-
-**2. Big-Omega** $\Omega$ — Lower Bound: $f(n) = \Omega(g(n)) \iff \exists\; c>0, n_0\ge 1: c\cdot g(n) \le f(n)\; \forall n\ge n_0$
-
-**3. Big-Theta** $\Theta$ — Tight Bound: $f(n) = \Theta(g(n)) \iff f(n) = O(g(n))$ AND $f(n) = \Omega(g(n))$
-
-| Significance | Explanation |
-| :--- | :--- |
-| **Machine Independence** | No CPU speed reference needed |
-| **Algorithm Comparison** | $O(\log n)\ll O(n)\ll O(n\log n)\ll O(n^2)\ll O(2^n)$ |
-| **Worst-Case Guarantee** | Big-O gives reliability ceiling |
-| **Problem Solvability** | Identifies intractable problems early |
+It mainly helps us understand the **growth of an algorithm's time and space requirements** without depending on the actual computer, programming language, or execution time.
 
 ---
 
-## Question 3: Apply asymptotic analysis to determine time complexity under different input conditions.
+### 📌 Example
 
-### Answer
+Suppose an algorithm performs:
+$$5n + 10 \text{ operations}$$
 
-#### Linear Search Example
+When $n$ becomes very large, the constant $10$ and coefficient $5$ become less important. We focus on the rate of growth of $n$.
 
-```python
-def linear_search(arr, target):
-    for i in range(len(arr)):
-        if arr[i] == target: return i
-    return -1
-```
+Therefore:
+$$5n + 10 \longrightarrow O(n)$$
 
-| Condition | Operations | Complexity |
-| :--- | :--- | :--- |
-| **Best Case** | 1 comparison (target at idx 0) | $\Omega(1)$ |
-| **Average Case** | $n/2$ comparisons | $\Theta(n)$ |
-| **Worst Case** | $n$ comparisons (absent/last) | $O(n)$ |
-
-**Nested loop example** (Matrix Multiply): 3 nested loops of $n$ → $T(n) = O(n^3)$ for all cases.
+So, the algorithm has **linear time complexity**.
 
 ---
 
-## Question 4: Evaluate the suitability of an asymptotic bound for a problem.
+### 🔑 Common Asymptotic Notations
 
-### Answer
-
-A bound is **suitable** if it is tight and practically meaningful.
-
-- Bubble Sort as $O(n^3)$: technically correct but **NOT suitable** (too loose). $O(n^2)$ is suitable.
-- Merge Sort as $O(n \log n)$: **Suitable** — tight and matches all cases.
-- Insertion Sort on sorted data: $O(n^2)$ is **NOT suitable** (best case is $O(n)$).
-
-| Use Case | Suitable Bound | Reason |
+| Notation | Meaning | Example |
 | :--- | :--- | :--- |
-| Real-time system | $O$ (worst-case) | Must guarantee deadline |
-| General comparison | $\Theta$ (tight) | Most accurate |
-| Proving optimality | $\Omega$ (lower bound) | Shows no faster algorithm exists |
+| **$O$ (Big-O)** | Upper bound / worst-case growth | $O(n^2)$ |
+| **$\Omega$ (Omega)** | Lower bound / best-case growth | $\Omega(n)$ |
+| **$\Theta$ (Theta)** | Tight bound / exact growth order | $\Theta(n)$ |
 
 ---
 
@@ -101,11 +88,56 @@ A bound is **suitable** if it is tight and practically meaningful.
 
 ### Answer
 
-#### Selection Sort Step-Count Analysis
+The time complexity of a non-recursive algorithm is analyzed by counting the number of times its basic operations are executed with respect to the input size $n$. The resulting growth rate is expressed using asymptotic notation such as Big-O.
 
-Inner loop executes: $(n-1)+(n-2)+\cdots+1 = n(n-1)/2$
+---
 
-Drop constants: $T(n) = \Theta(n^2)$ — same for best, average, and worst case.
+### Steps to Analyze Time Complexity
+
+1. **Identify the input size** → Usually represented by $n$.
+2. **Find the basic operation** → The statement that is executed repeatedly.
+3. **Count how many times it executes**.
+4. **Express the result using Big-O notation**.
+5. **Ignore constants and lower-order terms**.
+
+---
+
+### Example 1: Single Loop
+
+```text
+Algorithm Sum(A, n)
+
+sum ← 0
+
+for i ← 1 to n do
+    sum ← sum + A[i]
+
+return sum
+```
+
+The loop executes $n$ times.  
+Therefore:
+$$T(n) = n$$
+
+**Time Complexity** $= O(n)$
+
+---
+
+### Example 2: Nested Loops
+
+```text
+for i ← 1 to n do
+    for j ← 1 to n do
+        print(i, j)
+```
+
+- **Outer loop** → $n$ times
+- **Inner loop** → $n$ times for every outer iteration
+
+Therefore:
+$$\text{Total operations} = n \times n = n^2$$
+
+**Time Complexity** $= O(n^2)$
 
 ---
 
@@ -113,17 +145,37 @@ Drop constants: $T(n) = \Theta(n^2)$ — same for best, average, and worst case.
 
 ### Answer
 
-| Parameter | Polynomial $O(n^k)$ | Exponential $O(c^n)$ |
-| :--- | :--- | :--- |
-| Growth | Manageable | Explosive |
-| Tractability | Feasible | Infeasible for large $n$ |
-| Problem Class | P | Often NP-Hard |
+**Polynomial running time** means the running time grows as a polynomial function of input size $n$, such as $n$, $n^2$, or $n^3$.
 
-| $n$ | $n^2$ | $2^n$ | $n!$ |
-| :--- | :--- | :--- | :--- |
-| 10 | 100 | 1,024 | 3.6M |
-| 20 | 400 | 1M | $2.4\times10^{18}$ |
-| 50 | 2,500 | $10^{15}$ | astronomical |
+**Exponential running time** means the running time grows exponentially with $n$, such as $2^n$ or $3^n$.
+
+---
+
+### Comparison Table
+
+| Polynomial Time | Exponential Time |
+| :--- | :--- |
+| Growth is relatively slower | Growth is extremely fast |
+| Examples: $O(n)$, $O(n^2)$, $O(n^3)$ | Examples: $O(2^n)$, $O(3^n)$ |
+| Practical for large inputs | Usually impractical for large inputs |
+| Used in many efficient algorithms | Often occurs in brute-force/complex problems |
+
+---
+
+### Example
+
+- **Polynomial:** Searching through $n$ elements → **$O(n)$**
+- **Exponential:** Generating all possible subsets of $n$ elements → **$O(2^n)$**
+
+---
+
+### Real-Life Example
+
+For **100 students**, an $O(n^2)$ algorithm may require about **10,000 comparisons**, which can still be manageable. An $O(2^n)$ algorithm would require an enormously large number of operations.
+
+---
+
+**Conclusion:** Polynomial algorithms are generally preferred because they scale much better with increasing input size, while exponential algorithms become very slow even for moderately large inputs.
 
 ---
 
@@ -135,21 +187,36 @@ Drop constants: $T(n) = \Theta(n^2)$ — same for best, average, and worst case.
 
 ### Answer
 
-A **deterministic algorithm** always produces the **same output** for a given input following a **fixed, predictable path** with no randomness.
+A **deterministic algorithm** is an algorithm that produces the **same output for the same input every time**. It follows a fixed and predictable sequence of steps and does not depend on randomness.
 
-| Property | Description |
-| :--- | :--- |
-| Predictability | Same output for same input always |
-| No Randomness | No RNGs used |
-| Reproducibility | Exactly traceable and debuggable |
+---
 
-| Application | Algorithm | Domain |
-| :--- | :--- | :--- |
-| Sorting | Merge Sort, Heap Sort | Data processing |
-| Shortest path | Dijkstra's | GPS Navigation |
-| Searching | Binary Search | Database indexing |
-| Encryption | AES, RSA | Cybersecurity |
-| Network routing | Bellman-Ford | Telecommunications |
+### Example
+
+If an algorithm adds two numbers:
+
+```text
+Input: 5, 3
+Output: 8
+```
+
+For the same input, the output will always be **8**.
+
+---
+
+### Applications
+
+1. **Searching** – Binary Search, Linear Search.
+2. **Sorting** – Merge Sort, Bubble Sort.
+3. **Database systems** – Retrieving records using fixed conditions.
+4. **Banking systems** – Calculating balances and transactions.
+5. **Compiler design** – Processing programs in a fixed sequence.
+
+---
+
+### Conclusion
+
+Deterministic algorithms are useful when **predictable, repeatable, and accurate results** are required.
 
 ---
 
@@ -161,21 +228,46 @@ A **deterministic algorithm** always produces the **same output** for a given in
 
 ### Answer
 
-A function calls itself with a **smaller version** of the same problem until a **base case** is reached.
+Recursion is a problem-solving technique in which a function calls itself to solve a smaller version of the same problem. It continues until a base condition is reached.
 
-```python
-def factorial(n):
-    if n == 0: return 1           # Base case
-    return n * factorial(n - 1)  # Recursive call
+---
+
+### Working of Recursion
+
+1. **Base Case:** Stops the recursion when the simplest case is reached.
+2. **Recursive Case:** The function calls itself with a smaller input.
+3. **Progress:** Each call moves the problem closer to the base case.
+4. **Return:** After reaching the base case, the previous calls return their results one by one.
+
+---
+
+### Example: Factorial
+
+```text
+Factorial(n)
+    if n = 0
+        return 1
+    else
+        return n × Factorial(n - 1)
 ```
 
-Call stack for `factorial(4)`: 4×3×2×1×1 = 24
+For **5!**:
+$$5 \times 4 \times 3 \times 2 \times 1 = 120$$
 
-| Step | Action |
-| :--- | :--- |
-| Divide | Break into smaller same-type subproblem |
-| Base Case | Stop when trivially small |
-| Combine | Build solution from subproblem results |
+The calls continue as:
+$$\text{Factorial}(5) \longrightarrow \text{Factorial}(4) \longrightarrow \text{Factorial}(3) \longrightarrow \text{Factorial}(2) \longrightarrow \text{Factorial}(1) \longrightarrow \text{Factorial}(0)$$
+
+Then the results return back to give **120**.
+
+---
+
+### Applications
+
+1. Tree and graph traversal
+2. Searching and sorting
+3. Factorial and Fibonacci problems
+4. Solving divide-and-conquer problems
+5. Backtracking problems such as N-Queens
 
 ---
 
@@ -183,20 +275,49 @@ Call stack for `factorial(4)`: 4×3×2×1×1 = 24
 
 ### Answer
 
-| Parameter | Recursive | Iterative |
+| **Basis** | **Recursive Algorithm** | **Non-Recursive Algorithm** |
 | :--- | :--- | :--- |
-| Memory | Call stack; overflow risk | No overflow; loop variable |
-| Speed | Slower (call overhead) | Faster |
-| Space | $O(n)$ stack | $O(1)$ for loops |
-| Best For | Tree traversals, D&C | Sorting, searching |
+| **Meaning** | A function **calls itself** to solve the problem. | A function **does not call itself**. |
+| **Method** | Usually uses recursive function calls. | Usually uses `for` or `while` loops. |
+| **Memory** | Uses the **call stack** to store function calls. | Generally requires **less extra memory**. |
+| **Execution** | Repeatedly calls the same function with a smaller input. | Repeats instructions using loops. |
+| **Speed** | May have extra overhead due to function calls. | Usually has less function-call overhead. |
+| **Risk** | Deep recursion can cause **stack overflow**. | Does not normally have recursion-related stack overflow. |
+| **Best suited for** | Trees, graphs, divide-and-conquer, and backtracking. | Simple repetitive operations and iterative processing. |
+| **Example** | Recursive Binary Search. | Loop-based Binary Search. |
 
-```python
-def fib_r(n): return n if n<=1 else fib_r(n-1)+fib_r(n-2)  # O(2^n)
-def fib_i(n):                                                 # O(n)
-    a,b=0,1
-    for _ in range(n): a,b=b,a+b
-    return a
+---
+
+### Example: Factorial
+
+**Recursive:**
+```text
+Factorial(n)
+    if n = 0
+        return 1
+    else
+        return n × Factorial(n - 1)
 ```
+
+**Non-Recursive:**
+```text
+Factorial(n)
+    result ← 1
+
+    for i ← 1 to n do
+        result ← result × i
+
+    return result
+```
+
+For **$n = 4$**:
+$$\text{Both produce: } 4 \times 3 \times 2 \times 1 = 24$$
+
+---
+
+**Key Difference:**  
+- **Recursive** = Function calls itself.  
+- **Non-recursive** = Uses loops and direct iteration.
 
 ---
 
@@ -208,22 +329,67 @@ def fib_i(n):                                                 # O(n)
 
 ### Answer
 
-1. **DIVIDE**: Split problem of size $n$ into $a$ subproblems of size $n/b$.
-2. **CONQUER**: Recursively solve each subproblem.
-3. **COMBINE**: Merge sub-solutions into the final solution.
+**Divide-and-Conquer** is a problem-solving technique in which a large problem is **divided into smaller problems**, each problem is solved separately, and their solutions are **combined** to get the final answer.
 
-**Recurrence**: $T(n)=a\cdot T(n/b)+f(n)$
+It follows three main steps:  
+**Divide → Conquer → Combine**
 
-**Master Theorem**:
-- Case 1: $f(n)=O(n^{\log_b a-\epsilon})$ → $T(n)=\Theta(n^{\log_b a})$
-- Case 2: $f(n)=\Theta(n^{\log_b a})$ → $T(n)=\Theta(n^{\log_b a}\log n)$
-- Case 3: $f(n)=\Omega(n^{\log_b a+\epsilon})$ → $T(n)=\Theta(f(n))$
+---
 
-| Algorithm | Divide | Combine | Complexity |
-| :--- | :--- | :--- | :--- |
-| Merge Sort | Split in half | Merge sorted halves | $\Theta(n\log n)$ |
-| Quick Sort | Partition by pivot | Nothing (in-place) | $O(n\log n)$ avg |
-| Binary Search | Compare with middle | Nothing | $O(\log n)$ |
+### 1. Divide
+The main problem is divided into **smaller subproblems** of the same type.
+
+### 2. Conquer
+Each smaller problem is solved. Usually, **recursion** is used to solve these subproblems.
+
+### 3. Combine
+The solutions of the smaller problems are **combined** to obtain the solution to the original problem.
+
+---
+
+### Simple Example: Merge Sort
+
+Suppose we have:
+
+```text
+[8, 3, 5, 2]
+
+       ↓ Divide
+
+[8, 3]    [5, 2]
+
+       ↓ Divide
+
+[8] [3]   [5] [2]
+
+       ↓ Conquer + Combine
+
+[3, 8]    [2, 5]
+
+       ↓ Combine
+
+[2, 3, 5, 8]
+```
+
+Thus, Merge Sort divides the list into smaller parts, sorts them, and then combines them.
+
+---
+
+### Applications
+
+- **Merge Sort** – Sorting data
+- **Quick Sort** – Sorting data
+- **Binary Search** – Searching data
+- **Matrix Multiplication** – Solving large mathematical problems
+
+---
+
+### Advantages
+
+1. Makes large problems easier to solve.
+2. Reduces a complex problem into smaller problems.
+3. Often gives efficient algorithms.
+4. Works well with recursion.
 
 ---
 
@@ -394,115 +560,6 @@ Far better than brute-force $O(n!)$.
 | Optimality | Always | Not always | Varies | Always (if conditions met) |
 | Time | $O(n!)$ | $O(n\log n)$ | $O(n\log n)$ | Better than brute |
 | Examples | TSP brute | Fractional Knapsack | Merge Sort | 0/1 Knapsack |
-
----
-
-# SECTION 7: BACKTRACKING
-
----
-
-## Question 20: Explain backtracking for the Subset-Sum Problem.
-
-### Answer
-
-**Backtracking**: Incrementally build candidates; prune as soon as constraint violated.
-
-**Example**: $S=\{3,1,4,2\}$, $T=5$
-
-```python
-def subset_sum(S,T,current=[],start=0,curr_sum=0):
-    if curr_sum==T: print(current); return
-    if curr_sum>T or start>=len(S): return  # PRUNE
-    for i in range(start,len(S)):
-        current.append(S[i])
-        subset_sum(S,T,current,i+1,curr_sum+S[i])
-        current.pop()  # BACKTRACK
-```
-
-**Solutions**: {3,2} and {1,4} | **Time**: $O(2^n)$ worst case.
-
----
-
-## Question 21: Differentiate Backtracking and Branch-and-Bound.
-
-### Answer
-
-| Parameter | Backtracking | Branch-and-Bound |
-| :--- | :--- | :--- |
-| Goal | Find all feasible solutions | Find optimal solution |
-| Pruning | Feasibility check | Bounding function (cost bound) |
-| Search | DFS | BFS/DFS/Best-First |
-| Application | N-Queens, Subset-Sum | TSP, Assignment, Knapsack |
-
----
-
-## Question 22: Explain backtracking for N-Queens and Hamiltonian Circuit.
-
-### Answer
-
-#### N-Queens
-```python
-def is_safe(board,row,col,N):
-    for i in range(row):
-        if board[i]==col or abs(board[i]-col)==abs(i-row): return False
-    return True
-def solve(board,row,N):
-    if row==N: print(board); return
-    for col in range(N):
-        if is_safe(board,row,col,N):
-            board[row]=col; solve(board,row+1,N); board[row]=-1
-```
-
-#### Hamiltonian Circuit
-```python
-def hamiltonian(graph,path,n):
-    if len(path)==n: return graph[path[-1]][path[0]]==1
-    for v in range(n):
-        if graph[path[-1]][v]==1 and v not in path:
-            path.append(v)
-            if hamiltonian(graph,path,n): return True
-            path.pop()  # BACKTRACK
-    return False
-```
-
----
-
-# SECTION 8: BRANCH-AND-BOUND
-
----
-
-## Question 23: Differentiate Backtracking and Branch-and-Bound.
-
-### Answer
-
-*(Refer to Question 21)* Additional: Backtracking is a special case of B&B with no bounding function. B&B is superior for optimization problems.
-
----
-
-## Question 24: Explain Branch-and-Bound for the Assignment Problem.
-
-### Answer
-
-**Problem**: Assign $n$ workers to $n$ jobs minimizing total cost.
-
-**Lower Bound**: Subtract row minimums. Example: row mins 2,3,1,4 → LB=10.
-
-**Branch**: Try each job for Worker1. At each node compute new LB. Prune if LB ≥ best known. Continue until optimal assignment found.
-
----
-
-## Question 25: Explain Branch-and-Bound for the Knapsack Problem.
-
-### Answer
-
-**Strategy**:
-1. Sort items by $v/w$ descending.
-2. At each node: Upper Bound = current value + fractional knapsack on remaining items.
-3. Prune if UB ≤ best known value.
-4. Branch: include item (if fits) OR exclude item.
-5. Update best at feasible leaves.
-
----
 
 # SECTION 9: RANDOMIZATION
 
@@ -893,23 +950,6 @@ def heap_sort(arr):
 
 ---
 
-## Question 42: Describe the working principle of Radix Sort.
-
-### Answer
-
-**Non-comparison** sort processing digits **LSD → MSD** using Counting Sort (stable) at each pass.
-
-**Steps**: Find max number → determine $d$ digits → for each digit position: stable sort by that digit.
-
-| Metric | Value |
-| :--- | :--- |
-| Time | $O(d(n+k))$, $k$=radix(10) |
-| Space | $O(n+k)$ |
-| Stable | ✅ |
-| Comparison-based | ❌ |
-
----
-
 ## Question 43: Explain Radix Sort with a suitable example and analyze its complexity.
 
 ### Answer
@@ -1186,48 +1226,6 @@ def bfs(graph,source):
 
 ---
 
-## Question 56: Apply DFS to traverse a graph and illustrate the order of visiting vertices.
-
-### Answer
-
-**Graph `{1:[2,3],2:[4,5],3:[6],4:[],5:[],6:[]}`**, DFS from 1:
-
-| Step | Action | Visited |
-| :--- | :--- | :--- |
-| 1 | Visit **1** | {1} |
-| 2 | Visit **2** (neighbor of 1) | {1,2} |
-| 3 | Visit **4** (neighbor of 2) | {1,2,4} |
-| 4 | 4 no unvisited → **BACKTRACK** | {1,2,4} |
-| 5 | Visit **5** (next of 2) | {1,2,4,5} |
-| 6 | 5 no unvisited → **BACKTRACK** | {1,2,4,5} |
-| 7 | Visit **3** (next of 1) | {1,2,3,4,5} |
-| 8 | Visit **6** (neighbor of 3) | {1,2,3,4,5,6} |
-
-**DFS Order**: **1 → 2 → 4 → 5 → 3 → 6**
-
----
-
-## Question 57: Evaluate the application of DFS justifying each step.
-
-### Answer
-
-**Graph**: A-B, A-C, B-D, B-E, C-E | **DFS from A**:
-
-| Step | Vertex | Justification |
-| :--- | :--- | :--- |
-| 1 | **A** | Starting vertex |
-| 2 | **B** | First unexplored neighbor of A; go deep |
-| 3 | **D** | First unexplored neighbor of B; go deep |
-| 4 | backtrack | D has no unexplored neighbors |
-| 5 | **E** | Next unexplored neighbor of B |
-| 6 | **C** | Unexplored neighbor of E |
-
-**Order**: A→B→D→E→C
-
-**Applications justified**: Cycle detection (revisit in stack=cycle), connected components, topological sort.
-
----
-
 ## Question 58: Explain the working of DFS using an example.
 
 ### Answer
@@ -1251,34 +1249,6 @@ DFS uses **stack (LIFO)** — goes deep before wide. BFS uses **queue (FIFO)** �
 ---
 
 # SECTION 25: DIJKSTRA'S ALGORITHM
-
----
-
-## Question 59: Explain the purpose of Dijkstra's algorithm in finding the shortest path.
-
-### Answer
-
-Solves **Single Source Shortest Path (SSSP)** — min-cost path from source to all vertices with **non-negative edge weights**.
-
-**Core**: Greedy relaxation. For edge $(u,v,w)$: if $dist[u]+w<dist[v]$ → update $dist[v]$.
-
-**Applications**: GPS, network routing (OSPF), game AI pathfinding.
-
-⚠️ **Fails for negative edge weights** → use Bellman-Ford.
-
----
-
-## Question 60: Differentiate and analyze the efficiency of Dijkstra's for various graph structures.
-
-### Answer
-
-| Implementation | Time | Best For |
-| :--- | :--- | :--- |
-| Naive Array | $O(V^2)$ | Dense ($E\approx V^2$) |
-| Binary Min-Heap | $O((V+E)\log V)$ | Sparse ($E\ll V^2$) |
-| Fibonacci Heap | $O(E+V\log V)$ | Theoretical optimum |
-
-Dense graph → $O(V^2)$ array better. Sparse (road network) → $O((V+E)\log V)$ heap better.
 
 ---
 
