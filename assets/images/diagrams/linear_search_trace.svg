@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 440" width="100%" height="100%">
+  <defs>
+    <linearGradient id="linearBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 2 L 10 5 L 0 8 z" fill="#f59e0b" />
+    </marker>
+    <marker id="successArrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 2 L 10 5 L 0 8 z" fill="#10b981" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="440" rx="16" fill="url(#linearBg)" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Header -->
+  <g transform="translate(36, 24)">
+    <rect width="5" height="26" rx="2.5" fill="#f59e0b" />
+    <text x="16" y="20" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#f8fafc">
+      Linear Search: Step-by-Step Sequential Scanning
+    </text>
+    <text x="16" y="38" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">
+      Target Key = 45 | Sequential evaluation from index 0 until match is confirmed or end is reached
+    </text>
+  </g>
+
+  <!-- Main Array Visualization -->
+  <g transform="translate(60, 95)">
+    <!-- Array Element 0 -->
+    <g transform="translate(0, 0)">
+      <text x="45" y="-12" font-family="monospace" font-size="13" fill="#64748b" text-anchor="middle">Index 0</text>
+      <rect width="90" height="64" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2" />
+      <text x="45" y="40" font-family="monospace" font-size="22" font-weight="700" fill="#f8fafc" text-anchor="middle">10</text>
+      <!-- Step Tag -->
+      <rect x="15" y="80" width="60" height="24" rx="4" fill="#450a0a" stroke="#ef4444" />
+      <text x="45" y="96" font-family="sans-serif" font-size="11" font-weight="700" fill="#fca5a5" text-anchor="middle">10 ≠ 45 ❌</text>
+    </g>
+
+    <!-- Scan Arrow 0 -> 1 -->
+    <path d="M 100 32 L 130 32" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrowHead)" />
+
+    <!-- Array Element 1 -->
+    <g transform="translate(140, 0)">
+      <text x="45" y="-12" font-family="monospace" font-size="13" fill="#64748b" text-anchor="middle">Index 1</text>
+      <rect width="90" height="64" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2" />
+      <text x="45" y="40" font-family="monospace" font-size="22" font-weight="700" fill="#f8fafc" text-anchor="middle">25</text>
+      <rect x="15" y="80" width="60" height="24" rx="4" fill="#450a0a" stroke="#ef4444" />
+      <text x="45" y="96" font-family="sans-serif" font-size="11" font-weight="700" fill="#fca5a5" text-anchor="middle">25 ≠ 45 ❌</text>
+    </g>
+
+    <!-- Scan Arrow 1 -> 2 -->
+    <path d="M 240 32 L 270 32" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrowHead)" />
+
+    <!-- Array Element 2 -->
+    <g transform="translate(280, 0)">
+      <text x="45" y="-12" font-family="monospace" font-size="13" fill="#64748b" text-anchor="middle">Index 2</text>
+      <rect width="90" height="64" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2" />
+      <text x="45" y="40" font-family="monospace" font-size="22" font-weight="700" fill="#f8fafc" text-anchor="middle">30</text>
+      <rect x="15" y="80" width="60" height="24" rx="4" fill="#450a0a" stroke="#ef4444" />
+      <text x="45" y="96" font-family="sans-serif" font-size="11" font-weight="700" fill="#fca5a5" text-anchor="middle">30 ≠ 45 ❌</text>
+    </g>
+
+    <!-- Scan Arrow 2 -> 3 -->
+    <path d="M 380 32 L 410 32" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrowHead)" />
+
+    <!-- Array Element 3 (MATCH!) -->
+    <g transform="translate(420, 0)">
+      <text x="45" y="-12" font-family="monospace" font-size="13" fill="#10b981" font-weight="700" text-anchor="middle">Index 3</text>
+      <rect width="90" height="64" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="3" />
+      <text x="45" y="40" font-family="monospace" font-size="24" font-weight="800" fill="#ecfdf5" text-anchor="middle">45</text>
+      <rect x="10" y="80" width="70" height="24" rx="4" fill="#047857" stroke="#34d399" />
+      <text x="45" y="96" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">45 == 45 ✓</text>
+    </g>
+
+    <!-- Stopped before Element 4 -->
+    <g transform="translate(560, 0)">
+      <text x="45" y="-12" font-family="monospace" font-size="13" fill="#475569" text-anchor="middle">Index 4</text>
+      <rect width="90" height="64" rx="8" fill="#0f172a" stroke="#334155" stroke-dasharray="4 4" />
+      <text x="45" y="40" font-family="monospace" font-size="22" font-weight="600" fill="#475569" text-anchor="middle">50</text>
+      <text x="45" y="96" font-family="sans-serif" font-size="11" fill="#64748b" text-anchor="middle">(Unchecked)</text>
+    </g>
+  </g>
+
+  <!-- Found Banner Callout -->
+  <g transform="translate(60, 240)">
+    <rect width="700" height="60" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5" />
+    <circle cx="35" cy="30" r="16" fill="#10b981" />
+    <text x="35" y="36" font-family="sans-serif" font-size="18" font-weight="800" fill="#ffffff" text-anchor="middle">✓</text>
+    <text x="65" y="26" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#ecfdf5">
+      Target 45 Found Successfully at Index 3 (Position 4)
+    </text>
+    <text x="65" y="46" font-family="system-ui, sans-serif" font-size="12" fill="#a7f3d0">
+      Loop terminates immediately; further elements (50) do not need to be examined.
+    </text>
+  </g>
+
+  <!-- Complexity Summary Box -->
+  <g transform="translate(60, 318)">
+    <rect width="700" height="92" rx="8" fill="#131d31" stroke="#334155" />
+    <g transform="translate(20, 16)">
+      <text x="0" y="16" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f59e0b">Linear Search Complexity Characteristics:</text>
+      
+      <text x="0" y="42" font-family="sans-serif" font-size="12" fill="#cbd5e1">• <tspan font-weight="700" fill="#10b981">Best Case: O(1)</tspan> — Target found at first index A[0].</text>
+      <text x="0" y="62" font-family="sans-serif" font-size="12" fill="#cbd5e1">• <tspan font-weight="700" fill="#f59e0b">Worst Case: O(n)</tspan> — Target at last index or completely absent.</text>
+      
+      <text x="450" y="42" font-family="sans-serif" font-size="12" fill="#cbd5e1">• <tspan font-weight="700" fill="#38bdf8">Space Complexity: O(1)</tspan> (In-place)</text>
+      <text x="450" y="62" font-family="sans-serif" font-size="12" fill="#94a3b8">• Requirement: <tspan fill="#f8fafc">Works on Unsorted Arrays</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -391,6 +391,12 @@ Thus, Merge Sort divides the list into smaller parts, sorts them, and then combi
 
 ---
 
+### Visual Divide & Conquer Recursion Tree
+
+![Divide and Conquer Strategy Architecture](assets/images/diagrams/recursion_tree_dac.svg)
+
+---
+
 ## Question 9: Describe the steps of divide-and-conquer in Merge Sort.
 
 ### Answer
@@ -408,6 +414,12 @@ COMBINE: [27,38] [3,43] → [3,27,38,43] ✓
 ```
 
 **Recurrence**: $T(n)=2T(n/2)+\Theta(n)=\Theta(n\log n)$
+
+---
+
+### Visual Merge Sort Recursion Tree
+
+![Merge Sort Divide and Conquer Tree](assets/images/diagrams/merge_sort_tree.svg)
 
 ---
 
@@ -458,6 +470,12 @@ With Dynamic Programming:
 - `fib(3)` is calculated **once** and stored.
 - Any future call directly looks up the answer in $O(1)$ time.
 - Total operations reduce from $O(2^n)$ to **$O(n)$**.
+
+---
+
+### Visual Overlapping Subproblems & DP Table
+
+![Dynamic Programming Overlapping Subproblems](assets/images/diagrams/dp_overlapping_subproblems.svg)
 
 ---
 
@@ -586,6 +604,12 @@ $$\mathbf{C(S, i)}$$
 3. **Optimal Tour Completion:**
    After visiting all cities in $V$, return to the start city 1:
    $$\text{Optimal Tour Cost} = \min_{i=2}^{n} \Big( C(V, i) + \text{dist}(i, 1) \Big)$$
+
+---
+
+### Visual 4-City TSP Graph & Optimal Tour
+
+![TSP 4-City Graph Representation](assets/images/diagrams/tsp_graph_representation.svg)
 
 ---
 
@@ -867,6 +891,12 @@ def insertion_sort(arr):
 
 ---
 
+### Visual Step-by-Step Execution Trace
+
+![Insertion Sort Step-by-Step Execution Trace](assets/images/diagrams/insertion_sort_trace.svg)
+
+---
+
 # SECTION 12: SELECTION SORT
 
 ---
@@ -897,6 +927,12 @@ def selection_sort(arr):
 | 4 | 25 (idx 3) | `[11, 12, 22, 25, 64]` ✓ |
 
 **Total comparisons**: $n(n-1)/2=10$ (same regardless of input) | **Time**: $O(n^2)$ | **Stable**: ❌
+
+---
+
+### Visual Step-by-Step Execution Trace
+
+![Selection Sort Step-by-Step Execution Trace](assets/images/diagrams/selection_sort_trace.svg)
 
 ---
 
@@ -933,6 +969,12 @@ def selection_sort(arr):
 | 3 | 2 | `[9, 12, 18, 25, 30]` ✓ |
 
 **Total Comparisons = 9** | **Sorted**: `[9, 12, 18, 25, 30]` ✓
+
+---
+
+### Visual Pass-by-Pass Execution Trace
+
+![Bubble Sort Pass-by-Pass Execution Trace](assets/images/diagrams/bubble_sort_trace.svg)
 
 ---
 
@@ -1015,6 +1057,12 @@ For any element at index $i$:
 - **Left Child:** $2i + 1$
 - **Right Child:** $2i + 2$
 - **Last Non-Leaf Node:** $\lfloor n / 2 \rfloor - 1$
+
+---
+
+### Visual Binary Max-Heap & Array Index Representation
+
+![Heap Sort Binary Max-Heap Tree Structure](assets/images/diagrams/heap_sort_structure.svg)
 
 ---
 
@@ -1225,6 +1273,12 @@ $$\mathbf{A = [170, 45, 75, 90, 802, 24, 2, 66]}$$
 
 ---
 
+### Visual Multi-Pass LSD Digit Sorting Trace
+
+![Radix Sort Multi-Pass LSD Execution Trace](assets/images/diagrams/radix_sort_buckets.svg)
+
+---
+
 #### Pass 1: Sort by Units Digit ($\text{exp} = 1$)
 
 Extract the units digit of each element:
@@ -1432,6 +1486,12 @@ Since 45 matches the required element, it is found at position 4.
 
 ---
 
+### Visual Sequential Scanning Trace
+
+![Linear Search Step-by-Step Sequential Scanning](assets/images/diagrams/linear_search_trace.svg)
+
+---
+
 ### Algorithm
 
 ```text
@@ -1536,6 +1596,12 @@ Search for **60**:
 | **2** | `50, 60, 70` | 60 | $60 = 60 \implies$ **Found** ✓ |
 
 Thus, **60** is found at position 6.
+
+---
+
+### Visual Divide & Conquer Range Halving Trace
+
+![Binary Search Range Halving Trace](assets/images/diagrams/binary_search_range_split.svg)
 
 ---
 
@@ -1667,6 +1733,12 @@ The pattern is found starting at position 3 (0-indexed position 2).
 
 ---
 
+### Visual Sliding Window Execution Trace
+
+![Brute-Force String Matching Sliding Window Trace](assets/images/diagrams/string_matching_trace.svg)
+
+---
+
 ### Algorithm
 
 1. Start from the first position of the text.
@@ -1758,6 +1830,12 @@ The two main graph traversal techniques are:
               |                 |
         Level by level      Depth by depth
 ```
+
+---
+
+### Visual Comparison: BFS vs DFS Traversal Order
+
+![Graph Traversals Compared: BFS vs DFS](assets/images/diagrams/bfs_dfs_traversal.svg)
 
 ---
 
@@ -1916,6 +1994,12 @@ Where:
 ### Answer
 
 **Graph (Source: A)**: A→B:4, A→C:2, C→B:1, C→D:8, C→E:10, B→D:5, D→E:2
+
+---
+
+### Visual Shortest Path & Relaxation Trace
+
+![Dijkstra Algorithm Relaxation Trace](assets/images/diagrams/dijkstra_graph_trace.svg)
 
 ---
 
@@ -2101,6 +2185,12 @@ $$\text{NP-Complete} = NP \cap \text{NP-Hard}$$
 
 ---
 
+### Visual Euler Diagram: Computational Complexity Classes
+
+![Complexity Classes Euler Diagram: P, NP, NP-Complete, and NP-Hard](assets/images/diagrams/p_np_complexity_venn.svg)
+
+---
+
 
 # REMAINING SYLLABUS TOPICS
 
@@ -2147,6 +2237,12 @@ Q . . .
 
 ---
 
+### Visual 4-Queens State-Space Search Tree & Pruning
+
+![4-Queens State-Space Search Tree with Backtracking](assets/images/diagrams/n_queens_backtracking_tree.svg)
+
+---
+
 # SECTION 30: HAMILTONIAN CIRCUIT
 
 ---
@@ -2187,6 +2283,14 @@ def hamiltonian(graph,path,n):
 **Proof**: $n$ elements → $n!$ permutations → binary decision tree needs $\ge\log_2(n!)$ height.
 
 Stirling: $\log_2(n!)\approx n\log_2 n=\Omega(n\log n)$.
+
+---
+
+### Visual Decision Tree Lower Bound Model
+
+![Comparison Sort Lower Bound Decision Tree](assets/images/diagrams/sorting_decision_tree_lower_bound.svg)
+
+---
 
 | Significance | Explanation |
 | :--- | :--- |

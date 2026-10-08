@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 490" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pnpBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="860" height="490" rx="16" fill="url(#pnpBg)" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Header -->
+  <g transform="translate(36, 24)">
+    <rect width="5" height="26" rx="2.5" fill="#ec4899" />
+    <text x="16" y="20" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#f8fafc">
+      Complexity Classes Euler Diagram: P, NP, NP-Complete, and NP-Hard
+    </text>
+    <text x="16" y="38" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">
+      Standard relationship assuming P ≠ NP | Polynomial Solvability vs Verification vs Reductions
+    </text>
+  </g>
+
+  <!-- Left: Euler Venn Diagram -->
+  <g transform="translate(40, 80)">
+    <rect width="440" height="380" rx="12" fill="#131d31" stroke="#334155" />
+    
+    <!-- Outer boundary: NP-Hard (upper domain extending outside NP) -->
+    <path d="M 40 40 C 120 10, 320 10, 400 40 C 420 120, 420 220, 390 280 C 330 260, 290 240, 220 240 C 150 240, 110 260, 50 280 C 20 220, 20 120, 40 40 Z" 
+          fill="#450a0a" stroke="#ef4444" stroke-width="2" opacity="0.6" />
+    <text x="220" y="55" font-family="system-ui, sans-serif" font-size="14" font-weight="800" fill="#fca5a5" text-anchor="middle">
+      NP-HARD
+    </text>
+    <text x="220" y="72" font-family="sans-serif" font-size="11" fill="#fecaca" text-anchor="middle">
+      (At least as hard as any problem in NP; Halting Problem, TSP Optimization)
+    </text>
+
+    <!-- NP Ellipse (Bottom/Center overlapping with NP-Hard) -->
+    <ellipse cx="220" cy="235" rx="180" ry="120" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" opacity="0.75" />
+    <text x="220" y="335" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#818cf8" text-anchor="middle">
+      CLASS NP (Nondeterministic Polynomial)
+    </text>
+    <text x="220" y="349" font-family="sans-serif" font-size="10" fill="#c7d2fe" text-anchor="middle">
+      Verifiable in polynomial time
+    </text>
+
+    <!-- NP-Complete Intersection (NP ∩ NP-Hard) -->
+    <ellipse cx="220" cy="180" rx="125" ry="50" fill="#701a75" stroke="#ec4899" stroke-width="2.5" />
+    <text x="220" y="176" font-family="system-ui, sans-serif" font-size="14" font-weight="800" fill="#ffffff" text-anchor="middle">
+      NP-COMPLETE (NPC)
+    </text>
+    <text x="220" y="194" font-family="sans-serif" font-size="11" font-weight="600" fill="#fbcfe8" text-anchor="middle">
+      NP ∩ NP-Hard (Circuit-SAT, 3-SAT, Clique, TSP Decision)
+    </text>
+
+    <!-- Class P (Deterministic Polynomial inside NP, non-NPC assuming P != NP) -->
+    <ellipse cx="220" cy="275" rx="75" ry="32" fill="#064e3b" stroke="#10b981" stroke-width="2" />
+    <text x="220" y="272" font-family="system-ui, sans-serif" font-size="14" font-weight="800" fill="#ffffff" text-anchor="middle">
+      CLASS P
+    </text>
+    <text x="220" y="288" font-family="sans-serif" font-size="10" font-weight="600" fill="#a7f3d0" text-anchor="middle">
+      Solvable in O(nᵏ) (Sorting, Shortest Path)
+    </text>
+
+    <!-- P ⊆ NP tag -->
+    <rect x="25" y="345" width="80" height="22" rx="4" fill="#0f172a" stroke="#10b981" />
+    <text x="65" y="360" font-family="monospace" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle">P ⊆ NP</text>
+  </g>
+
+  <!-- Right: Definitions & Relationships -->
+  <g transform="translate(500, 80)">
+    <rect width="324" height="380" rx="12" fill="#131d31" stroke="#334155" />
+    <text x="162" y="26" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#38bdf8" text-anchor="middle">
+      Exam Definitions &amp; Reductions
+    </text>
+
+    <!-- Box 1: Class P -->
+    <g transform="translate(14, 45)">
+      <rect width="296" height="66" rx="6" fill="#064e3b" stroke="#10b981" />
+      <text x="12" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#a7f3d0">Class P (Polynomial Solvable):</text>
+      <text x="12" y="38" font-family="sans-serif" font-size="11" fill="#ecfdf5">Solvable by a Deterministic Turing Machine (DTM) in O(nᵏ) time.</text>
+      <text x="12" y="54" font-family="sans-serif" font-size="10" fill="#a7f3d0">Examples: Linear/Binary Search, Merge Sort, Dijkstra.</text>
+    </g>
+
+    <!-- Box 2: Class NP -->
+    <g transform="translate(14, 122)">
+      <rect width="296" height="66" rx="6" fill="#1e1b4b" stroke="#6366f1" />
+      <text x="12" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#c7d2fe">Class NP (Polynomial Verifiable):</text>
+      <text x="12" y="38" font-family="sans-serif" font-size="11" fill="#e0e7ff">A proposed certificate/solution can be verified in polynomial time.</text>
+      <text x="12" y="54" font-family="sans-serif" font-size="10" fill="#c7d2fe">Solvable by Non-deterministic TM in poly time.</text>
+    </g>
+
+    <!-- Box 3: NP-Complete -->
+    <g transform="translate(14, 200)">
+      <rect width="296" height="74" rx="6" fill="#701a75" stroke="#ec4899" />
+      <text x="12" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#fbcfe8">NP-Complete (NPC):</text>
+      <text x="12" y="36" font-family="sans-serif" font-size="11" fill="#fdf2f8">1. Problem L ∈ NP</text>
+      <text x="12" y="50" font-family="sans-serif" font-size="11" fill="#fdf2f8">2. For every L' ∈ NP, L' ≤ₚ L (NP-Hard)</text>
+      <text x="12" y="66" font-family="sans-serif" font-size="10" fill="#fbcfe8">Cook-Levin Theorem proved SAT is NP-Complete.</text>
+    </g>
+
+    <!-- Box 4: NP-Hard -->
+    <g transform="translate(14, 286)">
+      <rect width="296" height="78" rx="6" fill="#450a0a" stroke="#ef4444" />
+      <text x="12" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#fca5a5">NP-Hard:</text>
+      <text x="12" y="36" font-family="sans-serif" font-size="11" fill="#fee2e2">At least as hard as NPC, but does NOT need to be in NP.</text>
+      <text x="12" y="52" font-family="sans-serif" font-size="10" fill="#fecaca">May not even be decidable (e.g. Halting Problem).</text>
+      <text x="12" y="68" font-family="sans-serif" font-size="10" fill="#fca5a5">If ANY NPC problem is solved in P → P = NP!</text>
+    </g>
+  </g>
+</svg>

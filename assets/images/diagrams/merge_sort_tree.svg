@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <marker id="arrowDown" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 2 L 10 5 L 0 8 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowUp" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 2 L 10 5 L 0 8 z" fill="#10b981" />
+    </marker>
+  </defs>
+
+  <rect width="840" height="480" rx="16" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Header -->
+  <g transform="translate(36, 26)">
+    <rect width="5" height="26" rx="2.5" fill="#6366f1" />
+    <text x="16" y="20" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#f8fafc">
+      Merge Sort: Divide &amp; Conquer Recursion Tree
+    </text>
+    <text x="16" y="38" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">
+      Recurrence: T(n) = 2T(n/2) + O(n) → Θ(n log n) in all cases (Best, Average, Worst)
+    </text>
+  </g>
+
+  <!-- Left: DIVIDE Phase (Blue/Cyan) -->
+  <g transform="translate(36, 75)">
+    <text x="10" y="20" font-family="sans-serif" font-size="13" font-weight="700" fill="#38bdf8">1. DIVIDE PHASE (Split down to single elements)</text>
+    
+    <!-- Level 0: 7 elements -->
+    <rect x="70" y="35" width="260" height="32" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
+    <text x="200" y="56" font-family="mono, sans-serif" font-size="13" font-weight="700" fill="#f8fafc" text-anchor="middle">[38, 27, 43, 3, 9, 82, 10]</text>
+
+    <!-- Divide lines -->
+    <path d="M 160 67 L 110 95" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arrowDown)" fill="none" />
+    <path d="M 240 67 L 290 95" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arrowDown)" fill="none" />
+
+    <!-- Level 1 -->
+    <rect x="25" y="100" width="165" height="30" rx="5" fill="#1e293b" stroke="#38bdf8" />
+    <text x="107" y="120" font-family="mono, sans-serif" font-size="12" fill="#e0f2fe" text-anchor="middle">[38, 27, 43, 3]</text>
+
+    <rect x="210" y="100" width="165" height="30" rx="5" fill="#1e293b" stroke="#38bdf8" />
+    <text x="292" y="120" font-family="mono, sans-serif" font-size="12" fill="#e0f2fe" text-anchor="middle">[9, 82, 10]</text>
+
+    <!-- Divide lines Level 2 -->
+    <path d="M 80 130 L 50 155" stroke="#38bdf8" stroke-width="1.2" marker-end="url(#arrowDown)" fill="none" />
+    <path d="M 135 130 L 165 155" stroke="#38bdf8" stroke-width="1.2" marker-end="url(#arrowDown)" fill="none" />
+    <path d="M 265 130 L 235 155" stroke="#38bdf8" stroke-width="1.2" marker-end="url(#arrowDown)" fill="none" />
+    <path d="M 320 130 L 350 155" stroke="#38bdf8" stroke-width="1.2" marker-end="url(#arrowDown)" fill="none" />
+
+    <!-- Level 2 -->
+    <rect x="10" y="160" width="85" height="26" rx="4" fill="#0f172a" stroke="#475569" />
+    <text x="52" y="177" font-family="mono, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">[38, 27]</text>
+
+    <rect x="125" y="160" width="85" height="26" rx="4" fill="#0f172a" stroke="#475569" />
+    <text x="167" y="177" font-family="mono, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">[43, 3]</text>
+
+    <rect x="200" y="160" width="85" height="26" rx="4" fill="#0f172a" stroke="#475569" />
+    <text x="242" y="177" font-family="mono, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">[9, 82]</text>
+
+    <rect x="315" y="160" width="60" height="26" rx="4" fill="#0f172a" stroke="#475569" />
+    <text x="345" y="177" font-family="mono, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">[10]</text>
+
+    <!-- Base Cases (Single elements) -->
+    <g transform="translate(10, 205)">
+      <rect x="0" y="0" width="46" height="24" rx="4" fill="#047857" stroke="#10b981" />
+      <text x="23" y="16" font-family="mono, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">[38]</text>
+
+      <rect x="52" y="0" width="46" height="24" rx="4" fill="#047857" stroke="#10b981" />
+      <text x="75" y="16" font-family="mono, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">[27]</text>
+
+      <rect x="110" y="0" width="46" height="24" rx="4" fill="#047857" stroke="#10b981" />
+      <text x="133" y="16" font-family="mono, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">[43]</text>
+
+      <rect x="162" y="0" width="46" height="24" rx="4" fill="#047857" stroke="#10b981" />
+      <text x="185" y="16" font-family="mono, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">[3]</text>
+
+      <rect x="218" y="0" width="46" height="24" rx="4" fill="#047857" stroke="#10b981" />
+      <text x="241" y="16" font-family="mono, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">[9]</text>
+
+      <rect x="270" y="0" width="46" height="24" rx="4" fill="#047857" stroke="#10b981" />
+      <text x="293" y="16" font-family="mono, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">[82]</text>
+
+      <rect x="325" y="0" width="46" height="24" rx="4" fill="#047857" stroke="#10b981" />
+      <text x="348" y="16" font-family="mono, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">[10]</text>
+    </g>
+  </g>
+
+  <!-- Right: MERGE Phase (Green/Emerald) -->
+  <g transform="translate(440, 75)">
+    <text x="10" y="20" font-family="sans-serif" font-size="13" font-weight="700" fill="#34d399">2. CONQUER &amp; COMBINE (Merge in Sorted Order)</text>
+
+    <!-- Submerge 1 -->
+    <rect x="10" y="45" width="85" height="28" rx="4" fill="#065f46" stroke="#10b981" />
+    <text x="52" y="63" font-family="mono, sans-serif" font-size="11.5" font-weight="700" fill="#a7f3d0" text-anchor="middle">[27, 38]</text>
+
+    <rect x="110" y="45" width="85" height="28" rx="4" fill="#065f46" stroke="#10b981" />
+    <text x="152" y="63" font-family="mono, sans-serif" font-size="11.5" font-weight="700" fill="#a7f3d0" text-anchor="middle">[3, 43]</text>
+
+    <rect x="210" y="45" width="85" height="28" rx="4" fill="#065f46" stroke="#10b981" />
+    <text x="252" y="63" font-family="mono, sans-serif" font-size="11.5" font-weight="700" fill="#a7f3d0" text-anchor="middle">[9, 82]</text>
+
+    <rect x="310" y="45" width="55" height="28" rx="4" fill="#065f46" stroke="#10b981" />
+    <text x="337" y="63" font-family="mono, sans-serif" font-size="11.5" font-weight="700" fill="#a7f3d0" text-anchor="middle">[10]</text>
+
+    <!-- Merge arrows to level 2 -->
+    <path d="M 52 75 L 85 105" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowUp)" fill="none" />
+    <path d="M 152 75 L 120 105" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowUp)" fill="none" />
+    <path d="M 252 75 L 275 105" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowUp)" fill="none" />
+    <path d="M 337 75 L 305 105" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowUp)" fill="none" />
+
+    <!-- Intermediate merged lists -->
+    <rect x="25" y="110" width="160" height="32" rx="5" fill="#047857" stroke="#34d399" stroke-width="1.2" />
+    <text x="105" y="131" font-family="mono, sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">[3, 27, 38, 43]</text>
+
+    <rect x="210" y="110" width="150" height="32" rx="5" fill="#047857" stroke="#34d399" stroke-width="1.2" />
+    <text x="285" y="131" font-family="mono, sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">[9, 10, 82]</text>
+
+    <!-- Final Merge Arrows -->
+    <path d="M 105 145 L 175 175" stroke="#10b981" stroke-width="2" marker-end="url(#arrowUp)" fill="none" />
+    <path d="M 285 145 L 215 175" stroke="#10b981" stroke-width="2" marker-end="url(#arrowUp)" fill="none" />
+
+    <!-- Final Fully Sorted Array -->
+    <rect x="40" y="180" width="310" height="42" rx="8" fill="#064e3b" stroke="#34d399" stroke-width="2" />
+    <text x="195" y="206" font-family="mono, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff" text-anchor="middle">
+      [3, 9, 10, 27, 38, 43, 82] ✓
+    </text>
+  </g>
+
+  <!-- Bottom Complexity Specs Bar -->
+  <g transform="translate(36, 355)">
+    <rect width="768" height="90" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1" />
+    
+    <g transform="translate(24, 22)">
+      <text x="0" y="14" font-family="sans-serif" font-size="12" font-weight="700" fill="#818cf8">Time Complexity:</text>
+      <text x="0" y="34" font-family="sans-serif" font-size="11" fill="#cbd5e1">Best: Θ(n log n)</text>
+      <text x="0" y="52" font-family="sans-serif" font-size="11" fill="#cbd5e1">Worst/Avg: Θ(n log n)</text>
+    </g>
+
+    <g transform="translate(260, 22)">
+      <text x="0" y="14" font-family="sans-serif" font-size="12" font-weight="700" fill="#38bdf8">Space Complexity:</text>
+      <text x="0" y="34" font-family="sans-serif" font-size="11" fill="#cbd5e1">O(n) Auxiliary space</text>
+      <text x="0" y="52" font-family="sans-serif" font-size="11" fill="#cbd5e1">Not in-place</text>
+    </g>
+
+    <g transform="translate(510, 22)">
+      <text x="0" y="14" font-family="sans-serif" font-size="12" font-weight="700" fill="#34d399">Key Properties:</text>
+      <text x="0" y="34" font-family="sans-serif" font-size="11" fill="#cbd5e1">Stable: ✅ Yes</text>
+      <text x="0" y="52" font-family="sans-serif" font-size="11" fill="#cbd5e1">Divide-and-Conquer Paradigm</text>
+    </g>
+  </g>
+</svg>

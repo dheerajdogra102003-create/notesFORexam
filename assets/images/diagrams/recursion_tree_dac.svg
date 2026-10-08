@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="boxGradPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+    <linearGradient id="boxGradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <linearGradient id="boxGradEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="boxGradAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 2 L 10 5 L 0 8 z" fill="#94a3b8" />
+    </marker>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 2 L 10 5 L 0 8 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowEmerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 2 L 10 5 L 0 8 z" fill="#34d399" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="480" rx="16" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Header -->
+  <g transform="translate(36, 30)">
+    <rect width="5" height="26" rx="2.5" fill="#6366f1" />
+    <text x="16" y="20" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#f8fafc">
+      Divide-and-Conquer &amp; Recursion Architecture
+    </text>
+    <text x="16" y="40" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">
+      Three Steps: 1. DIVIDE (Break down) → 2. CONQUER (Solve subproblems) → 3. COMBINE (Merge results)
+    </text>
+  </g>
+
+  <!-- Step 1: Main Problem -->
+  <g transform="translate(290, 85)">
+    <rect width="220" height="46" rx="10" fill="url(#boxGradPrimary)" stroke="#818cf8" stroke-width="1.5" />
+    <text x="110" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Original Problem P</text>
+    <text x="110" y="38" font-family="system-ui, sans-serif" font-size="11" fill="#e0e7ff" text-anchor="middle">Size n (Large Input)</text>
+  </g>
+
+  <!-- Split arrows -->
+  <path d="M 370 131 L 220 180" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowCyan)" fill="none" />
+  <path d="M 430 131 L 580 180" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowCyan)" fill="none" />
+  <text x="320" y="155" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#38bdf8">Divide</text>
+  <text x="480" y="155" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#38bdf8">Divide</text>
+
+  <!-- Level 1 Subproblems -->
+  <g transform="translate(120, 185)">
+    <rect width="200" height="44" rx="8" fill="url(#boxGradCyan)" stroke="#38bdf8" stroke-width="1.2" />
+    <text x="100" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">Subproblem P₁</text>
+    <text x="100" y="36" font-family="system-ui, sans-serif" font-size="10.5" fill="#e0f2fe" text-anchor="middle">Size n / 2</text>
+  </g>
+  <g transform="translate(480, 185)">
+    <rect width="200" height="44" rx="8" fill="url(#boxGradCyan)" stroke="#38bdf8" stroke-width="1.2" />
+    <text x="100" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">Subproblem P₂</text>
+    <text x="100" y="36" font-family="system-ui, sans-serif" font-size="10.5" fill="#e0f2fe" text-anchor="middle">Size n / 2</text>
+  </g>
+
+  <!-- Split arrows to base cases -->
+  <path d="M 180 229 L 110 275" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)" fill="none" stroke-dasharray="3,3" />
+  <path d="M 260 229 L 310 275" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)" fill="none" stroke-dasharray="3,3" />
+  <path d="M 540 229 L 490 275" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)" fill="none" stroke-dasharray="3,3" />
+  <path d="M 620 229 L 690 275" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)" fill="none" stroke-dasharray="3,3" />
+
+  <!-- Level 2: Base Cases (Conquered) -->
+  <g transform="translate(40, 280)">
+    <rect width="130" height="38" rx="6" fill="url(#boxGradEmerald)" stroke="#34d399" stroke-width="1" />
+    <text x="65" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">Base Case S₁</text>
+    <text x="65" y="31" font-family="system-ui, sans-serif" font-size="9.5" fill="#d1fae5" text-anchor="middle">Size O(1) Solve</text>
+  </g>
+  <g transform="translate(230, 280)">
+    <rect width="130" height="38" rx="6" fill="url(#boxGradEmerald)" stroke="#34d399" stroke-width="1" />
+    <text x="65" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">Base Case S₂</text>
+    <text x="65" y="31" font-family="system-ui, sans-serif" font-size="9.5" fill="#d1fae5" text-anchor="middle">Size O(1) Solve</text>
+  </g>
+  <g transform="translate(440, 280)">
+    <rect width="130" height="38" rx="6" fill="url(#boxGradEmerald)" stroke="#34d399" stroke-width="1" />
+    <text x="65" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">Base Case S₃</text>
+    <text x="65" y="31" font-family="system-ui, sans-serif" font-size="9.5" fill="#d1fae5" text-anchor="middle">Size O(1) Solve</text>
+  </g>
+  <g transform="translate(630, 280)">
+    <rect width="130" height="38" rx="6" fill="url(#boxGradEmerald)" stroke="#34d399" stroke-width="1" />
+    <text x="65" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">Base Case S₄</text>
+    <text x="65" y="31" font-family="system-ui, sans-serif" font-size="9.5" fill="#d1fae5" text-anchor="middle">Size O(1) Solve</text>
+  </g>
+
+  <!-- Combine Upward Paths -->
+  <path d="M 105 318 Q 185 365 185 385" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <path d="M 295 318 Q 215 365 215 385" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <path d="M 505 318 Q 585 365 585 385" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <path d="M 695 318 Q 615 365 615 385" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+
+  <!-- Intermediate Combined Solutions -->
+  <g transform="translate(120, 390)">
+    <rect width="160" height="36" rx="7" fill="url(#boxGradAmber)" stroke="#fcd34d" stroke-width="1" />
+    <text x="80" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">Combined Sol₁</text>
+    <text x="80" y="30" font-family="system-ui, sans-serif" font-size="9" fill="#fef3c7" text-anchor="middle">Merge S₁ + S₂</text>
+  </g>
+  <g transform="translate(520, 390)">
+    <rect width="160" height="36" rx="7" fill="url(#boxGradAmber)" stroke="#fcd34d" stroke-width="1" />
+    <text x="80" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">Combined Sol₂</text>
+    <text x="80" y="30" font-family="system-ui, sans-serif" font-size="9" fill="#fef3c7" text-anchor="middle">Merge S₃ + S₄</text>
+  </g>
+
+  <!-- Final Combine to Solution -->
+  <path d="M 200 426 Q 400 470 400 445" stroke="#10b981" stroke-width="2.5" fill="none" />
+  <path d="M 600 426 Q 400 470 400 445" stroke="#10b981" stroke-width="2.5" fill="none" />
+  <g transform="translate(310, 432)">
+    <rect width="180" height="34" rx="8" fill="#10b981" stroke="#34d399" stroke-width="1.5" />
+    <text x="90" y="21" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">✓ Final Optimal Solution</text>
+  </g>
+
+  <!-- Right Phase Legend -->
+  <g transform="translate(710, 100)">
+    <circle cx="10" cy="10" r="5" fill="#38bdf8" />
+    <text x="22" y="14" font-family="sans-serif" font-size="10.5" fill="#38bdf8" font-weight="600">1. Divide</text>
+    
+    <circle cx="10" cy="50" r="5" fill="#10b981" />
+    <text x="22" y="54" font-family="sans-serif" font-size="10.5" fill="#34d399" font-weight="600">2. Conquer</text>
+
+    <circle cx="10" cy="90" r="5" fill="#f59e0b" />
+    <text x="22" y="94" font-family="sans-serif" font-size="10.5" fill="#fbbf24" font-weight="600">3. Combine</text>
+  </g>
+</svg>

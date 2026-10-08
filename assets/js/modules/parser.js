@@ -250,7 +250,18 @@ function configureMarked() {
     const qMatch = text.match(/^Question\s+(\d+)[:\s]*(.*)/i);
     if ((level === 2 || level === 3) && qMatch) {
       const qNum = qMatch[1];
-      const qTitle = qMatch[2].trim();
+      let qTitle = qMatch[2].trim();
+      // Clean any raw LaTeX or symbols from ribbon heading text
+      qTitle = qTitle
+        .replace(/\\Omega\b/g, 'Ω')
+        .replace(/\\Theta\b/g, 'Θ')
+        .replace(/\\(?:leq|le)\b/g, '≤')
+        .replace(/\\(?:geq|ge)\b/g, '≥')
+        .replace(/\\times\b/g, '×')
+        .replace(/\\approx\b/g, '≈')
+        .replace(/\\(?:rightarrow|to)\b/g, '→')
+        .replace(/\$+/g, '');
+
       return `
         <h2 id="${id}" class="question-header-ribbon">
           <span class="question-badge-pill">Q ${qNum}</span>
@@ -436,6 +447,9 @@ export function parseAndRender(rawContent, targetElement) {
   if (window.Prism) {
     window.Prism.highlightAllUnder(targetElement);
   }
+
+  // Render mathematical expressions with KaTeX and clean legacy symbols
+  renderMathAndCleanSymbols(targetElement);
 }
 
 /**
@@ -501,4 +515,91 @@ function renderStructuredContent(data, targetElement) {
   if (window.Prism) {
     window.Prism.highlightAllUnder(targetElement);
   }
+
+  renderMathAndCleanSymbols(targetElement);
+}
+
+/**
+ * Renders mathematical expressions via KaTeX and performs a site-wide
+ * cleanup of any raw LaTeX/Unicode characters so they display cleanly.
+ * @param {HTMLElement} container 
+ */
+function renderMathAndCleanSymbols(container) {
+  if (!container) return;
+
+  // 1. If KaTeX auto-render is available, render mathematical formulas
+  if (typeof window.renderMathInElement === 'function') {
+    try {
+      window.renderMathInElement(container, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false,
+        errorColor: '#f43f5e',
+        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      });
+    } catch (mathErr) {
+      console.warn('KaTeX auto-render error:', mathErr);
+    }
+  }
+
+  // 2. Perform DOM-level symbol normalization for any text nodes outside <pre>, <code>, and .katex
+  const walker = document.createTreeWalker(
+    container,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode: (node) => {
+        const parent = node.parentElement;
+        if (!parent) return NodeFilter.FILTER_REJECT;
+        if (parent.closest('pre') || parent.closest('code') || parent.closest('.katex')) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    }
+  );
+
+  const textNodes = [];
+  while (walker.nextNode()) {
+    textNodes.push(walker.currentNode);
+  }
+
+  textNodes.forEach(node => {
+    let text = node.nodeValue;
+    if (!text) return;
+
+    // Replace bare LaTeX and entities with clean Unicode equivalents
+    let replaced = text
+      .replace(/\\Omega\b/g, 'Ω')
+      .replace(/\\Theta\b/g, 'Θ')
+      .replace(/\\(?:leq|le)\b/g, '≤')
+      .replace(/\\(?:geq|ge)\b/g, '≥')
+      .replace(/\\times\b/g, '×')
+      .replace(/\\approx\b/g, '≈')
+      .replace(/\\(?:neq|ne)\b/g, '≠')
+      .replace(/\\(?:rightarrow|to)\b/g, '→')
+      .replace(/\\leftarrow\b/g, '←')
+      .replace(/\\pm\b/g, '±')
+      .replace(/\\dots\b/g, '…')
+      .replace(/\\cdot\b/g, '·')
+      .replace(/\\in\b/g, '∈')
+      .replace(/\\notin\b/g, '∉')
+      .replace(/\\subseteq\b/g, '⊆')
+      .replace(/\\subset\b/g, '⊂')
+      .replace(/\\cap\b/g, '∩')
+      .replace(/\\cup\b/g, '∪')
+      .replace(/\\emptyset\b/g, '∅')
+      .replace(/\\infty\b/g, '∞')
+      .replace(/\\sqrt\b/g, '√')
+      .replace(/\\sum\b/g, '∑')
+      // If any lone $ remains around simple Big-O notations in headings or cards
+      .replace(/\$O\(([^$]+)\)\$/g, 'O($1)')
+      .replace(/\$Ω\(([^$]+)\)\$/g, 'Ω($1)')
+      .replace(/\$Θ\(([^$]+)\)\$/g, 'Θ($1)');
+
+    if (replaced !== text) {
+      node.nodeValue = replaced;
+    }
+  });
 }
