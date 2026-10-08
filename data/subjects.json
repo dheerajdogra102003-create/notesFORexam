@@ -7,15 +7,15 @@
       "semester": "Semester 2",
       "icon": "⚡",
       "color": "#6366f1",
-      "description": "Complete exam preparation: 72 questions across algorithm analysis, sorting, searching, graph algorithms, and NP-completeness.",
+      "description": "Complete exam preparation: 33 questions across algorithm analysis, sorting, searching, graph algorithms, and NP-completeness.",
       "navigation": [
         {
           "id": "daa-full",
-          "title": "FULL NOTES — All 72 Questions",
+          "title": "FULL NOTES — All 33 Questions",
           "items": [
             {
               "id": "daa-all",
-              "title": "All Units — Complete Notes (Q1–Q72)",
+              "title": "All Units — Complete Notes (Q1–Q33)",
               "badge": "Full Notes",
               "file": "data/content/daa/daa-notes.md"
             }
@@ -38,16 +38,16 @@
               "file": "data/content/daa/daa-notes.md#question-2-describe-asymptotic-analysis-and-explain-the-significance-of-asymptotic-notations"
             },
             {
-              "id": "daa-q5",
-              "title": "Q5: Time Complexity of Non-Recursive Algorithm",
+              "id": "daa-q3",
+              "title": "Q3: Time Complexity of Non-Recursive Algorithm",
               "badge": "Analysis",
-              "file": "data/content/daa/daa-notes.md#question-5-analyze-the-time-complexity-of-a-non-recursive-algorithm"
+              "file": "data/content/daa/daa-notes.md#question-3-analyze-the-time-complexity-of-a-non-recursive-algorithm"
             },
             {
-              "id": "daa-q6",
-              "title": "Q6: Polynomial vs Exponential Running Time",
+              "id": "daa-q4",
+              "title": "Q4: Polynomial vs Exponential Running Time",
               "badge": "Theory",
-              "file": "data/content/daa/daa-notes.md#question-6-explain-the-difference-between-polynomial-and-exponential-running-time"
+              "file": "data/content/daa/daa-notes.md#question-4-explain-the-difference-between-polynomial-and-exponential-running-time"
             }
           ]
         },
@@ -56,10 +56,10 @@
           "title": "SECTION 2 — Deterministic Algorithms",
           "items": [
             {
-              "id": "daa-q7",
-              "title": "Q7: Concept of Deterministic Algorithms",
+              "id": "daa-q5",
+              "title": "Q5: Concept of Deterministic Algorithms",
               "badge": "Theory",
-              "file": "data/content/daa/daa-notes.md#question-7-write-the-concept-of-deterministic-algorithms-and-mention-their-applications"
+              "file": "data/content/daa/daa-notes.md#question-5-write-the-concept-of-deterministic-algorithms-and-mention-their-applications"
             }
           ]
         },
@@ -68,16 +68,16 @@
           "title": "SECTION 3 — Recursion",
           "items": [
             {
-              "id": "daa-q8",
-              "title": "Q8: Working of Recursion in Problem-Solving",
+              "id": "daa-q6",
+              "title": "Q6: Working of Recursion in Problem-Solving",
               "badge": "Core",
-              "file": "data/content/daa/daa-notes.md#question-8-interpret-the-working-of-recursion-in-problem-solving"
+              "file": "data/content/daa/daa-notes.md#question-6-interpret-the-working-of-recursion-in-problem-solving"
             },
             {
-              "id": "daa-q9",
-              "title": "Q9: Recursive vs Non-Recursive Algorithms",
+              "id": "daa-q7",
+              "title": "Q7: Recursive vs Non-Recursive Algorithms",
               "badge": "Compare",
-              "file": "data/content/daa/daa-notes.md#question-9-explain-the-difference-between-recursive-and-non-recursive-algorithms"
+              "file": "data/content/daa/daa-notes.md#question-7-explain-the-difference-between-recursive-and-non-recursive-algorithms"
             }
           ]
         },
@@ -86,52 +86,16 @@
           "title": "SECTION 4 — Divide-and-Conquer",
           "items": [
             {
-              "id": "daa-q10",
-              "title": "Q10: Divide-and-Conquer Strategy",
+              "id": "daa-q8",
+              "title": "Q8: Divide-and-Conquer Strategy",
               "badge": "Core",
-              "file": "data/content/daa/daa-notes.md#question-10-explain-the-divide-and-conquer-strategy-used-in-solving-problems"
+              "file": "data/content/daa/daa-notes.md#question-8-explain-the-divide-and-conquer-strategy-used-in-solving-problems"
             },
             {
-              "id": "daa-q11",
-              "title": "Q11: D&C Steps in Merge Sort",
+              "id": "daa-q9",
+              "title": "Q9: D&C Steps in Merge Sort",
               "badge": "Algorithm",
-              "file": "data/content/daa/daa-notes.md#question-11-describe-the-steps-of-divide-and-conquer-in-merge-sort"
-            },
-            {
-              "id": "daa-q12",
-              "title": "Q12: Effectiveness of D&C for Large Inputs",
-              "badge": "Analysis",
-              "file": "data/content/daa/daa-notes.md#question-12-judge-the-effectiveness-of-divide-and-conquer-for-large-inputs"
-            }
-          ]
-        },
-        {
-          "id": "daa-sec5",
-          "title": "SECTION 5 — Greedy Algorithm",
-          "items": [
-            {
-              "id": "daa-q13",
-              "title": "Q13: Principle & Features of Greedy Algorithm",
-              "badge": "Core",
-              "file": "data/content/daa/daa-notes.md#question-13-define-the-basic-principle-of-the-greedy-algorithm-and-mention-its-main-features"
-            },
-            {
-              "id": "daa-q14",
-              "title": "Q14: Greedy Solution — Activity Selection",
-              "badge": "Example",
-              "file": "data/content/daa/daa-notes.md#question-14-construct-a-solution-using-the-greedy-strategy-for-a-suitable-problem"
-            },
-            {
-              "id": "daa-q15",
-              "title": "Q15: Greedy — Fractional Knapsack",
-              "badge": "Example",
-              "file": "data/content/daa/daa-notes.md#question-15-apply-the-greedy-approach-to-obtain-a-feasible-solution-for-an-optimization-problem"
-            },
-            {
-              "id": "daa-q16",
-              "title": "Q16: Greedy for TSP",
-              "badge": "TSP",
-              "file": "data/content/daa/daa-notes.md#question-16-explain-the-use-of-the-greedy-approach-for-solving-tsp"
+              "file": "data/content/daa/daa-notes.md#question-9-describe-the-steps-of-divide-and-conquer-in-merge-sort"
             }
           ]
         },
@@ -140,22 +104,16 @@
           "title": "SECTION 6 — Dynamic Programming",
           "items": [
             {
-              "id": "daa-q17",
-              "title": "Q17: Overlapping Subproblems in DP",
+              "id": "daa-q10",
+              "title": "Q10: Overlapping Subproblems in DP",
               "badge": "Core",
-              "file": "data/content/daa/daa-notes.md#question-17-explain-overlapping-subproblems-in-dynamic-programming"
+              "file": "data/content/daa/daa-notes.md#question-10-explain-overlapping-subproblems-in-dynamic-programming"
             },
             {
-              "id": "daa-q18",
-              "title": "Q18: DP for TSP (Held-Karp)",
+              "id": "daa-q11",
+              "title": "Q11: DP for TSP (Held-Karp)",
               "badge": "TSP",
-              "file": "data/content/daa/daa-notes.md#question-18-explain-the-use-of-dynamic-programming-for-solving-tsp"
-            },
-            {
-              "id": "daa-q19",
-              "title": "Q19: DP vs Greedy vs Brute Force",
-              "badge": "Compare",
-              "file": "data/content/daa/daa-notes.md#question-19-compare-dynamic-programming-with-other-approaches"
+              "file": "data/content/daa/daa-notes.md#question-11-explain-the-use-of-dynamic-programming-for-solving-tsp"
             }
           ]
         },
@@ -164,16 +122,10 @@
           "title": "SECTION 9 — Randomization",
           "items": [
             {
-              "id": "daa-q26",
-              "title": "Q26: Define Randomization in Algorithm Design",
+              "id": "daa-q12",
+              "title": "Q12: Define Randomization in Algorithm Design",
               "badge": "Theory",
-              "file": "data/content/daa/daa-notes.md#question-26-define-randomization-in-algorithm-design"
-            },
-            {
-              "id": "daa-q27",
-              "title": "Q27: Randomized Algorithms & Applications",
-              "badge": "Core",
-              "file": "data/content/daa/daa-notes.md#question-27-explain-randomized-algorithms-and-their-applications"
+              "file": "data/content/daa/daa-notes.md#question-12-define-randomization-in-algorithm-design"
             }
           ]
         },
@@ -182,16 +134,10 @@
           "title": "SECTION 10 — Optimization Problems",
           "items": [
             {
-              "id": "daa-q28",
-              "title": "Q28: Assignment Problem & Knapsack Problem",
+              "id": "daa-q13",
+              "title": "Q13: Assignment Problem & Knapsack Problem",
               "badge": "Summary",
-              "file": "data/content/daa/daa-notes.md#question-28-summarize-the-assignment-problem-and-the-knapsack-problem"
-            },
-            {
-              "id": "daa-q29",
-              "title": "Q29: TSP — Problem & All Approaches",
-              "badge": "TSP",
-              "file": "data/content/daa/daa-notes.md#question-29-explain-tsp-and-different-approaches-for-solving-it"
+              "file": "data/content/daa/daa-notes.md#question-13-summarize-the-assignment-problem-and-the-knapsack-problem"
             }
           ]
         },
@@ -200,16 +146,10 @@
           "title": "SECTION 11 — Insertion Sort",
           "items": [
             {
-              "id": "daa-q30",
-              "title": "Q30: Define Insertion Sort",
+              "id": "daa-q14",
+              "title": "Q14: Insertion Sort — Working with Example",
               "badge": "Sort",
-              "file": "data/content/daa/daa-notes.md#question-30-define-the-insertion-sort-algorithm"
-            },
-            {
-              "id": "daa-q31",
-              "title": "Q31: Insertion Sort — Working with Example",
-              "badge": "Sort",
-              "file": "data/content/daa/daa-notes.md#question-31-explain-the-working-of-insertion-sort-with-a-suitable-example"
+              "file": "data/content/daa/daa-notes.md#question-14-explain-the-working-of-insertion-sort-with-a-suitable-example"
             }
           ]
         },
@@ -218,10 +158,10 @@
           "title": "SECTION 12 — Selection Sort",
           "items": [
             {
-              "id": "daa-q32",
-              "title": "Q32: Selection Sort — Working with Example",
+              "id": "daa-q15",
+              "title": "Q15: Selection Sort — Working with Example",
               "badge": "Sort",
-              "file": "data/content/daa/daa-notes.md#question-32-explain-the-working-of-selection-sort-with-a-suitable-example"
+              "file": "data/content/daa/daa-notes.md#question-15-explain-the-working-of-selection-sort-with-a-suitable-example"
             }
           ]
         },
@@ -230,16 +170,10 @@
           "title": "SECTION 13 — Bubble Sort ⭐⭐⭐⭐",
           "items": [
             {
-              "id": "daa-q33",
-              "title": "Q33: Bubble Sort — Dataset {25,12,9,30,18}",
+              "id": "daa-q16",
+              "title": "Q16: Bubble Sort — Dataset {25,12,9,30,18}",
               "badge": "★★★★",
-              "file": "data/content/daa/daa-notes.md#question-33-arrange-25-12-9-30-18-using-bubble-sort-illustrate-each-pass-and-calculate-total-comparisons"
-            },
-            {
-              "id": "daa-q34",
-              "title": "Q34: Bubble Sort — Working & Running Time",
-              "badge": "Sort",
-              "file": "data/content/daa/daa-notes.md#question-34-explain-the-working-of-bubble-sort-with-an-example-and-analyze-its-running-time"
+              "file": "data/content/daa/daa-notes.md#question-16-arrange-25-12-9-30-18-using-bubble-sort-illustrate-each-pass-and-calculate-total-comparisons"
             }
           ]
         },
@@ -248,16 +182,10 @@
           "title": "SECTION 14 — Merge Sort ⭐⭐⭐",
           "items": [
             {
-              "id": "daa-q35",
-              "title": "Q35: D&C Strategy in Merge Sort",
-              "badge": "★★★",
-              "file": "data/content/daa/daa-notes.md#question-35-describe-the-divide-and-conquer-strategy-used-in-merge-sort"
-            },
-            {
-              "id": "daa-q36",
-              "title": "Q36: Merge Sort — Working & Complexity",
+              "id": "daa-q17",
+              "title": "Q17: Merge Sort — Working & Complexity",
               "badge": "Sort",
-              "file": "data/content/daa/daa-notes.md#question-36-explain-the-working-of-merge-sort-with-a-suitable-example-and-analyze-its-complexity"
+              "file": "data/content/daa/daa-notes.md#question-17-explain-the-working-of-merge-sort-with-a-suitable-example-and-analyze-its-complexity"
             }
           ]
         },
@@ -266,22 +194,10 @@
           "title": "SECTION 15 — Quick Sort ⭐⭐⭐⭐⭐",
           "items": [
             {
-              "id": "daa-q37",
-              "title": "Q37: Quick Sort — [38,27,43,3,9,82,10] Step-by-Step",
-              "badge": "★★★★★",
-              "file": "data/content/daa/daa-notes.md#question-37-solve-quick-sort-for-38-27-43-3-9-82-10-step-by-step"
-            },
-            {
-              "id": "daa-q38",
-              "title": "Q38: Partitioning Process of Quick Sort",
+              "id": "daa-q18",
+              "title": "Q18: Partitioning Process of Quick Sort",
               "badge": "Sort",
-              "file": "data/content/daa/daa-notes.md#question-38-explain-the-partitioning-process-of-quick-sort-with-a-suitable-example"
-            },
-            {
-              "id": "daa-q39",
-              "title": "Q39: Quick Sort — Best, Average & Worst Case",
-              "badge": "Analysis",
-              "file": "data/content/daa/daa-notes.md#question-39-analyze-the-best-average-and-worst-case-time-complexity-of-quick-sort"
+              "file": "data/content/daa/daa-notes.md#question-18-explain-the-partitioning-process-of-quick-sort-with-a-suitable-example"
             }
           ]
         },
@@ -290,16 +206,10 @@
           "title": "SECTION 16 — Heap Sort",
           "items": [
             {
-              "id": "daa-q40",
-              "title": "Q40: Heap Sort — Max-Heap for {20,7,15,3,10,5}",
+              "id": "daa-q19",
+              "title": "Q19: Heap Sort — Working & Time Complexity",
               "badge": "Sort",
-              "file": "data/content/daa/daa-notes.md#question-40-explain-heap-sort-by-constructing-a-max-heap-for-20-7-15-3-10-5"
-            },
-            {
-              "id": "daa-q41",
-              "title": "Q41: Heap Sort — Working & Time Complexity",
-              "badge": "Sort",
-              "file": "data/content/daa/daa-notes.md#question-41-explain-the-working-of-heap-sort-and-its-time-complexity"
+              "file": "data/content/daa/daa-notes.md#question-19-explain-the-working-of-heap-sort-and-its-time-complexity"
             }
           ]
         },
@@ -308,10 +218,10 @@
           "title": "SECTION 17 — Radix Sort",
           "items": [
             {
-              "id": "daa-q43",
-              "title": "Q43: Radix Sort — Example & Complexity",
+              "id": "daa-q20",
+              "title": "Q20: Radix Sort — Example & Complexity",
               "badge": "Sort",
-              "file": "data/content/daa/daa-notes.md#question-43-explain-radix-sort-with-a-suitable-example-and-analyze-its-complexity"
+              "file": "data/content/daa/daa-notes.md#question-20-explain-radix-sort-with-a-suitable-example-and-analyze-its-complexity"
             }
           ]
         },
@@ -320,10 +230,10 @@
           "title": "SECTION 18 — Linear Search",
           "items": [
             {
-              "id": "daa-q44",
-              "title": "Q44: Linear Search — Working & Complexity",
+              "id": "daa-q21",
+              "title": "Q21: Linear Search — Working & Complexity",
               "badge": "Search",
-              "file": "data/content/daa/daa-notes.md#question-44-explain-the-working-of-linear-search-and-its-time-complexity"
+              "file": "data/content/daa/daa-notes.md#question-21-explain-the-working-of-linear-search-and-its-time-complexity"
             }
           ]
         },
@@ -332,22 +242,16 @@
           "title": "SECTION 19 — Binary Search ⭐⭐⭐",
           "items": [
             {
-              "id": "daa-q45",
-              "title": "Q45: Binary Search vs Linear Search for Large Datasets",
+              "id": "daa-q22",
+              "title": "Q22: Binary Search vs Linear Search for Large Datasets",
               "badge": "★★★",
-              "file": "data/content/daa/daa-notes.md#question-45-explain-the-suitability-of-binary-search-over-linear-search-for-large-ordered-datasets"
+              "file": "data/content/daa/daa-notes.md#question-22-explain-the-suitability-of-binary-search-over-linear-search-for-large-ordered-datasets"
             },
             {
-              "id": "daa-q46",
-              "title": "Q46: Binary Search — Working with Example",
+              "id": "daa-q23",
+              "title": "Q23: Binary Search — Working with Example",
               "badge": "Search",
-              "file": "data/content/daa/daa-notes.md#question-46-explain-the-working-of-binary-search-with-a-suitable-example"
-            },
-            {
-              "id": "daa-q47",
-              "title": "Q47: Linear vs Binary Search — Complexity Comparison",
-              "badge": "Compare",
-              "file": "data/content/daa/daa-notes.md#question-47-compare-the-time-complexity-of-linear-search-and-binary-search"
+              "file": "data/content/daa/daa-notes.md#question-23-explain-the-working-of-binary-search-with-a-suitable-example"
             }
           ]
         },
@@ -356,16 +260,10 @@
           "title": "SECTION 20 — Brute Force / Exhaustive Search",
           "items": [
             {
-              "id": "daa-q48",
-              "title": "Q48: Exhaustive/Brute-Force Search Concept",
-              "badge": "Theory",
-              "file": "data/content/daa/daa-notes.md#question-48-explain-exhaustive-brute-force-search-with-a-suitable-example"
-            },
-            {
-              "id": "daa-q49",
-              "title": "Q49: Brute Force vs Greedy vs DP for TSP",
+              "id": "daa-q25",
+              "title": "Q25: Brute Force vs Greedy vs DP for TSP",
               "badge": "Compare",
-              "file": "data/content/daa/daa-notes.md#question-49-compare-brute-force-greedy-and-dp-for-solving-tsp"
+              "file": "data/content/daa/daa-notes.md#question-25-compare-brute-force-greedy-and-dp-for-solving-tsp"
             }
           ]
         },
@@ -374,16 +272,10 @@
           "title": "SECTION 21 — Brute-Force String Matching",
           "items": [
             {
-              "id": "daa-q50",
-              "title": "Q50: Brute-Force String Matching — Illustration",
-              "badge": "Algorithm",
-              "file": "data/content/daa/daa-notes.md#question-50-illustrate-brute-force-string-matching"
-            },
-            {
-              "id": "daa-q51",
-              "title": "Q51: String Matching — Working & Complexity",
+              "id": "daa-q27",
+              "title": "Q27: String Matching — Working & Complexity",
               "badge": "Analysis",
-              "file": "data/content/daa/daa-notes.md#question-51-explain-brute-force-string-matching-and-its-time-complexity"
+              "file": "data/content/daa/daa-notes.md#question-27-explain-brute-force-string-matching-and-its-time-complexity"
             }
           ]
         },
@@ -392,46 +284,10 @@
           "title": "SECTION 22 — Graph Traversal",
           "items": [
             {
-              "id": "daa-q52",
-              "title": "Q52: Concept of Graph Traversal",
+              "id": "daa-q28",
+              "title": "Q28: Graph Traversal — BFS & DFS Techniques",
               "badge": "Graph",
-              "file": "data/content/daa/daa-notes.md#question-52-identify-and-explain-the-concept-of-graph-traversal"
-            },
-            {
-              "id": "daa-q53",
-              "title": "Q53: DFS Concept in Graph Traversal",
-              "badge": "Graph",
-              "file": "data/content/daa/daa-notes.md#question-53-explain-the-concept-of-dfs-in-graph-traversal"
-            }
-          ]
-        },
-        {
-          "id": "daa-sec23",
-          "title": "SECTION 23 — BFS",
-          "items": [
-            {
-              "id": "daa-q54",
-              "title": "Q54: BFS — Concept & Algorithm",
-              "badge": "Graph",
-              "file": "data/content/daa/daa-notes.md#question-54-explain-the-concept-of-breadth-first-search-bfs"
-            },
-            {
-              "id": "daa-q55",
-              "title": "Q55: BFS vs DFS Comparison",
-              "badge": "Compare",
-              "file": "data/content/daa/daa-notes.md#question-55-compare-bfs-and-dfs"
-            }
-          ]
-        },
-        {
-          "id": "daa-sec24",
-          "title": "SECTION 24 — DFS ⭐⭐⭐⭐⭐",
-          "items": [
-            {
-              "id": "daa-q58",
-              "title": "Q58: DFS Working with Example",
-              "badge": "Graph",
-              "file": "data/content/daa/daa-notes.md#question-58-explain-the-working-of-dfs-using-an-example"
+              "file": "data/content/daa/daa-notes.md#question-28-explain-graph-traversal-and-discuss-its-two-main-techniques-breadth-first-search-bfs-and-depth-first-search-dfs-with-their-algorithms-applications-and-time-complexity"
             }
           ]
         },
@@ -440,70 +296,22 @@
           "title": "SECTION 25 — Dijkstra's Algorithm ⭐⭐⭐",
           "items": [
             {
-              "id": "daa-q61",
-              "title": "Q61: Dijkstra's Algorithm with Example",
+              "id": "daa-q29",
+              "title": "Q29: Dijkstra's Algorithm with Example",
               "badge": "Graph",
-              "file": "data/content/daa/daa-notes.md#question-61-explain-the-working-of-dijkstras-algorithm-with-a-suitable-example"
+              "file": "data/content/daa/daa-notes.md#question-29-explain-the-working-of-dijkstras-algorithm-with-a-suitable-example"
             }
           ]
         },
         {
           "id": "daa-sec26",
-          "title": "SECTION 26 — P and NP",
+          "title": "SECTION 26 — P, NP, NP-Hard & NP-Complete ⭐⭐⭐⭐⭐",
           "items": [
             {
-              "id": "daa-q62",
-              "title": "Q62: P and NP Problem Classes",
+              "id": "daa-q30",
+              "title": "Q30: P, NP, NP-Hard, NP-Complete — Full Evaluation",
               "badge": "NP",
-              "file": "data/content/daa/daa-notes.md#question-62-explain-the-relevance-of-p-and-np-in-computational-complexity-and-algorithm-development"
-            }
-          ]
-        },
-        {
-          "id": "daa-sec27",
-          "title": "SECTION 27 — NP-Hard ⭐⭐⭐⭐⭐",
-          "items": [
-            {
-              "id": "daa-q63",
-              "title": "Q63: Meaning of NP-Hard Problems",
-              "badge": "★★★★★",
-              "file": "data/content/daa/daa-notes.md#question-63-state-the-meaning-of-np-hard-problems"
-            },
-            {
-              "id": "daa-q64",
-              "title": "Q64: Relevance of NP-Hard in Complexity",
-              "badge": "NP",
-              "file": "data/content/daa/daa-notes.md#question-64-explain-the-relevance-of-np-hard-problems-in-computational-complexity"
-            },
-            {
-              "id": "daa-q65",
-              "title": "Q65: NP-Hard — Real-World Solution Strategies",
-              "badge": "NP",
-              "file": "data/content/daa/daa-notes.md#question-65-use-np-hard-concepts-to-determine-solution-strategies-for-real-world-challenges"
-            }
-          ]
-        },
-        {
-          "id": "daa-sec28",
-          "title": "SECTION 28 — NP-Complete ⭐⭐⭐⭐⭐",
-          "items": [
-            {
-              "id": "daa-q66",
-              "title": "Q66: Concept of NP-Complete Problems",
-              "badge": "★★★★★",
-              "file": "data/content/daa/daa-notes.md#question-66-explain-the-concept-of-np-complete-problems"
-            },
-            {
-              "id": "daa-q67",
-              "title": "Q67: NP-Hard vs NP-Complete",
-              "badge": "NP",
-              "file": "data/content/daa/daa-notes.md#question-67-differentiate-between-np-hard-and-np-complete-problems"
-            },
-            {
-              "id": "daa-q68",
-              "title": "Q68: P, NP, NP-Hard, NP-Complete — Full Evaluation",
-              "badge": "NP",
-              "file": "data/content/daa/daa-notes.md#question-68-evaluate-the-relevance-of-p-np-np-hard-and-np-complete-in-complexity"
+              "file": "data/content/daa/daa-notes.md#question-30-evaluate-the-relevance-of-p-np-np-hard-and-np-complete-in-computational-complexity"
             }
           ]
         },
@@ -512,10 +320,10 @@
           "title": "SECTION 29 — N-Queens",
           "items": [
             {
-              "id": "daa-q69",
-              "title": "Q69: Backtracking for N-Queens Problem",
+              "id": "daa-q31",
+              "title": "Q31: Backtracking for N-Queens Problem",
               "badge": "Algorithm",
-              "file": "data/content/daa/daa-notes.md#question-69-explain-how-backtracking-solves-the-n-queens-problem"
+              "file": "data/content/daa/daa-notes.md#question-31-explain-how-backtracking-solves-the-n-queens-problem"
             }
           ]
         },
@@ -524,10 +332,10 @@
           "title": "SECTION 30 — Hamiltonian Circuit",
           "items": [
             {
-              "id": "daa-q70",
-              "title": "Q70: Backtracking for Hamiltonian Circuit",
+              "id": "daa-q32",
+              "title": "Q32: Backtracking for Hamiltonian Circuit",
               "badge": "Algorithm",
-              "file": "data/content/daa/daa-notes.md#question-70-explain-how-backtracking-solves-the-hamiltonian-circuit-problem"
+              "file": "data/content/daa/daa-notes.md#question-32-explain-how-backtracking-solves-the-hamiltonian-circuit-problem"
             }
           ]
         },
@@ -536,22 +344,10 @@
           "title": "SECTION 31 — Lower Bound on Sorting",
           "items": [
             {
-              "id": "daa-q71",
-              "title": "Q71: Lower Bound on Sorting & Significance",
+              "id": "daa-q33",
+              "title": "Q33: Lower Bound on Sorting & Significance",
               "badge": "Theory",
-              "file": "data/content/daa/daa-notes.md#question-71-explain-the-lower-bound-on-sorting-and-its-significance"
-            }
-          ]
-        },
-        {
-          "id": "daa-sec32",
-          "title": "SECTION 32 — Polynomial vs Exponential",
-          "items": [
-            {
-              "id": "daa-q72",
-              "title": "Q72: Polynomial vs Exponential Running Time",
-              "badge": "Theory",
-              "file": "data/content/daa/daa-notes.md#question-72-differentiate-between-polynomial-and-exponential-running-time-with-examples"
+              "file": "data/content/daa/daa-notes.md#question-33-explain-the-lower-bound-on-sorting-and-its-significance"
             }
           ]
         }
