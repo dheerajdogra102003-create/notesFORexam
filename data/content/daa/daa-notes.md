@@ -177,9 +177,7 @@ For **100 students**, an $O(n^2)$ algorithm may require about **10,000 compariso
 
 ---
 
-# SECTION 2: DETERMINISTIC ALGORITHMS
-
----
+# Deterministic Algorithms
 
 ## Question 5: Write the concept of deterministic algorithms and mention their applications.
 
@@ -218,9 +216,7 @@ Deterministic algorithms are useful when **predictable, repeatable, and accurate
 
 ---
 
-# SECTION 3: RECURSION
-
----
+# Recursion
 
 ## Question 6: Interpret the working of recursion in problem-solving.
 
@@ -319,9 +315,7 @@ $$\text{Both produce: } 4 \times 3 \times 2 \times 1 = 24$$
 
 ---
 
-# SECTION 4: DIVIDE-AND-CONQUER
-
----
+# Divide-and-Conquer
 
 ## Question 8: Explain the divide-and-conquer strategy used in solving problems.
 
@@ -423,9 +417,7 @@ COMBINE: [27,38] [3,43] → [3,27,38,43] ✓
 
 ---
 
-# SECTION 6: DYNAMIC PROGRAMMING
-
----
+# Dynamic Programming
 
 ## Question 10: Explain overlapping subproblems in Dynamic Programming.
 
@@ -678,9 +670,7 @@ Cost: 10 + 25 + 30 + 15 = 80
 
 ---
 
-# SECTION 9: RANDOMIZATION
-
----
+# Randomization
 
 ## Question 12: Define randomization in algorithm design.
 
@@ -759,9 +749,7 @@ def randomized_quicksort(arr, low, high):
 
 ---
 
-# SECTION 10: OPTIMIZATION PROBLEMS
-
----
+# Optimization Problems
 
 ## Question 13: Summarize the Assignment Problem and the Knapsack Problem.
 
@@ -860,9 +848,7 @@ def knapsack_01(weights, values, W):
 
 ---
 
-# SECTION 11: INSERTION SORT
-
----
+# Insertion Sort
 
 ## Question 14: Explain the working of Insertion Sort with a suitable example.
 
@@ -897,9 +883,7 @@ def insertion_sort(arr):
 
 ---
 
-# SECTION 12: SELECTION SORT
-
----
+# Selection Sort
 
 ## Question 15: Explain the working of Selection Sort with a suitable example.
 
@@ -936,9 +920,7 @@ def selection_sort(arr):
 
 ---
 
-# SECTION 13: BUBBLE SORT
-
----
+# Bubble Sort
 
 ## Question 16: Arrange {25, 12, 9, 30, 18} using Bubble Sort. Illustrate each pass and calculate total comparisons.
 
@@ -978,9 +960,7 @@ def selection_sort(arr):
 
 ---
 
-# SECTION 14: MERGE SORT
-
----
+# Merge Sort
 
 ## Question 17: Explain the working of Merge Sort with a suitable example and analyze its complexity.
 
@@ -998,9 +978,7 @@ def selection_sort(arr):
 
 ---
 
-# SECTION 15: QUICK SORT
-
----
+# Quick Sort
 
 ## Question 18: Explain the partitioning process of Quick Sort with a suitable example.
 
@@ -1022,9 +1000,7 @@ def selection_sort(arr):
 
 ---
 
-# SECTION 16: HEAP SORT
-
----
+# Heap Sort
 
 ## Question 19: Explain the working of Heap Sort and its time complexity.
 
@@ -1218,9 +1194,7 @@ Algorithm Heapify(A, n, i)
 
 ---
 
-# SECTION 17: RADIX SORT
-
----
+# Radix Sort
 
 ## Question 20: Explain Radix Sort with a suitable example and analyze its complexity.
 
@@ -1451,9 +1425,7 @@ Let:
 
 ---
 
-# SECTION 18: LINEAR SEARCH
-
----
+# Linear Search
 
 ## Question 21: Explain the working of Linear Search and its time complexity.
 
@@ -1521,9 +1493,7 @@ LinearSearch(A, n, key)
 
 ---
 
-# SECTION 19: BINARY SEARCH
-
----
+# Binary Search
 
 ## Question 22: Explain the suitability of Binary Search over Linear Search for large ordered datasets.
 
@@ -1644,13 +1614,7 @@ BinarySearch(A, key)
 
 ---
 
-# EXHAUSTIVE SEARCH & STRING MATCHING
-
----
-
-# SECTION 20: BRUTE FORCE
-
----
+# Brute Force
 
 ## Question 25: Compare brute-force, greedy and DP for solving TSP.
 
@@ -1694,9 +1658,7 @@ DP divides TSP into **smaller subproblems**, stores their results, and reuses th
 
 ---
 
-# SECTION 21: BRUTE-FORCE STRING MATCHING
-
----
+# Brute-Force String Matching
 
 
 ## Question 27: Explain brute-force string matching and its time complexity.
@@ -1804,9 +1766,7 @@ $$O(nm)$$
 
 ---
 
-# SECTION 22: GRAPH TRAVERSAL
-
----
+# Graph Traversal
 
 ## Question 28: Explain graph traversal and discuss its two main techniques, Breadth First Search (BFS) and Depth First Search (DFS), with their algorithms, applications, and time complexity.
 
@@ -1985,9 +1945,7 @@ Where:
 
 ---
 
-# SECTION 25: DIJKSTRA'S ALGORITHM
-
----
+# Dijkstra's Algorithm
 
 ## Question 29: Explain the working of Dijkstra's algorithm with a suitable example.
 
@@ -2011,13 +1969,7 @@ Where:
 
 ---
 
-# NP & COMPUTATIONAL COMPLEXITY
-
----
-
-# SECTION 26: P, NP, NP-HARD & NP-COMPLETE
-
----
+# P, NP, NP-Hard & NP-Complete
 
 ## Question 30: Evaluate the relevance of P, NP, NP-Hard and NP-Complete in computational complexity.
 
@@ -2196,9 +2148,7 @@ $$\text{NP-Complete} = NP \cap \text{NP-Hard}$$
 
 ---
 
-# SECTION 29: N-QUEENS
-
----
+# N-Queens
 
 ## Question 31: Explain how Backtracking solves the N-Queens Problem.
 
@@ -2243,9 +2193,7 @@ Q . . .
 
 ---
 
-# SECTION 30: HAMILTONIAN CIRCUIT
-
----
+# Hamiltonian Circuit
 
 ## Question 32: Explain how Backtracking solves the Hamiltonian Circuit Problem.
 
@@ -2270,9 +2218,7 @@ def hamiltonian(graph,path,n):
 
 ---
 
-# SECTION 31: LOWER BOUND ON SORTING
-
----
+# Lower Bound on Sorting
 
 ## Question 33: Explain the lower bound on sorting and its significance.
 

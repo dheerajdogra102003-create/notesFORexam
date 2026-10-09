@@ -173,6 +173,12 @@ async function loadSubject(subjectId, contentId = null, updateHistory = true) {
   // Render dynamic sidebar
   renderSidebar(sidebarNavContainer, navData, activeItem ? (activeItem.id || activeItem.file) : null, (selectedItem) => {
     loadContent(selectedItem);
+    const sidebarEl = document.getElementById('viewer-sidebar');
+    const backdropEl = document.getElementById('drawer-backdrop');
+    if (sidebarEl && sidebarEl.classList.contains('open')) {
+      sidebarEl.classList.remove('open');
+      if (backdropEl) backdropEl.classList.remove('active');
+    }
   });
 
   // Load the content item or show subject overview
@@ -293,8 +299,22 @@ async function loadContent(item, updateHistory = true) {
       console.warn('UI Chrome update warning:', uiErr);
     }
 
-    // Always start at the very top (Question 1) on load
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    // Scroll to specific targeted question or start at the top
+    if (targetHash) {
+      setTimeout(() => {
+        const targetElement = document.getElementById(targetHash) || document.querySelector(`[id*="${targetHash}"]`);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const card = targetElement.closest('.question-exam-card') || targetElement;
+          card.classList.add('targeted-card-pulse');
+          setTimeout(() => card.classList.remove('targeted-card-pulse'), 2500);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
 
     // Update Document Title
     document.title = `${item.title || 'Notes'} | ${currentSubject ? currentSubject.title : 'Exam Portal'}`;

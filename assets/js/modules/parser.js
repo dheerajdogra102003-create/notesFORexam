@@ -148,6 +148,159 @@ function enhanceCodePreviewGrid(container) {
 }
 
 /**
+ * Automatically pairs consecutive video embeds (.video-embed-wrapper) into a responsive .video-grid.
+ * Shows 2 videos side-by-side on desktop/tablets and 1 column on narrow mobile.
+ * @param {HTMLElement} container
+ */
+function enhanceVideoEmbedGrid(container) {
+  if (!container) return;
+
+  const wrappers = Array.from(container.querySelectorAll('.video-embed-wrapper'));
+  if (wrappers.length === 0) return;
+
+  const groups = [];
+  let currentGroup = [];
+
+  for (let i = 0; i < wrappers.length; i++) {
+    const current = wrappers[i];
+    if (current.closest('.video-grid')) continue;
+
+    if (currentGroup.length === 0) {
+      currentGroup.push(current);
+    } else {
+      const prev = currentGroup[currentGroup.length - 1];
+      let sib = prev.nextSibling;
+      let isAdjacent = false;
+      while (sib) {
+        if (sib === current) {
+          isAdjacent = true;
+          break;
+        }
+        if (sib.nodeType === Node.TEXT_NODE && sib.textContent.trim() === '') {
+          sib = sib.nextSibling;
+          continue;
+        }
+        if (sib.nodeType === Node.COMMENT_NODE) {
+          sib = sib.nextSibling;
+          continue;
+        }
+        break;
+      }
+
+      if (isAdjacent) {
+        currentGroup.push(current);
+      } else {
+        if (currentGroup.length > 1) {
+          groups.push([...currentGroup]);
+        }
+        currentGroup = [current];
+      }
+    }
+  }
+
+  if (currentGroup.length > 1) {
+    groups.push(currentGroup);
+  }
+
+  groups.forEach(group => {
+    const grid = document.createElement('div');
+    grid.className = 'video-grid';
+    grid.setAttribute('data-count', String(group.length));
+
+    const first = group[0];
+    first.parentNode.insertBefore(grid, first);
+
+    group.forEach(el => {
+      el.style.maxWidth = '100%';
+      el.style.width = '100%';
+      el.style.margin = '0';
+      el.classList.add('video-card');
+      grid.appendChild(el);
+    });
+  });
+}
+
+/**
+ * Global lightbox modal overlay for click-to-zoom diagrams and images
+ */
+let lightboxOverlayEl = null;
+
+function ensureLightboxOverlay() {
+  if (lightboxOverlayEl && document.body.contains(lightboxOverlayEl)) return lightboxOverlayEl;
+
+  const existing = document.getElementById('image-zoom-lightbox');
+  if (existing) {
+    lightboxOverlayEl = existing;
+    return lightboxOverlayEl;
+  }
+
+  lightboxOverlayEl = document.createElement('div');
+  lightboxOverlayEl.id = 'image-zoom-lightbox';
+  lightboxOverlayEl.className = 'image-lightbox-overlay';
+  lightboxOverlayEl.innerHTML = `
+    <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="Expanded diagram view">
+      <button class="lightbox-close-btn" aria-label="Close zoom modal">✕</button>
+      <img src="" alt="Enlarged diagram" class="lightbox-img">
+      <div class="lightbox-caption"></div>
+    </div>
+  `;
+
+  document.body.appendChild(lightboxOverlayEl);
+
+  const close = () => {
+    lightboxOverlayEl.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  const closeBtn = lightboxOverlayEl.querySelector('.lightbox-close-btn');
+  closeBtn.addEventListener('click', close);
+
+  lightboxOverlayEl.addEventListener('click', (e) => {
+    if (e.target === lightboxOverlayEl || e.target.closest('.lightbox-close-btn')) {
+      close();
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightboxOverlayEl.classList.contains('active')) {
+      close();
+    }
+  });
+
+  return lightboxOverlayEl;
+}
+
+/**
+ * Binds click-to-zoom lightbox handlers on content images and diagrams
+ * @param {HTMLElement} container
+ */
+function attachImageZoomModal(container) {
+  if (!container) return;
+  const overlay = ensureLightboxOverlay();
+  const modalImg = overlay.querySelector('.lightbox-img');
+  const modalCaption = overlay.querySelector('.lightbox-caption');
+
+  const images = container.querySelectorAll('img');
+  images.forEach(img => {
+    if (img.dataset.zoomReady === 'true' || img.classList.contains('brand-icon') || img.classList.contains('beacon-dot')) return;
+    img.dataset.zoomReady = 'true';
+    img.style.cursor = 'zoom-in';
+    img.setAttribute('title', 'Click to expand diagram / image');
+
+    img.addEventListener('click', (e) => {
+      if (img.closest('a')) return;
+      e.preventDefault();
+      modalImg.src = img.src;
+      modalImg.alt = img.alt || 'Enlarged diagram';
+      const captionText = img.alt || img.getAttribute('title') || '';
+      modalCaption.textContent = (captionText && captionText !== 'Enlarged diagram') ? captionText : '';
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+}
+
+/**
  * Wraps each question and its solution inside a self-contained card container (.question-exam-card).
  * This cleanly encapsulates the question header, answer, points, and side-by-side preview grid.
  * @param {HTMLElement} container 
@@ -193,7 +346,7 @@ function wrapQuestionsInCards(container) {
       const isNextQuestion = nextEl.classList.contains('question-header-ribbon') || 
                              (nextEl.tagName === 'H2' && /^question/i.test(nextEl.id || '')) ||
                              (nextEl.classList && nextEl.classList.contains('question-exam-card'));
-      const isNextSection = (nextEl.tagName === 'H1');
+      const isNextSection = (nextEl.tagName === 'H1') || (nextEl.classList && nextEl.classList.contains('topic-section-divider'));
       const isDivider = (nextEl.tagName === 'HR');
 
       if (isNextQuestion || isNextSection) {
@@ -207,7 +360,8 @@ function wrapQuestionsInCards(container) {
           subsequent.classList.contains('question-header-ribbon') ||
           (subsequent.tagName === 'H2' && /^question/i.test(subsequent.id || '')) ||
           (subsequent.classList && subsequent.classList.contains('question-exam-card')) ||
-          subsequent.tagName === 'H1'
+          subsequent.tagName === 'H1' ||
+          (subsequent.classList && subsequent.classList.contains('topic-section-divider'))
         );
 
         if (isFollowedByQuestionOrSection) {
@@ -231,11 +385,10 @@ function configureMarked() {
 
   const renderer = new window.marked.Renderer();
 
-  // Headings with IDs for TOC and Question Ribbon Badges
+  // Headings with IDs for TOC, Question Ribbon Badges, and clean Topic Dividers
   renderer.heading = function (arg1, arg2, arg3) {
     let text = '', level = 2, raw = '';
     if (typeof arg1 === 'object' && arg1 !== null) {
-      // Marked v12+ token object
       level = arg1.depth || 2;
       raw = arg1.raw || arg1.text || '';
       text = arg1.text || raw;
@@ -246,12 +399,11 @@ function configureMarked() {
     }
     const id = slugify(raw || text);
 
-    // If it's a Question heading (e.g. "Question 1: What is an IP address?")
+    // 1. If it's a Question heading (e.g. "Question 1: What is an IP address?")
     const qMatch = text.match(/^Question\s+(\d+)[:\s]*(.*)/i);
     if ((level === 2 || level === 3) && qMatch) {
       const qNum = qMatch[1];
       let qTitle = qMatch[2].trim();
-      // Clean any raw LaTeX or symbols from ribbon heading text
       qTitle = qTitle
         .replace(/\\Omega\b/g, 'Ω')
         .replace(/\\Theta\b/g, 'Θ')
@@ -267,6 +419,25 @@ function configureMarked() {
           <span class="question-badge-pill">Q ${qNum}</span>
           <span class="question-title-text">${qTitle}</span>
         </h2>\n
+      `;
+    }
+
+    // 2. Strip redundant "SECTION N:", "UNIT N:", "PART N:" prefixes or format topic H1s
+    const secMatch = text.match(/^(?:SECTION|UNIT|PART)\s+(?:[A-Z]|\d+)[\s:—–-]+(.*)/i);
+    if (secMatch || (level === 1 && !/EXAM PREPARATION NOTES|OVERVIEW/i.test(text))) {
+      let topicTitle = secMatch ? secMatch[1].trim() : text.trim();
+      // If all-caps, convert to clean Title Case
+      if (topicTitle === topicTitle.toUpperCase() && topicTitle.length > 3) {
+        topicTitle = topicTitle
+          .toLowerCase()
+          .replace(/(?:^|\s|-|\/)\S/g, c => c.toUpperCase());
+      }
+
+      return `
+        <div class="topic-section-divider" id="${id}">
+          <span class="topic-section-badge">Topic</span>
+          <h2 class="topic-section-title">${topicTitle}</h2>
+        </div>\n
       `;
     }
 
@@ -434,6 +605,9 @@ export function parseAndRender(rawContent, targetElement) {
   // Set innerHTML
   targetElement.innerHTML = html;
 
+  // Apply responsive video grid transformation directly in DOM
+  enhanceVideoEmbedGrid(targetElement);
+
   // Apply side-by-side code & output transformation directly in DOM
   enhanceCodePreviewGrid(targetElement);
 
@@ -442,6 +616,9 @@ export function parseAndRender(rawContent, targetElement) {
 
   // Initialize interactive copy buttons
   attachCodeCopyListeners(targetElement);
+
+  // Initialize click-to-zoom for diagrams & images
+  attachImageZoomModal(targetElement);
 
   // Apply Prism.js syntax highlighting if present
   if (window.Prism) {
@@ -509,8 +686,10 @@ function renderStructuredContent(data, targetElement) {
   }
 
   targetElement.innerHTML = html;
+  enhanceVideoEmbedGrid(targetElement);
   enhanceCodePreviewGrid(targetElement);
   attachCodeCopyListeners(targetElement);
+  attachImageZoomModal(targetElement);
 
   if (window.Prism) {
     window.Prism.highlightAllUnder(targetElement);

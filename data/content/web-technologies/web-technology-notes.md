@@ -1,6 +1,6 @@
 # WEB TECHNOLOGY — EXAM PREPARATION NOTES
 
-# PART A — INTERNET BASICS & HTML
+# Internet Basics & HTML
 
 ---
 
@@ -441,7 +441,7 @@ Tables are useful for displaying:
 
 ---
 
-# PART B — LINKING, FRAMES, CSS AND JAVASCRIPT
+# Linking, Frames, CSS & JavaScript
 
 ---
 
@@ -1746,7 +1746,7 @@ This revision sheet is organized question-by-question to help you rapidly revise
 
 ---
 
-## PART A — INTERNET BASICS & HTML
+## Internet Basics & HTML
 
 ### Question 1: What is an IP address?
 - **Identity & Routing**: An IP (Internet Protocol) address is a unique numerical address assigned to every device on a network for identification and location routing.

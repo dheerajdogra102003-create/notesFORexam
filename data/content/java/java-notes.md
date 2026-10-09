@@ -1,6 +1,6 @@
 # JAVA PROGRAMMING — EXAM PREPARATION NOTES
 
-# UNIT 1 — OBJECT-ORIENTED PROGRAMMING PRINCIPLES
+# OOP Principles & Interfaces
 
 ---
 
@@ -89,7 +89,7 @@ class Circle extends Shape {
 
 ---
 
-# UNIT 2 — EXCEPTION HANDLING & MULTITHREADING
+# Exception Handling & Multithreading
 
 ---
 

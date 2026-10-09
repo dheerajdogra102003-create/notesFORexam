@@ -1,6 +1,6 @@
 # LINUX ADMINISTRATION — EXAM PREPARATION NOTES
 
-# UNIT 1 — LINUX ARCHITECTURE & FILESYSTEM
+# Linux Architecture & Filesystem
 
 ---
 
@@ -90,7 +90,7 @@ chgrp devs script.sh
 
 ---
 
-# UNIT 2 — PROCESSES & SYSTEM SERVICES
+# Processes & System Services
 
 ---
 
@@ -123,7 +123,7 @@ Every process in Linux lifecycle transitions through defined states:
 
 ---
 
-# UNIT 3 — BASH SHELL SCRIPTING
+# Bash Shell Scripting
 
 ---
 
